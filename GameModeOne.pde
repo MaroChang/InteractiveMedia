@@ -1,0 +1,6 @@
+class GameModeOne {
+  void run() {
+  }
+  
+  
+}
