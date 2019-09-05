@@ -13,6 +13,9 @@ float halfY = screenY / 2;
 
 int gameState;
 int gameScreen;
+boolean gameInKinect = true;
+boolean gameInKeyboard = false;
+float gameVolume = 50;
 
 // for bypassing onclick event of quit button
 boolean allowQuit = false;
@@ -29,9 +32,10 @@ void setup(){
   
   gameState = IN_MENU;
   gameScreen = WELCOME_SCR;
-  
-  gameMenu = new Menu();
+  // gameScreen = SETTING_SCR;
 
+  gameMenu = new Menu();
+  fill(UGLY_COLOR);
   smooth();
 }
 

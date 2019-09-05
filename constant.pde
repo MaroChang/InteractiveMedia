@@ -17,6 +17,7 @@ String GAME_SUB_NAME = "ESCAPE";
 String CLICK_2_START = "Click to start";
 
 
+
 // COLOR
 color BEAUTY_COLOR = color(236, 240, 241);
 color UGLY_COLOR = color(52, 73, 94);
@@ -24,8 +25,12 @@ color RED = color(255, 0, 0);
 color GREEN = color(0, 255, 0);
 color BLUE = color(0, 0, 255);
 color WHITE = color(255, 255, 255);
+color TEST_COLOR = color(204, 232, 21);
 
 // BUTTON
 String NEW_GAME_STR = "START NEW GAME";
 String SETTING_STR = "SETTING";
 String QUIT_GAME_STR = "QUIT";
+String BACK_2_MENU_STR = "BACK TO MAIN MENU";
+String USE_KINECT_STR = "KINECT";
+String USE_KEYBOARD_STR = "KEYBOARD";
