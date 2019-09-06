@@ -26,7 +26,7 @@ GameModeOne gameModeOne;
 
 // configuration ________________
 void setup(){
-  size(screenX, screenY);
+  size(1024, 768);
 
   CP5 = new ControlP5(this);
   

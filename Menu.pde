@@ -3,12 +3,15 @@ class Menu {
   MainMenuScreen mainMenuScreen;
   WelcomeScreen welcomeScreen;
   SettingScreen settingScreen;
+  GameModeSelectionScreen gameModeSelectionScreen;
 
   Menu() {
 
     mainMenuScreen = new MainMenuScreen();
     welcomeScreen = new WelcomeScreen();
     settingScreen = new SettingScreen();
+    gameModeSelectionScreen =  new GameModeSelectionScreen();
+    
   }
 
   void show() {
@@ -24,6 +27,10 @@ class Menu {
 
       case SETTING_SCR:
         settingScreen.show();
+      break;
+      
+      case GAME_SELECT_SCR:
+        gameModeSelectionScreen.show();  
       break;
     }
   }
@@ -46,6 +53,7 @@ class Menu {
       case MAIN_MENU_SCR:
         mainMenuScreen.showButton();
       break;
+      
       case SETTING_SCR:
         settingScreen.showButton();
       break;

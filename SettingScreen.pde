@@ -162,5 +162,3 @@ void changeVolume(float value) {
 	if (frameCount > 0)
   	gameVolume = value;
 }
-
-
