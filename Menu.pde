@@ -2,20 +2,28 @@ class Menu {
 
   MainMenuScreen mainMenuScreen;
   WelcomeScreen welcomeScreen;
+  SettingScreen settingScreen;
 
   Menu() {
+
     mainMenuScreen = new MainMenuScreen();
     welcomeScreen = new WelcomeScreen();
+    settingScreen = new SettingScreen();
   }
 
   void show() {
     switch (gameScreen) {
+
       case WELCOME_SCR: 
         welcomeScreen.show();
       break;
 
       case MAIN_MENU_SCR:
         mainMenuScreen.show();
+      break;
+
+      case SETTING_SCR:
+        settingScreen.show();
       break;
     }
   }
@@ -25,6 +33,21 @@ class Menu {
     switch (screenName) {
       case MAIN_MENU_SCR:
         mainMenuScreen.hideButton();
+      break;
+      case SETTING_SCR:
+        settingScreen.hideButton();
+      break;
+    }
+  }
+
+  // show all button of a screen
+  void showButtonOf(int screenName) {
+    switch (screenName) {
+      case MAIN_MENU_SCR:
+        mainMenuScreen.showButton();
+      break;
+      case SETTING_SCR:
+        settingScreen.showButton();
       break;
     }
   }

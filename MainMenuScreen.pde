@@ -11,6 +11,8 @@ class MainMenuScreen extends ScreenWithButton {
 
 	void show() {
 		background(WHITE);
+		fill(UGLY_COLOR);
+		
     textAlign(CENTER);
 
     float titlePos = halfY - 100;
@@ -18,8 +20,6 @@ class MainMenuScreen extends ScreenWithButton {
     text(GAME_NAME, halfX, titlePos);
     textSize(80);
     text(GAME_SUB_NAME, halfX, titlePos + 70);
-
-    this.showButton();
 	}
 
 
@@ -66,21 +66,19 @@ class MainMenuScreen extends ScreenWithButton {
 
 
 public void startGame() {
-	if (gameMenu != null) {
-		gameMenu.hideButtonOf(MAIN_MENU_SCR);
+	if (frameCount > 0) {
+	  changeScreenTo(WELCOME_SCR, MAIN_MENU_SCR);
 	}
-  changeScreenTo(WELCOME_SCR);
 }
 
 public void openSetting() {
-	if (gameMenu != null) {
-		gameMenu.hideButtonOf(MAIN_MENU_SCR);
+	if (frameCount > 0) {
+  	changeScreenTo(SETTING_SCR, MAIN_MENU_SCR);
 	}
-  changeScreenTo(WELCOME_SCR);
 }
 
 public void quitGame() {
-	if (allowQuit) {
+	if (frameCount > 0) {
 		exit();
 	}
 }
