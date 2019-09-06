@@ -1,11 +1,11 @@
-// import libraries
-import controlP5.*;
+// IMPORT LIBRARIES
+import controlP5.*; //GUI
 
-// library's objects
+// LIBRARY OBJECTS
 ControlP5 CP5;
 
-// global variables ________________
-// leave an explanation if the variable's meaning is ambiguous
+// GLOBAL VARIABLES ________________
+// Leave an explanation if the variable's meaning is ambiguous
 int screenX = 1024;
 int screenY = 768;
 float halfX = screenX / 2;
@@ -17,14 +17,14 @@ boolean gameInKinect = true;
 boolean gameInKeyboard = false;
 float gameVolume = 50;
 
-// for bypassing onclick event of quit button
+// For bypassing onclick event of quit button
 boolean allowQuit = false;
 
-// game object
+// Game Object
 Menu gameMenu;
 GameModeOne gameModeOne;
 
-// configuration ________________
+// Configuration ________________
 void setup(){
   size(1024, 768);
 
@@ -39,13 +39,12 @@ void setup(){
   smooth();
 }
 
-// drawing ________________
+// Drawing ________________
 void draw(){
   switch (gameState) {
     case IN_MENU:
       gameMenu.show();
     break;
-    
     case IN_GAMEMODE_1:
       gameModeOne.run();
     break;

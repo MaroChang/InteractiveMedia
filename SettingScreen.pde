@@ -30,7 +30,7 @@ class SettingScreen extends ScreenWithButton {
     textSize(30);
     text("MUSIC", halfX - 190, halfY);
 
-    text("CONTROLLER", halfX - 190, halfY + 120);
+    text("INPUT DEVICE", halfX - 190, halfY + 120);
 
     textSize(20);
     int btnW = 100;

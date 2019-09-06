@@ -19,10 +19,10 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
     buttons = new controlP5.Button[numberOfBtn];
 
-    int btnW = 200;
-    int btnH = 200;
+    int btnW = 462;
+    int btnH = 550;
     int btnX = int(halfX) - int(btnW / 2);
-    int btnY = int(halfY) + 50;
+    int btnY = int(halfY) -200;
     int btnSpace = 70;
 
     PFont font = createFont("Georgia", 20);
@@ -31,7 +31,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setCaptionLabel(GAMEMODE1STR) 
       .setValue(0)
       .setFont(font)
-      .setPosition(btnX - btnSpace * 2, btnY)
+      .setPosition(btnX - btnSpace * 3.5, btnY)
        .setSize(btnW, btnH)
       .hide();
 
@@ -39,8 +39,20 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setCaptionLabel(GAMEMODE2STR) 
       .setValue(0)
       .setFont(font)
-      .setPosition(btnX + btnSpace * 2, btnY)
+      .setPosition(btnX + btnSpace * 3.5, btnY)
       .setSize(btnW, btnH)
       .hide();  
+  }
+}
+
+public void gamemode1() {
+  if (frameCount > 0) {
+    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
+  }
+}
+
+public void gamemode2() {
+  if (frameCount > 0) {
+    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }

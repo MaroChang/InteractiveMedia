@@ -1,7 +1,7 @@
 class WelcomeScreen {
 
   WelcomeScreen() {
-    // do not thing
+    // Do nothing
   }
 
 	void show() {

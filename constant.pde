@@ -1,11 +1,12 @@
 // GENERAL 
 
-// GAME STATE
+// GAMESTATE
 final int IN_MENU = 100;
 final int IN_GAMEMODE_1 = 101;
 final int QUIT_APP = 102;
 
-// GAME SCREEN
+
+// GAMESCREEN
 final int WELCOME_SCR = 200;
 final int MAIN_MENU_SCR = 201;
 final int SETTING_SCR = 202;
@@ -13,11 +14,10 @@ final int NEW_GAME_SCR = 203;
 final int GAME_SELECT_SCR = 204;
 
 
-// GAME TEXT
+// GAMETEXT
 String GAME_NAME = "GLOBAL WARMING";
 String GAME_SUB_NAME = "ESCAPE";
 String CLICK_2_START = "Click to start";
-
 
 
 // COLOR
@@ -28,6 +28,7 @@ color GREEN = color(0, 255, 0);
 color BLUE = color(0, 0, 255);
 color WHITE = color(255, 255, 255);
 color TEST_COLOR = color(204, 232, 21);
+
 
 // BUTTON
 String NEW_GAME_STR = "START NEW GAME";
