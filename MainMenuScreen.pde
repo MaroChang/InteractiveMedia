@@ -64,11 +64,7 @@ class MainMenuScreen extends ScreenWithButton {
 
 public void startGame() {
 	if (frameCount > 0) {
-<<<<<<< HEAD
 	  changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
-=======
-		changeScreenTo(WELCOME_SCR, MAIN_MENU_SCR);
->>>>>>> add gameModeOne outline
 	}
 }
 

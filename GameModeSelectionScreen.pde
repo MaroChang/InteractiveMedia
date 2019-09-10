@@ -15,7 +15,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
   }
   
    void setupButton() {
-    numberOfBtn = 3;
+    numberOfBtn = 2;
 
     buttons = new controlP5.Button[numberOfBtn];
 
@@ -47,7 +47,10 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
 public void gamemode1() {
   if (frameCount > 0) {
-    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
+    gameMenu.hideButtonOf(GAME_SELECT_SCR);
+    gameModeOne.startGame();
+    gameState = IN_GAMEMODE_1;
+    gameScreen = GAMEMODE_1_PLAYING;
   }
 }
 

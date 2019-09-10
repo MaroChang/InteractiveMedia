@@ -173,7 +173,7 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void startGame() {
-		this.createObstacle();
+		this.restartGame();
 	}
 
 	void restartGame() {
@@ -224,7 +224,7 @@ class GameModeOne extends ScreenWithButton {
 		.setCaptionLabel(MAIN_MENU_STR) 
 		.setValue(0)
 		.setFont(font)
-		.setPosition(btnX, btnY)
+		.setPosition(btnX, btnY + btnSpace)
 		.setSize(btnW, btnH)
 		.hide();
 
@@ -232,7 +232,7 @@ class GameModeOne extends ScreenWithButton {
 		.setCaptionLabel(RESTART_STR) 
 		.setValue(0)
 		.setFont(font)
-		.setPosition(btnX, btnY + btnSpace)
+		.setPosition(btnX, btnY)
 		.setSize(btnW, btnH)
 		.hide();
 	}
