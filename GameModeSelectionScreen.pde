@@ -5,34 +5,18 @@ class GameModeSelectionScreen extends ScreenWithButton {
   int GAMEMODE_1 = 1;
   int GAMEMODE_2 = 2;
   
-  //background image
-        int numFrames=10;
-        int currentFrame=0;
-        int framerate=3;
-        PImage[] background2 = new PImage[numFrames];
+  //backgroung image
+  PImage bg;
   
   GameModeSelectionScreen() {
+    bg = loadImage("image_4.jpg");
+    bg.resize(1280,720);
     this.setupButton();
-    
-    frameRate(framerate);
-               
-               background2[0] = loadImage("frame_00_delay-0.2s.gif");
-               background2[1] = loadImage("frame_01_delay-0.2s.gif");
-               background2[2] = loadImage("frame_02_delay-0.2s.gif");
-               background2[3] = loadImage("frame_03_delay-0.2s.gif");
-               background2[4] = loadImage("frame_04_delay-0.2s.gif");  
-               background2[5] = loadImage("frame_05_delay-0.2s.gif");
-               background2[6] = loadImage("frame_06_delay-0.2s.gif");
-               background2[7] = loadImage("frame_07_delay-0.2s.gif");
-               background2[8] = loadImage("frame_08_delay-0.2s.gif");
-               background2[9] = loadImage("frame_09_delay-0.2s.gif");
-               
   }
 
   void show() {
-      currentFrame = (currentFrame+1)%numFrames;
-                image(background2[(currentFrame)%numFrames],0,0);
     //background(WHITE);
+    background(bg);
     fill(UGLY_COLOR);
   }
   
@@ -41,10 +25,10 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
     buttons = new controlP5.Button[numberOfBtn];
 
-    //int btnW = 462;
-    //int btnH = 550;
-    //int btnX = int(halfX) - int(btnW / 2);
-    //int btnY = int(halfY) -200;
+    int btnW = 462;
+    int btnH = 550;
+    int btnX = int(halfX) - int(btnW / 2);
+    int btnY = int(halfY) -200;
     int btnSpace = 70;
 
     PFont font = createFont("Georgia", 20);
@@ -54,9 +38,9 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setValue(0)
       .setFont(font)
       //.setPosition(btnX - btnSpace * 3.5, btnY)
-      .setPosition(100,612)
-       //.setSize(btnW, btnH)
-       .setSize(200,100)
+      .setPosition(100,580)
+      //.setSize(btnW, btnH)
+      .setSize(200,100)
       .hide();
 
     buttons[GAMEMODE_2] = CP5.addButton("gamemode2")
@@ -64,13 +48,12 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setValue(0)
       .setFont(font)
       //.setPosition(btnX + btnSpace * 3.5, btnY)
-      .setPosition(712,612)
+      .setPosition(980,580)
       //.setSize(btnW, btnH)
       .setSize(200,100)
       .hide();  
       
-      
-      buttons[BACK_2_MENU] = CP5.addButton("backtoMenu")
+    buttons[BACK_2_MENU] = CP5.addButton("backtoMenu")
       .setCaptionLabel(BACK_2_MENU_STR) 
       .setValue(0)
       .setFont(font)
@@ -82,7 +65,10 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
 public void gamemode1() {
   if (frameCount > 0) {
-    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
+    gameMenu.hideButtonOf(GAME_SELECT_SCR);
+    gameModeOne.startGame();
+    gameState = IN_GAMEMODE_1;
+    gameScreen = GAMEMODE_1_PLAYING;
   }
 }
 
