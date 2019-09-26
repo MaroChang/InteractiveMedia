@@ -92,12 +92,13 @@ class SideObject {
 
 		// rightSideBot = _rightSideBot - maxWidth;
 		// leftSideBot = _leftSideBot + maxWidth;
+		imageM = loadImage("env/tree/" + "tree0" + ".png");
 
 	}
 
 	void setCharacterImage(String _imgName) {
 		imageM = loadImage("env/tree/" + _imgName + ".png");
-		//imageM.resize(int(maxWidth), int(maxHeight));
+		//imageM.resize(int(w), int(h));
 	}
 
 	void shouldXChangeWhenMoving() {
@@ -118,49 +119,33 @@ class SideObject {
 	}
 
 	void update() {
-		y += speed;
-
-		if (topLeftY > endY) {
-			x = orgX;
-			
-			y = beginY - minHeight;
-			this.shouldXChangeWhenMoving();
-
-			gameScore++;
-		}
-
-		if (needChangeX) {
-			x = map(y, beginY, endY, beginX, endX);
-		}
-
-		bottomRightX = x + w/2;
-		bottomRightY = y + h/2;
-		topLeftX = x - w/2;
-		topLeftY = y - h/2;
-		
-		// get height by current y
-		h = map(y, beginY, endY, minHeight, maxHeight);
-		w = map(y, beginY, endY, minWidth, maxWidth);
-	}
-
-	void update1() {
 		curP += 1;
 
 		if (curP > maxP) {
 			curP = 0;
+
+			int i = int(random(5));
+
+			if (gameScore % 200 == 0) {
+				i = int(random(3));
+				imageM = loadImage("hero/" + i + ".png");
+			} else {
+				imageM = loadImage("env/tree/tree" + i + ".png");
+			}
 		}
 
 		x = map(curP, 0, maxP, beginX, endX);
 		y = map(curP, 0, maxP, beginY, endY);
+		
 
 	}
 
 	void draw() {
-		fill(BLUE);
-		rect(x, y, w, h);
+		//fill(BLUE);
+		//rect(x, y, w, h);
 
 		//imageM.resize(int(w), int(h));
-		//image(imageM, x - halfW, y - halfH, w, h);
+		image(imageM, x - (w/2), y - (h/2), w, h);
 		
 		// #DEBUG
 		// fill(RED);

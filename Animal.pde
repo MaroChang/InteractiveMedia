@@ -54,6 +54,13 @@ class Animal {
 		// 	fill(0);
 	}
 
+	void drawDeath() {
+		pushMatrix();
+		rotate(radians(90));
+		image(imageM, x - halfW, y - halfH, w, h);
+		popMatrix();
+	}
+
 	void setLimit(float leftLimit, float rightLimit) {
 		leftLm = leftLimit + w/2;
 		rightLm = rightLimit - w/2;

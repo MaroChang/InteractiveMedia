@@ -33,6 +33,7 @@ class GameModeOne extends ScreenWithButton {
 	Sampler soundEffDie;
 
 	SideObject[] leftSideObject;
+	SideObject[] rightSideObject;
 
 	int numberOfSideObject;
 
@@ -85,7 +86,7 @@ class GameModeOne extends ScreenWithButton {
 
 	void createObstacle() {
 
-		if (true) {
+		if (false) {
 			obstacbles = new Obstacle[1];
 
 			obstacbles[0] = new Obstacle(
@@ -208,7 +209,7 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void createSideRoad() {
-		numberOfSideObject = 8;
+		numberOfSideObject = 7;
 
 		leftSideObject = new SideObject[numberOfSideObject];
 
@@ -223,7 +224,7 @@ class GameModeOne extends ScreenWithButton {
 			leftSideTop - oneX * 3,
 			skyLine,
 			maxY,
-			0
+			20
 		);
 
 		leftSideObject[1] = new SideObject(
@@ -235,7 +236,7 @@ class GameModeOne extends ScreenWithButton {
 			leftSideTop - oneX * 3,
 			skyLine,
 			maxY,
-			40
+			60
 		);
 
 		leftSideObject[2] = new SideObject(
@@ -247,7 +248,7 @@ class GameModeOne extends ScreenWithButton {
 			leftSideTop - oneX * 3,
 			skyLine,
 			maxY,
-			80
+			100
 		);
 
 		leftSideObject[3] = new SideObject(
@@ -259,9 +260,9 @@ class GameModeOne extends ScreenWithButton {
 			leftSideTop - oneX * 3,
 			skyLine,
 			maxY,
-			120
+			140
 		);
-
+	
 		leftSideObject[4] = new SideObject(
 			leftSideTop - oneX, 
 			skyLine,
@@ -271,9 +272,9 @@ class GameModeOne extends ScreenWithButton {
 			leftSideTop - oneX * 3,
 			skyLine,
 			maxY,
-			160
+			180
 		);
-		
+
 		leftSideObject[5] = new SideObject(
 			leftSideTop - oneX, 
 			skyLine,
@@ -283,7 +284,7 @@ class GameModeOne extends ScreenWithButton {
 			leftSideTop - oneX * 3,
 			skyLine,
 			maxY,
-			200
+			220
 		);
 
 		leftSideObject[6] = new SideObject(
@@ -295,26 +296,111 @@ class GameModeOne extends ScreenWithButton {
 			leftSideTop - oneX * 3,
 			skyLine,
 			maxY,
-			240
+			260
 		);
 
-		leftSideObject[7] = new SideObject(
+		createSideRoad2();
+	}
+
+	void createSideRoad2() {
+		numberOfSideObject = 7;
+
+		rightSideObject = new SideObject[numberOfSideObject];
+
+		float maxY = oneY * 20;
+
+		rightSideObject[0] = new SideObject(
 			leftSideTop - oneX, 
 			skyLine,
 			oneX,
 			oneY * 2,
-			leftSideTop - oneX,
-			leftSideTop - oneX * 3,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
 			skyLine,
 			maxY,
-			280
+			20
+		);
+
+		rightSideObject[1] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			60
+		);
+
+		rightSideObject[2] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			100
+		);
+
+		rightSideObject[3] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			140
+		);
+	
+		rightSideObject[4] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			180
+		);
+
+		rightSideObject[5] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			220
+		);
+
+		rightSideObject[6] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			260
 		);
 	}
 
 	void drawSideRoad() {
 		for (int i = 0; i < numberOfSideObject; i++) {
 			leftSideObject[i].draw();
-			leftSideObject[i].update1();
+			leftSideObject[i].update();
+
+			rightSideObject[i].draw();
+			rightSideObject[i].update();
 		}
 	}
 
@@ -364,6 +450,14 @@ class GameModeOne extends ScreenWithButton {
 			obstacbles[i].draw();
 		}
 
+		for (int i = 0; i < numberOfSideObject; i++) {
+			leftSideObject[i].draw();
+
+			rightSideObject[i].draw();
+		}
+
+		fill(BLUE);
+
 		textAlign(CENTER);
 		textSize(50);
 		text(GAMEMODE_1_OVER_MSG, halfX, halfY - 80);
@@ -403,13 +497,14 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void drawMap() {
-		background(BEAUTY_COLOR);
+		drawBackground();
 
 		image(cloud, oneX, oneY, 228, 124);
 		image(cloud1, oneX*10, oneY, 228, 124);
 		image(cloud2, oneX*5, oneY, 228, 124);
 		image(castle, oneX*14, oneY * 0.2, 204, 182);
 
+		fill(BLUE);
 		textSize(30);
 		textAlign(CENTER);
 		text("SCORE: " + gameScore, halfX, oneY * 2);
@@ -450,6 +545,27 @@ class GameModeOne extends ScreenWithButton {
 			}
 		}
 	}
+
+	void drawBackground() {
+		background(ROAD_COLOR);
+		fill(BLUE_SKY);
+		rect(halfX, skyLine / 2, screenX, skyLine);
+
+		fill(GROUND_COLOR);
+		beginShape();
+			vertex(0, skyLine);
+			vertex(leftSideTop, skyLine);
+			vertex(leftSideBot, screenY);
+			vertex(0, screenY);
+		endShape();
+
+		beginShape();
+			vertex(rightSideTop, skyLine);
+			vertex(screenX, skyLine);
+			vertex(screenX, screenY);
+			vertex(rightSideBot, screenY);
+		endShape();
+	};
 }
 
 void backToMainMenuGM1() {

@@ -36,6 +36,9 @@ color GREEN = color(0, 255, 0);
 color BLUE = color(0, 0, 255);
 color WHITE = color(255, 255, 255);
 color TEST_COLOR = color(204, 232, 21);
+color BLUE_SKY = color(135, 206, 235);
+color GROUND_COLOR = color(193,168,154);
+color ROAD_COLOR = color(211,211,211);
 
 
 // BUTTON
