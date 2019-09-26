@@ -91,11 +91,7 @@ public void quitGame() {
     click.play();
     click.rewind();
     
-    //Are you sure you want to exit pop up
-    //Play notification sound
-    //notification.play();
-    //notification.rewind();
-    
-		exit();
+    changeScreenTo(CONFIRM_SCR, MAIN_MENU_SCR);
+	 //exit();
 	}
 }

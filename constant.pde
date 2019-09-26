@@ -13,6 +13,7 @@ final int MAIN_MENU_SCR = 201;
 final int SETTING_SCR = 202;
 final int NEW_GAME_SCR = 203;
 final int GAME_SELECT_SCR = 204;
+final int CONFIRM_SCR = 205;
 
 final int GAMEMODE_1_PLAYING = 299;
 final int GAMEMODE_1_OVER = 298;
@@ -46,5 +47,6 @@ String USE_KEYBOARD_STR = "KEYBOARD";
 String GAMEMODE1STR = "GAMEMODE1";
 String GAMEMODE2STR = "GAMEMODE2";
 String RESTART_STR = "RESTART";
+String CONFIRM_STR = "CONFIRM";
 
 // Natassja.Sundara@uts.edu.au

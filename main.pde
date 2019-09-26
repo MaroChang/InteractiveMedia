@@ -5,7 +5,7 @@ import ddf.minim.*; // Minim
 // LIBRARY OBJECTS
 ControlP5 CP5;
 Minim minim;
-AudioPlayer tombstone, click, gamestart, lose, point;
+AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn, water_boss, bird_boss, menuBGM, gameBGM, storm, thunder, rain, fire, birds;
 
 // global variables ________________
 // leave an explanation if the variable's meaning is ambiguous
