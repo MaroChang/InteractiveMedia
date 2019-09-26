@@ -15,7 +15,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
   }
   
    void setupButton() {
-    numberOfBtn = 3;
+    numberOfBtn = 2;
 
     buttons = new controlP5.Button[numberOfBtn];
 
@@ -32,7 +32,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setValue(0)
       .setFont(font)
       .setPosition(btnX - btnSpace * 3.5, btnY)
-       .setSize(btnW, btnH)
+      .setSize(btnW, btnH)
       .hide();
 
     buttons[GAMEMODE_2] = CP5.addButton("gamemode2")
@@ -47,12 +47,25 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
 public void gamemode1() {
   if (frameCount > 0) {
-    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
+    println("gamemode1 event");
+    // Play click sound
+    click.play();
+    click.rewind();
+    
+    gameMenu.hideButtonOf(GAME_SELECT_SCR);
+    gameModeOne.startGame();
+    gameState = IN_GAMEMODE_1;
+    gameScreen = GAMEMODE_1_PLAYING;
   }
 }
 
 public void gamemode2() {
   if (frameCount > 0) {
+    println("gamemode2 event");
+    // Play click sound
+    click.play();
+    click.rewind();
+    
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }
