@@ -31,6 +31,8 @@ float moveValue = 5;
 Menu gameMenu;
 GameModeOne gameModeOne;
 
+PImage garbagePile, manta;
+
 // Configuration ________________
 void setup(){
   size(1366, 768);
@@ -39,6 +41,10 @@ void setup(){
   
   minim = new Minim(this);
   
+  // Images
+  garbagePile = loadImage("img/garbagePile.png");
+  manta = loadImage("img/character/manta2_3.gif");
+
   // Sound Effects
   // Menu Sound Effects
   click = minim.loadFile("game_effects/interface/click.mp3");

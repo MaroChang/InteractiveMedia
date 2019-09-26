@@ -31,8 +31,10 @@ class Animal {
 	}
 
 	void draw() {
-		fill(RED);
+		fill(255, 255, 255, 0);
 		rect(x, y, w, h);
+		image(manta, x, y, w, h);
+
 	// 	fill(RED);
 	// 	ellipse(x, y, 5, 5);
 	// 	ellipse(topLeftX, topLeftY, 5, 5);
