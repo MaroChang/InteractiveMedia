@@ -24,6 +24,18 @@ class GameModeOne extends ScreenWithButton {
 	float midLandLeft;
 	float midLandRight;
 
+	PImage cloud;
+	PImage cloud1;
+	PImage cloud2;
+
+	PImage castle;
+
+	Sampler soundEffDie;
+
+	SideObject[] leftSideObject;
+
+	int numberOfSideObject;
+
 	GameModeOne() {
 		oneY = screenY / 16;
 		oneX = screenX / 22;
@@ -43,13 +55,23 @@ class GameModeOne extends ScreenWithButton {
 		midLandRight = halfX+ (rightSideTop - halfX) / 2;
 		
 		this.createCharacter();
+		this.createSideRoad();
 		this.createObstacle();
 		this.setupButton();
+
+		cloud = loadImage("env/cloud.png");
+		cloud1 = loadImage("env/cloud1.png");
+		cloud2 = loadImage("env/cloud2.png");
+		castle = loadImage("env/castle.png");
+
+		soundEffDie = new Sampler( "audio/death.wav", 12, MN);
+		soundEffDie.patch(audioOutput);
 	}
 
 	void show() {
 		if (gameScreen == GAMEMODE_1_PLAYING) {
 			this.drawMap();
+			this.drawSideRoad();
 
 			// play by mouse
 			character.update(true); 
@@ -62,6 +84,26 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void createObstacle() {
+
+		if (true) {
+			obstacbles = new Obstacle[1];
+
+			obstacbles[0] = new Obstacle(
+				midLandRight, 
+				skyLine, 
+				skyLine,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				1, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+			obstacbles[0].setCharacterImage("snake");
+		} else {
 
 		obstacbles = new Obstacle[6];
 
@@ -84,7 +126,7 @@ class GameModeOne extends ScreenWithButton {
 			midLandLeft, 
 			skyLine, 
 			screenY - 100,
-			oneX * 2, 
+			oneX * 1.5, 
 			oneY * 0.5, 
 			oneY * 1.5,
 			5, 
@@ -101,7 +143,7 @@ class GameModeOne extends ScreenWithButton {
 			skyLine + character.w + 30,
 			oneX * 1.5, 
 			oneY * 0.5, 
-			oneY * 2,
+			oneY * 1.5,
 			8, 
 			deltaX,
 			midLandLeft,
@@ -116,7 +158,7 @@ class GameModeOne extends ScreenWithButton {
 			skyLine + character.w + 100,
 			oneX * 1.5, 
 			oneY * 0.5, 
-			oneY * 2,
+			oneY * 1.5,
 			5, 
 			deltaX,
 			midLandLeft,
@@ -131,7 +173,7 @@ class GameModeOne extends ScreenWithButton {
 			screenY - 200,
 			oneX * 1.5, 
 			oneY * 0.5, 
-			oneY * 2,
+			oneY * 1.5,
 			4, 
 			deltaX,
 			midLandLeft,
@@ -146,7 +188,7 @@ class GameModeOne extends ScreenWithButton {
 			screenY - 500,
 			oneX * 1.5, 
 			oneY * 0.5, 
-			oneY * 2,
+			oneY * 1.5,
 			7, 
 			deltaX,
 			midLandLeft,
@@ -154,6 +196,126 @@ class GameModeOne extends ScreenWithButton {
 			leftSideBot,
 			rightSideBot
 		);
+
+
+		obstacbles[0].setCharacterImage("snake");
+		obstacbles[1].setCharacterImage("gorilla");
+		obstacbles[2].setCharacterImage("snake");
+		obstacbles[3].setCharacterImage("snake");
+		obstacbles[4].setCharacterImage("pig");
+		obstacbles[5].setCharacterImage("snake");
+	}
+	}
+
+	void createSideRoad() {
+		numberOfSideObject = 8;
+
+		leftSideObject = new SideObject[numberOfSideObject];
+
+		float maxY = oneY * 20;
+
+		leftSideObject[0] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			0
+		);
+
+		leftSideObject[1] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			40
+		);
+
+		leftSideObject[2] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			80
+		);
+
+		leftSideObject[3] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			120
+		);
+
+		leftSideObject[4] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			160
+		);
+		
+		leftSideObject[5] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			200
+		);
+
+		leftSideObject[6] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			240
+		);
+
+		leftSideObject[7] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			280
+		);
+	}
+
+	void drawSideRoad() {
+		for (int i = 0; i < numberOfSideObject; i++) {
+			leftSideObject[i].draw();
+			leftSideObject[i].update1();
+		}
 	}
 
 	void createCharacter() {
@@ -166,7 +328,8 @@ class GameModeOne extends ScreenWithButton {
 			halfX, // x 
 			screenY - size/2 - 5, // y
 			size, // w
-			size  // h
+			size,  // h
+			"chicken" // image name
 		);
 		
 		character.setLimit(leftSideBot, rightSideBot);
@@ -188,6 +351,8 @@ class GameModeOne extends ScreenWithButton {
 		// play death sound
 
 		// draw Content
+
+		soundEffDie.trigger();
 
 		this.showButton();
 
@@ -240,6 +405,11 @@ class GameModeOne extends ScreenWithButton {
 	void drawMap() {
 		background(BEAUTY_COLOR);
 
+		image(cloud, oneX, oneY, 228, 124);
+		image(cloud1, oneX*10, oneY, 228, 124);
+		image(cloud2, oneX*5, oneY, 228, 124);
+		image(castle, oneX*14, oneY * 0.2, 204, 182);
+
 		textSize(30);
 		textAlign(CENTER);
 		text("SCORE: " + gameScore, halfX, oneY * 2);
@@ -248,13 +418,13 @@ class GameModeOne extends ScreenWithButton {
 		line(leftSideBot, screenY, leftSideTop, skyLine);
 		line(rightSideBot, screenY, rightSideTop, skyLine);
 
-		stroke(RED);
+		//stroke(RED);
 
-		line(midLandLeft, skyLine, leftSideBot + (halfX - leftSideBot) / 2, screenY);
-		line(midLandRight, skyLine, halfX + (rightSideBot - halfX) / 2, screenY);
+		//line(midLandLeft, skyLine, leftSideBot + (halfX - leftSideBot) / 2, screenY);
+		//line(midLandRight, skyLine, halfX + (rightSideBot - halfX) / 2, screenY);
 
-		ellipse(leftSideBot, screenY, 5, 5);
-		ellipse(rightSideBot, screenY, 5, 5);
+		//ellipse(leftSideBot, screenY, 5, 5);
+		//ellipse(rightSideBot, screenY, 5, 5);
 		stroke(0);
 
 		line(halfX, skyLine, halfX, screenY);
@@ -284,6 +454,7 @@ class GameModeOne extends ScreenWithButton {
 
 void backToMainMenuGM1() {
 	if (frameCount > 0) {
+		soundEfMenuClick.trigger();
 		gameModeOne.hideButton();
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
@@ -293,6 +464,7 @@ void backToMainMenuGM1() {
 
 void restartGameMode1() {
 	if (frameCount > 0) {
+		soundEfMenuClick.trigger();
 		gameModeOne.restartGame();
 	}
 }

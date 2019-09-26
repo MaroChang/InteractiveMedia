@@ -1,6 +1,8 @@
 // Use a meaningful name for function
 
 void changeScreenTo(int newScreen, int oldScreen) {
+  soundEfMenuClick.trigger();
+
 	gameScreen = newScreen;
 
 	// Show buttons of new screen

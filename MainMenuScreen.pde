@@ -5,12 +5,17 @@ class MainMenuScreen extends ScreenWithButton {
 	int SETTING = 1;
 	int QUIT = 2;
 
+	PImage menuBackground;
+
 	MainMenuScreen() {
 		this.setupButton();
+
+		menuBackground = loadImage("menu_bg.jpg");
+    	menuBackground.resize(screenX, screenY); 
 	}
 
 	void show() {
-		background(WHITE);
+		background(menuBackground);
 		fill(UGLY_COLOR);
 		
 		textAlign(CENTER);
@@ -63,8 +68,18 @@ class MainMenuScreen extends ScreenWithButton {
 
 
 public void startGame() {
-	if (frameCount > 0) {
-	  changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
+	if (!SKIP_GAMEMODE_SELECTION) {
+		if (frameCount > 0) {
+			changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
+		}
+	} else {
+		if (frameCount > 0) {
+			soundEfMenuClick.trigger();
+		    gameMenu.hideButtonOf(MAIN_MENU_SCR);
+		    gameModeOne.startGame();
+		    gameState = IN_GAMEMODE_1;
+		    gameScreen = GAMEMODE_1_PLAYING;
+		}
 	}
 }
 

@@ -1,11 +1,15 @@
 class WelcomeScreen {
 
+
+  PImage menuBackground;
+
   WelcomeScreen() {
-    // Do nothing
+    menuBackground = loadImage("menu_bg.jpg");
+    menuBackground.resize(screenX, screenY); 
   }
 
 	void show() {
-    background(BEAUTY_COLOR);
+    background(menuBackground);
     textAlign(CENTER);
     fill(UGLY_COLOR);
 

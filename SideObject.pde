@@ -1,4 +1,4 @@
-class Obstacle {
+class SideObject {
 
 	float orgX;
 	float orgY;
@@ -16,6 +16,9 @@ class Obstacle {
 
 	float beginX;
 	float endX;
+
+	float curP;
+	float maxP;
 
 	float deltaX;
 	boolean needChangeX = true;
@@ -40,48 +43,60 @@ class Obstacle {
 
 	PImage imageM;
 
-	Obstacle(float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
+	SideObject(float _x, float _y, float _w, float _h, float _beginX, float _endX, float _beginY, float _endY, float _initalP) {
 		
-		beginY = _y - minHeight;
-		endY = screenY;
+		// beginY = _y - minHeight;
+		// endY = screenY;
 
-		minHeight = _minHeight;
-		maxHeight = _maxHeight;
+		// minHeight = _minHeight;
+		// maxHeight = _maxHeight;
 
-		maxWidth = _w;
-		minWidth = minHeight / maxHeight * maxWidth;
+		// maxWidth = _w;
+		// minWidth = minHeight / maxHeight * maxWidth;
 
-		// get height from current y
-		h = map(_initalY, beginY, endY, minHeight, maxHeight);
-		w = map(_initalY, beginY, endY, minWidth, maxWidth);
+		// // get height from current y
+		// h = map(_initalY, beginY, endY, minHeight, maxHeight);
+		// w = map(_initalY, beginY, endY, minWidth, maxWidth);
+		curP = _initalP;
 
-		x = _x;
-		y = _initalY; //_y - minHeight;
+		h = _h;
+		w = _w;
 
-		deltaX = _deltaX;
+		beginX = _beginX;
+		beginY = _beginY;
 
-		midLandLeft = _midLandLeft; // + halfW;
-		midLandRight = _midLandRight; // - halfW;
+		endX = _endX;
+		endY = _endY;
 
-		this.shouldXChangeWhenMoving();
+		maxP = 300;
 
-		halfW = w/2;
-		halfH = h/2;
+		x = map(curP, 0, maxP, beginX, endX);
+		y = map(curP, 0, maxP, beginY, endY);
 
-		speed = _speed;
+		// deltaX = _deltaX;
 
-		bottomRightX = x + halfW;
-		bottomRightY = y + halfH;
-		topLeftX = x - halfW;
-		topLeftY = y - halfH;
+		// midLandLeft = _midLandLeft; // + halfW;
+		// midLandRight = _midLandRight; // - halfW;
 
-		rightSideBot = _rightSideBot - maxWidth;
-		leftSideBot = _leftSideBot + maxWidth;
+		// this.shouldXChangeWhenMoving();
+
+		// halfW = w/2;
+		// halfH = h/2;
+
+		// speed = _speed;
+
+		// bottomRightX = x + halfW;
+		// bottomRightY = y + halfH;
+		// topLeftX = x - halfW;
+		// topLeftY = y - halfH;
+
+		// rightSideBot = _rightSideBot - maxWidth;
+		// leftSideBot = _leftSideBot + maxWidth;
 
 	}
 
 	void setCharacterImage(String _imgName) {
-		imageM = loadImage("char/" + _imgName + ".png");
+		imageM = loadImage("env/tree/" + _imgName + ".png");
 		//imageM.resize(int(maxWidth), int(maxHeight));
 	}
 
@@ -106,7 +121,7 @@ class Obstacle {
 		y += speed;
 
 		if (topLeftY > endY) {
-			x = random(leftSideBot, rightSideBot);
+			x = orgX;
 			
 			y = beginY - minHeight;
 			this.shouldXChangeWhenMoving();
@@ -128,19 +143,28 @@ class Obstacle {
 		w = map(y, beginY, endY, minWidth, maxWidth);
 	}
 
+	void update1() {
+		curP += 1;
+
+		if (curP > maxP) {
+			curP = 0;
+		}
+
+		x = map(curP, 0, maxP, beginX, endX);
+		y = map(curP, 0, maxP, beginY, endY);
+
+	}
+
 	void draw() {
-		// fill(BLUE);
-		// rect(x, y, w, h);
+		fill(BLUE);
+		rect(x, y, w, h);
 
 		//imageM.resize(int(w), int(h));
-		image(imageM, x - (w/2), y - (h/2), w, h);
-
-
+		//image(imageM, x - halfW, y - halfH, w, h);
 		
 		// #DEBUG
 		// fill(RED);
 		// ellipse(x, y, 5, 5);
-		// ellipse(x - (w/2), y - (h/2), 5, 5);
 		// ellipse(topLeftX, topLeftY, 5, 5);
 		// ellipse(bottomRightX, bottomRightY, 5, 5);
 		// fill(0);

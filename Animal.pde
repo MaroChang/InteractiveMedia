@@ -15,7 +15,9 @@ class Animal {
 	float bottomRightX;
 	float bottomRightY;
 
-	Animal(float _x, float _y, float _w, float _h) {
+	PImage imageM;
+
+	Animal(float _x, float _y, float _w, float _h, String _imgName) {
 		x = _x;
 		y = _y;
 		w = _w;
@@ -28,16 +30,28 @@ class Animal {
 		bottomRightY = y + halfH;
 		topLeftX = x - halfW;
 		topLeftY = y - halfH;
+
+		imageM = loadImage("char/" + _imgName + ".png");
+		imageM.resize(int(w), int(h));
 	}
 
 	void draw() {
-		fill(RED);
-		rect(x, y, w, h);
-	// 	fill(RED);
-	// 	ellipse(x, y, 5, 5);
-	// 	ellipse(topLeftX, topLeftY, 5, 5);
-	// 	ellipse(bottomRightX, bottomRightY, 5, 5);
-	// 	fill(0);
+		// fill(RED);
+		// rect(x, y, w, h);
+		image(imageM, x - halfW, y - halfH, w, h);
+		// beginShape();
+		// texture(imageM);
+		// vertex(x - halfW, y - halfH);
+		// vertex(x + halfW, y - halfH);
+		// vertex(x + halfW, y + halfH);
+		// vertex(x - halfW, y + halfH);
+		// endShape(CLOSE);
+
+		// 	fill(RED);
+		// 	ellipse(x, y, 5, 5);
+		// 	ellipse(topLeftX, topLeftY, 5, 5);
+		// 	ellipse(bottomRightX, bottomRightY, 5, 5);
+		// 	fill(0);
 	}
 
 	void setLimit(float leftLimit, float rightLimit) {
