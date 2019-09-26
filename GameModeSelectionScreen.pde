@@ -52,6 +52,8 @@ public void gamemode1() {
     click.play();
     click.rewind();
     
+    menuBGM.pause();
+    
     gameMenu.hideButtonOf(GAME_SELECT_SCR);
     gameModeOne.startGame();
     gameState = IN_GAMEMODE_1;
@@ -65,6 +67,7 @@ public void gamemode2() {
     // Play click sound
     click.play();
     click.rewind();
+    menuBGM.setGain(-10);
     
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }

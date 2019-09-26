@@ -50,7 +50,7 @@ class GameModeOne extends ScreenWithButton {
 	void show() {
 		if (gameScreen == GAMEMODE_1_PLAYING) {
 			this.drawMap();
-
+      gameBGM.play();
 			// Play by mouse
 			character.update(true); 
 
@@ -174,18 +174,24 @@ class GameModeOne extends ScreenWithButton {
 
 	void startGame() {
     println("gamestart event (gamemode1)");
-    // Play gamestart sound
+    // Play gamestart sounds
     gamestart.play();
     gamestart.rewind();
     
-		this.restartGame();
+	this.restartGame();
+
+	gameBGM.play();
+	gameBGM.loop();
+	gameBGM.setGain(-10);
 	}
 
 	void restartGame() {
     println("gamestart event (gamemode1)");
-    // Play gamestart sound
+    // Play gamestart sounds
     gamestart.play();
     gamestart.rewind();
+	gameBGM.setGain(-10);
+	gameBGM.rewind();
     
 		this.hideButton();
 		this.createObstacle();
@@ -199,13 +205,20 @@ class GameModeOne extends ScreenWithButton {
     // Play lose sound
     lose.play();
     lose.rewind();
+    gameBGM.setGain(-20);
     
 		// Draw content
 		this.showButton();
-
+		
 		this.drawMap();
 
 		character.draw();
+
+		fill(205, 205, 205, 200);
+		rectMode(CORNER);
+		rect(0, 0, 1366, 768);
+		rectMode(CENTER);
+		
 
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();
@@ -213,6 +226,7 @@ class GameModeOne extends ScreenWithButton {
 
 		textAlign(CENTER);
 		textSize(50);
+		fill(UGLY_COLOR);
 		text(GAMEMODE_1_OVER_MSG, halfX, halfY - 80);
 
 		textSize(30);
@@ -254,6 +268,7 @@ class GameModeOne extends ScreenWithButton {
 
 		textSize(30);
 		textAlign(CENTER);
+		fill(UGLY_COLOR);
 		text("SCORE: " + gameScore, halfX, oneY * 2);
 
 		line(0, skyLine, screenX, skyLine);
@@ -303,8 +318,16 @@ void backToMainMenuGM1() {
     click.rewind();
     
 		gameModeOne.hideButton();
+
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
+
+		gameBGM.pause();
+		gameBGM.rewind();
+    	menuBGM.play();
+		menuBGM.rewind();
+		menuBGM.setGain(-10);
+		
 		gameMenu.showButtonOf(gameScreen);
 	}
 }
@@ -315,6 +338,6 @@ void restartGameMode1() {
     // Play click sound
     click.play();
     click.rewind();
-		gameModeOne.restartGame();
+	gameModeOne.restartGame();
 	}
 }

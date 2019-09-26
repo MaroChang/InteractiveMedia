@@ -41,34 +41,33 @@ void setup(){
   
   // Sound Effects
   // Menu Sound Effects
-  click = minim.loadFile("click.mp3");
+  click = minim.loadFile("game_effects/interface/click.mp3");
   
   // Game Sound Effects
-  gamestart = minim.loadFile("gamestart.mp3");
-  point = minim.loadFile("point.mp3");
-  lose = minim.loadFile("lose.mp3"); // + Ding Ding Ding in the beginning of the file
-  pickUp = minim.loadFile("pickup.mp3"); 
+  gamestart = minim.loadFile("game_effects/interface/gamestart.mp3");
+  point = minim.loadFile("game_effects/interface/point.mp3");
+  lose = minim.loadFile("game_effects/interface/lose.mp3"); // + Ding Ding Ding in the beginning of the file
+  pickUp = minim.loadFile("game_effects/character/pickup.mp3"); 
   
   // Game Character Effects
-  tombstone = minim.loadFile("tombstone.mp3");
-  // walk = minim.loadFile("walk.mp3");
-  // jump = minim.loadFile("jump.mp3");
+  tombstone = minim.loadFile("game_effects/character/tombstone.mp3");
+  // walk = minim.loadFile("game_effects/character/walk.mp3");
+  // jump = minim.loadFile("game_effects/character/jump.mp3");
   
   // Game Obstacle Effects
-  // spawn = minim.loadFile("spawn.mp3");
+  // spawn = minim.loadFile("game_effects/monster/spawn.mp3");
 
   // Game Monster Effects
-  // water_boss = minim.loadFile("water_boss.mp3");
-  // bird_boss = minim.loadFile("bird_boss.mp3");
+  // water_boss = minim.loadFile("game_effects/monster/water_boss.mp3");
+  // bird_boss = minim.loadFile("game_effects/monster/bird_boss.mp3");
   
   // Background Music + Effects
-  // menuBGM = minim.loadFile("menu.mp3");
-  // gameBGM = minim.loadFile("game.mp3");
-  // storm = minim.loadFile("storm.mp3");
-  // thunder = minim.loadFile("thunder.mp3");
-  // rain = minim.loadFile("rain.mp3");
-  // fire = minim.loadFile("fire.mp3");
-  // birds = minim.loadFile("birds.mp3");
+  menuBGM = minim.loadFile("bgm/menuBGM.mp3");
+  gameBGM = minim.loadFile("bgm/gameBGM.mp3");
+  // storm = minim.loadFile("game_effects/weather/storm.mp3");
+  // thunder = minim.loadFile("game_effects/weather/thunder.mp3");
+  // rain = minim.loadFile("game_effects/weather/rain.mp3");
+  // fire = minim.loadFile("game_effects/weather/fire.mp3");
 
   gameState = IN_MENU;
   //gameState = IN_GAMEMODE_1;

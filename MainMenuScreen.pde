@@ -68,8 +68,9 @@ public void startGame() {
     // Play click sound
     click.play();
     click.rewind();
-    
-	  changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
+    menuBGM.setGain(-20);
+
+	changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
 	}
 }
 
@@ -79,7 +80,8 @@ public void openSetting() {
     // Play click sound
     click.play();
     click.rewind();
-    
+    menuBGM.setGain(-20);
+
 		changeScreenTo(SETTING_SCR, MAIN_MENU_SCR);
 	}
 }

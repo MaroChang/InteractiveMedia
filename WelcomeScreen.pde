@@ -1,7 +1,9 @@
 class WelcomeScreen {
 
   WelcomeScreen() {
-    // Do nothing
+    menuBGM.play();
+    menuBGM.setGain(-10);
+    menuBGM.loop();
   }
 
 	void show() {
@@ -15,5 +17,6 @@ class WelcomeScreen {
     text(GAME_SUB_NAME, halfX, halfY + 70);
     textSize(15); 
     text(CLICK_2_START, halfX, height - 30);
+
   }
 }

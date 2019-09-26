@@ -142,6 +142,7 @@ public void back2Menu() {
     // Play click sound
     click.play();
     click.rewind();
+	menuBGM.setGain(-10);
     
 		changeScreenTo(MAIN_MENU_SCR, SETTING_SCR);
 	}
