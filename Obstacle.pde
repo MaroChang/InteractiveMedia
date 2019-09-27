@@ -1,3 +1,6 @@
+
+// Obstacle class controll an obstacle movement and display
+
 class Obstacle {
 
 	float orgX;
@@ -77,7 +80,6 @@ class Obstacle {
 
 		rightSideBot = _rightSideBot - maxWidth;
 		leftSideBot = _leftSideBot + maxWidth;
-
 	}
 
 	void setCharacterImage(String _imgName) {
@@ -85,6 +87,7 @@ class Obstacle {
 		//imageM.resize(int(maxWidth), int(maxHeight));
 	}
 
+	// determine whenever the obstacble change only y coordinates or both x and y coordiante when moving
 	void shouldXChangeWhenMoving() {
 		orgX = x;
 		orgY = y;
@@ -102,6 +105,7 @@ class Obstacle {
 		}
 	}
 
+	// update new position
 	void update() {
 		y += speed;
 

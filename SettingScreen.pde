@@ -1,3 +1,5 @@
+// controll setting screen
+
 class SettingScreen extends ScreenWithButton {
 
 	// BUTTON INDEX
@@ -156,7 +158,6 @@ public void useKinect(boolean theFlag) {
 		}
 	}
 }
-
 
 void changeVolume(float value) {
 	if (frameCount > 0)

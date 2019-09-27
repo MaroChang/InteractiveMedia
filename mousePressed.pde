@@ -1,3 +1,5 @@
+// only handle mousePressed event
+
 public void mousePressed() {
 	if (gameState == IN_MENU) {
 		switch (gameScreen) {

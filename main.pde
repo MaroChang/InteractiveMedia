@@ -1,3 +1,29 @@
+/*
+    HO HAI DANG HOANG
+    13383512
+    Tutorial 2 Interactive Media - Nat Sundara
+    Project description: 
+    
+    My task is mainly about game mode one movement and create code base structure.
+
+    Task lists:
+        1. Code base structure
+            - Define application work flow, objects and general logic for each screen 
+            - Switch screen logic (between each menu and game mode)
+            - Define file structures
+
+        2. Game mode one
+            - Draw the map outline
+            - Create obstacle and it's movement
+            - Create character and it's movement
+            - Checking collision between obstacle and character
+            - Add simple audio for collision
+            - Load simple image for each object
+            - Simple score counting system
+*/
+
+
+
 // IMPORT LIBRARIES
 import controlP5.*; //GUI
 import ddf.minim.*;
@@ -17,8 +43,11 @@ int screenY = 768;
 float halfX = screenX / 2;
 float halfY = screenY / 2;
 
+// identify the current stage of the application
 int gameState;
+// identify the current screen of a state
 int gameScreen;
+// current score of player
 int gameScore = 0;
 
 // game setting
@@ -45,11 +74,12 @@ void setup(){
     MN = new Minim(this);
     audioOutput = MN.getLineOut();
 
-    //gameState = IN_MENU;
-    gameState = IN_GAMEMODE_1;
+    // looks for all game constants and codes in "constant.pde"
+    gameState = IN_MENU;
+    //gameState = IN_GAMEMODE_1;
 
-    //gameScreen = WELCOME_SCR;
-    gameScreen = GAMEMODE_1_PLAYING;
+    gameScreen = WELCOME_SCR;
+    //gameScreen = GAMEMODE_1_PLAYING;
 
     gameMenu = new Menu();
     gameModeOne = new GameModeOne();

@@ -1,3 +1,5 @@
+// only handle keyPressed event
+
 public void keyPressed() {
 	// println("key: "+key);
 

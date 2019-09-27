@@ -1,3 +1,5 @@
+
+// object on side of running lane
 class SideObject {
 
 	float orgX;
@@ -45,18 +47,6 @@ class SideObject {
 
 	SideObject(float _x, float _y, float _w, float _h, float _beginX, float _endX, float _beginY, float _endY, float _initalP) {
 		
-		// beginY = _y - minHeight;
-		// endY = screenY;
-
-		// minHeight = _minHeight;
-		// maxHeight = _maxHeight;
-
-		// maxWidth = _w;
-		// minWidth = minHeight / maxHeight * maxWidth;
-
-		// // get height from current y
-		// h = map(_initalY, beginY, endY, minHeight, maxHeight);
-		// w = map(_initalY, beginY, endY, minWidth, maxWidth);
 		curP = _initalP;
 
 		h = _h;
@@ -73,25 +63,6 @@ class SideObject {
 		x = map(curP, 0, maxP, beginX, endX);
 		y = map(curP, 0, maxP, beginY, endY);
 
-		// deltaX = _deltaX;
-
-		// midLandLeft = _midLandLeft; // + halfW;
-		// midLandRight = _midLandRight; // - halfW;
-
-		// this.shouldXChangeWhenMoving();
-
-		// halfW = w/2;
-		// halfH = h/2;
-
-		// speed = _speed;
-
-		// bottomRightX = x + halfW;
-		// bottomRightY = y + halfH;
-		// topLeftX = x - halfW;
-		// topLeftY = y - halfH;
-
-		// rightSideBot = _rightSideBot - maxWidth;
-		// leftSideBot = _leftSideBot + maxWidth;
 		imageM = loadImage("env/tree/" + "tree0" + ".png");
 
 	}

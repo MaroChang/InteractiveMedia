@@ -1,3 +1,8 @@
+
+// MainMenuScreen controll 3 buttons:
+// 1. start new game
+// 2. open setting
+// 3. quit application
 class MainMenuScreen extends ScreenWithButton {
 
 	// BUTTON INDEX
@@ -65,7 +70,6 @@ class MainMenuScreen extends ScreenWithButton {
 		.hide();	
 	}
 }
-
 
 public void startGame() {
 	if (!SKIP_GAMEMODE_SELECTION) {

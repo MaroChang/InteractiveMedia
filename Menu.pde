@@ -1,3 +1,4 @@
+// Menu object: containt other submenu screen
 class Menu {
 
   MainMenuScreen mainMenuScreen;

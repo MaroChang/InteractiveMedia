@@ -1,3 +1,5 @@
+
+// GameModeOne controll all object in game mode one screen
 class GameModeOne extends ScreenWithButton {
 
 	// BUTTON INDEX
@@ -15,6 +17,7 @@ class GameModeOne extends ScreenWithButton {
 	Animal character;
 
 	Obstacle[] obstacbles;
+	//Coin[] coins;
 
 	float oneY;
 	float oneX;
@@ -84,6 +87,23 @@ class GameModeOne extends ScreenWithButton {
 		}
 	}
 
+	void createCharacter() {
+		gameScore = 0;
+
+		// size of main character
+		float size = oneX * 1;
+
+		character = new Animal(
+			halfX, // x 
+			screenY - size/2 - 5, // y
+			size, // w
+			size,  // h
+			"chicken" // image name
+		);
+		
+		character.setLimit(leftSideBot, rightSideBot);
+	}
+
 	void createObstacle() {
 
 		if (false) {
@@ -106,7 +126,111 @@ class GameModeOne extends ScreenWithButton {
 			obstacbles[0].setCharacterImage("snake");
 		} else {
 
-		obstacbles = new Obstacle[6];
+			obstacbles = new Obstacle[6];
+
+			obstacbles[0] = new Obstacle(
+				midLandRight, 
+				skyLine, 
+				skyLine,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				9, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[1] = new Obstacle(
+				midLandLeft, 
+				skyLine, 
+				screenY - 100,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				5, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[2] = new Obstacle(
+				midLandLeft - oneY, 
+				skyLine, 
+				skyLine + character.w + 30,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				8, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[3] = new Obstacle(
+				midLandRight + oneY, 
+				skyLine, 
+				skyLine + character.w + 100,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				5, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[4] = new Obstacle(
+				midLandRight + oneY, 
+				skyLine, 
+				screenY - 200,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				4, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[5] = new Obstacle(
+				midLandRight + oneY, 
+				skyLine, 
+				screenY - 500,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				7, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+
+			obstacbles[0].setCharacterImage("snake");
+			obstacbles[1].setCharacterImage("gorilla");
+			obstacbles[2].setCharacterImage("snake");
+			obstacbles[3].setCharacterImage("snake");
+			obstacbles[4].setCharacterImage("pig");
+			obstacbles[5].setCharacterImage("snake");
+		}
+	}
+
+	void createCoin() {
+
+		obstacbles = new Obstacle[1];
 
 		obstacbles[0] = new Obstacle(
 			midLandRight, 
@@ -123,91 +247,11 @@ class GameModeOne extends ScreenWithButton {
 			rightSideBot
 		);
 
-		obstacbles[1] = new Obstacle(
-			midLandLeft, 
-			skyLine, 
-			screenY - 100,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 1.5,
-			5, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[2] = new Obstacle(
-			midLandLeft - oneY, 
-			skyLine, 
-			skyLine + character.w + 30,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 1.5,
-			8, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[3] = new Obstacle(
-			midLandRight + oneY, 
-			skyLine, 
-			skyLine + character.w + 100,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 1.5,
-			5, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[4] = new Obstacle(
-			midLandRight + oneY, 
-			skyLine, 
-			screenY - 200,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 1.5,
-			4, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[5] = new Obstacle(
-			midLandRight + oneY, 
-			skyLine, 
-			screenY - 500,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 1.5,
-			7, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-
-		obstacbles[0].setCharacterImage("snake");
-		obstacbles[1].setCharacterImage("gorilla");
-		obstacbles[2].setCharacterImage("snake");
-		obstacbles[3].setCharacterImage("snake");
-		obstacbles[4].setCharacterImage("pig");
-		obstacbles[5].setCharacterImage("snake");
-	}
+		obstacbles[0].setCharacterImage("chick");
+		
 	}
 
+	// create object in left side of the main lane
 	void createSideRoad() {
 		numberOfSideObject = 7;
 
@@ -302,8 +346,8 @@ class GameModeOne extends ScreenWithButton {
 		createSideRoad2();
 	}
 
+	// create object in right side of the main lane
 	void createSideRoad2() {
-		numberOfSideObject = 7;
 
 		rightSideObject = new SideObject[numberOfSideObject];
 
@@ -404,21 +448,75 @@ class GameModeOne extends ScreenWithButton {
 		}
 	}
 
-	void createCharacter() {
-		gameScore = 0;
+	void drawMap() {
+		drawBackground();
 
-		// size of main character
-		float size = oneX * 1;
+		image(cloud, oneX, oneY, 228, 124);
+		image(cloud1, oneX*10, oneY, 228, 124);
+		image(cloud2, oneX*5, oneY, 228, 124);
+		image(castle, oneX*14, oneY * 0.2, 204, 182);
 
-		character = new Animal(
-			halfX, // x 
-			screenY - size/2 - 5, // y
-			size, // w
-			size,  // h
-			"chicken" // image name
-		);
-		
-		character.setLimit(leftSideBot, rightSideBot);
+		fill(BLUE);
+		textSize(30);
+		textAlign(CENTER);
+		text("SCORE: " + gameScore, halfX, oneY * 2);
+
+		line(0, skyLine, screenX, skyLine);
+		line(leftSideBot, screenY, leftSideTop, skyLine);
+		line(rightSideBot, screenY, rightSideTop, skyLine);
+
+		//stroke(RED);
+
+		//line(midLandLeft, skyLine, leftSideBot + (halfX - leftSideBot) / 2, screenY);
+		//line(midLandRight, skyLine, halfX + (rightSideBot - halfX) / 2, screenY);
+
+		//ellipse(leftSideBot, screenY, 5, 5);
+		//ellipse(rightSideBot, screenY, 5, 5);
+		stroke(0);
+
+		line(halfX, skyLine, halfX, screenY);
+	}
+
+	void drawBackground() {
+		background(ROAD_COLOR);
+		fill(BLUE_SKY);
+		rect(halfX, skyLine / 2, screenX, skyLine);
+
+		fill(GROUND_COLOR);
+		beginShape();
+			vertex(0, skyLine);
+			vertex(leftSideTop, skyLine);
+			vertex(leftSideBot, screenY);
+			vertex(0, screenY);
+		endShape();
+
+		beginShape();
+			vertex(rightSideTop, skyLine);
+			vertex(screenX, skyLine);
+			vertex(screenX, screenY);
+			vertex(rightSideBot, screenY);
+		endShape();
+	};
+
+	void drawObstacleAndCheckCollision() {
+		for (int i = 0; i < obstacbles.length; i++) {
+			obstacbles[i].draw();
+			obstacbles[i].update();
+
+			if (box_box(
+				character.topLeftX,
+				character.topLeftY,
+				character.bottomRightX,
+				character.bottomRightY, 
+				obstacbles[i].topLeftX, 
+				obstacbles[i].topLeftY, 
+				obstacbles[i].bottomRightX, 
+				obstacbles[i].bottomRightY)) {
+
+				gameScreen = GAMEMODE_1_OVER;
+				this.onGameOver();
+			}
+		}
 	}
 
 	void startGame() {
@@ -435,10 +533,9 @@ class GameModeOne extends ScreenWithButton {
 
 	void onGameOver() {
 		// play death sound
+		soundEffDie.trigger();
 
 		// draw Content
-
-		soundEffDie.trigger();
 
 		this.showButton();
 
@@ -495,77 +592,6 @@ class GameModeOne extends ScreenWithButton {
 		.setSize(btnW, btnH)
 		.hide();
 	}
-
-	void drawMap() {
-		drawBackground();
-
-		image(cloud, oneX, oneY, 228, 124);
-		image(cloud1, oneX*10, oneY, 228, 124);
-		image(cloud2, oneX*5, oneY, 228, 124);
-		image(castle, oneX*14, oneY * 0.2, 204, 182);
-
-		fill(BLUE);
-		textSize(30);
-		textAlign(CENTER);
-		text("SCORE: " + gameScore, halfX, oneY * 2);
-
-		line(0, skyLine, screenX, skyLine);
-		line(leftSideBot, screenY, leftSideTop, skyLine);
-		line(rightSideBot, screenY, rightSideTop, skyLine);
-
-		//stroke(RED);
-
-		//line(midLandLeft, skyLine, leftSideBot + (halfX - leftSideBot) / 2, screenY);
-		//line(midLandRight, skyLine, halfX + (rightSideBot - halfX) / 2, screenY);
-
-		//ellipse(leftSideBot, screenY, 5, 5);
-		//ellipse(rightSideBot, screenY, 5, 5);
-		stroke(0);
-
-		line(halfX, skyLine, halfX, screenY);
-	}
-
-	void drawObstacleAndCheckCollision() {
-		for (int i = 0; i < obstacbles.length; i++) {
-			obstacbles[i].draw();
-			obstacbles[i].update();
-
-			if (box_box(
-				character.topLeftX,
-				character.topLeftY,
-				character.bottomRightX,
-				character.bottomRightY, 
-				obstacbles[i].topLeftX, 
-				obstacbles[i].topLeftY, 
-				obstacbles[i].bottomRightX, 
-				obstacbles[i].bottomRightY)) {
-
-				gameScreen = GAMEMODE_1_OVER;
-				this.onGameOver();
-			}
-		}
-	}
-
-	void drawBackground() {
-		background(ROAD_COLOR);
-		fill(BLUE_SKY);
-		rect(halfX, skyLine / 2, screenX, skyLine);
-
-		fill(GROUND_COLOR);
-		beginShape();
-			vertex(0, skyLine);
-			vertex(leftSideTop, skyLine);
-			vertex(leftSideBot, screenY);
-			vertex(0, screenY);
-		endShape();
-
-		beginShape();
-			vertex(rightSideTop, skyLine);
-			vertex(screenX, skyLine);
-			vertex(screenX, screenY);
-			vertex(rightSideBot, screenY);
-		endShape();
-	};
 }
 
 void backToMainMenuGM1() {
