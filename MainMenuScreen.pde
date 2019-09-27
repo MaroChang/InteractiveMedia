@@ -31,7 +31,7 @@ class MainMenuScreen extends ScreenWithButton {
 		text(GAME_SUB_NAME, halfX, titlePos + 70);
 	}
 
-
+  // Sets up the functionality and the side of buttons on game mode selection screen
 	void setupButton() {
 		numberOfBtn = 3;
 
@@ -78,7 +78,7 @@ public void startGame() {
 		}
 	} else {
 		if (frameCount > 0) {
-			soundEfMenuClick.trigger();
+			//soundEfMenuClick.trigger();
 		    gameMenu.hideButtonOf(MAIN_MENU_SCR);
 		    gameModeOne.startGame();
 		    gameState = IN_GAMEMODE_1;

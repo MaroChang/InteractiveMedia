@@ -33,7 +33,7 @@ import ddf.minim.ugens.*;
 ControlP5 CP5;
 Minim MN;
 AudioOutput audioOutput;
-Sampler sample;
+//Sampler sample;
 
 // global variables ________________
 // leave an explanation if the variable's meaning is ambiguous
@@ -62,11 +62,11 @@ float moveValue = 5;
 Menu gameMenu;
 GameModeOne gameModeOne;
 
-Sampler soundEfMenuClick;
+//Sampler soundEfMenuClick;
 
 // Configuration ________________
 void setup(){
-    size(screenX, screenY);
+    size(1366, 768);
 
     CP5 = new ControlP5(this);
 
@@ -84,8 +84,8 @@ void setup(){
     gameMenu = new Menu();
     gameModeOne = new GameModeOne();
 
-    soundEfMenuClick = new Sampler( "audio/menu_click.wav", 12, MN);
-    soundEfMenuClick.patch(audioOutput);
+    //soundEfMenuClick = new Sampler( "audio/menu_click.wav", 12, MN);
+    //soundEfMenuClick.patch(audioOutput);
 
     fill(UGLY_COLOR);
     rectMode(CENTER);
@@ -93,6 +93,7 @@ void setup(){
 }
 
 // Drawing ________________
+// Switch to determine which page to draw
 void draw(){
     switch (gameState) {
         case IN_MENU:

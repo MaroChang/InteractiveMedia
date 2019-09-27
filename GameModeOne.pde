@@ -1,4 +1,3 @@
-
 // GameModeOne controll all object in game mode one screen
 class GameModeOne extends ScreenWithButton {
 
@@ -497,7 +496,8 @@ class GameModeOne extends ScreenWithButton {
 			vertex(rightSideBot, screenY);
 		endShape();
 	};
-
+  
+  // Obstacle collision for in-game obstacles with the character
 	void drawObstacleAndCheckCollision() {
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();
@@ -543,6 +543,7 @@ class GameModeOne extends ScreenWithButton {
 
 		character.draw();
 
+    // Drawing obstacles
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();
 		}
@@ -562,7 +563,8 @@ class GameModeOne extends ScreenWithButton {
 		textSize(30);
 		text("YOUR SCORE: " + gameScore, halfX, halfY - 15);
 	}
-
+  
+  // Sets up the functionality and the side of buttons on game mode selection screen
 	void setupButton() {
 		numberOfBtn = 2;
 
@@ -594,9 +596,10 @@ class GameModeOne extends ScreenWithButton {
 	}
 }
 
+// Function for back to main menu button
 void backToMainMenuGM1() {
 	if (frameCount > 0) {
-		soundEfMenuClick.trigger();
+		//soundEfMenuClick.trigger();
 		gameModeOne.hideButton();
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
@@ -604,9 +607,10 @@ void backToMainMenuGM1() {
 	}
 }
 
+// Function for restart game button
 void restartGameMode1() {
 	if (frameCount > 0) {
-		soundEfMenuClick.trigger();
+		//soundEfMenuClick.trigger();
 		gameModeOne.restartGame();
 	}
 }

@@ -1,7 +1,7 @@
 // Put common function here
 
 void changeScreenTo(int newScreen, int oldScreen) {
-  soundEfMenuClick.trigger();
+  //soundEfMenuClick.trigger();
 
 	gameScreen = newScreen;
 
@@ -31,4 +31,3 @@ boolean box_box(float ax0, float ay0, float ax1, float ay1, float bx0, float by0
  
   return !(botA <= topB  || botB <= topA || rightA <= leftB || rightB <= leftA);
 }
-

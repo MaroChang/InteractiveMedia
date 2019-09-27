@@ -13,8 +13,8 @@ class GameModeSelectionScreen extends ScreenWithButton {
     background(WHITE);
     fill(UGLY_COLOR);
   }
-  
-   void setupButton() {
+  // Sets up the functionality and the side of buttons on game mode selection screen
+  void setupButton() {
     numberOfBtn = 2;
 
     buttons = new controlP5.Button[numberOfBtn];
@@ -45,6 +45,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
   }
 }
 
+// Function for the gamemode 1 button
 public void gamemode1() {
   if (frameCount > 0) {
     gameMenu.hideButtonOf(GAME_SELECT_SCR);
@@ -54,6 +55,7 @@ public void gamemode1() {
   }
 }
 
+// Function for the gamemode 2 button
 public void gamemode2() {
   if (frameCount > 0) {
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);

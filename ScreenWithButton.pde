@@ -1,5 +1,4 @@
 // simple interface for show on and off all button of screen
-
 class ScreenWithButton {
 	int numberOfBtn = 0;
 	controlP5.Button[] buttons;

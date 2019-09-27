@@ -1,3 +1,4 @@
+// Set constants for all menu states, colors and in-game messages
 // GENERAL 
 
 // FOR CHEATING
@@ -54,4 +55,3 @@ String GAMEMODE2STR = "GAMEMODE2";
 String RESTART_STR = "RESTART";
 
 // Natassja.Sundara@uts.edu.au
-

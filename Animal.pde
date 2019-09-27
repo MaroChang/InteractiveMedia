@@ -34,7 +34,8 @@ class Animal {
 		imageM = loadImage("char/" + _imgName + ".png");
 		imageM.resize(int(w), int(h));
 	}
-
+  
+  // Draw the hitbox and the image of the player character
 	void draw() {
 		// fill(RED);
 		// rect(x, y, w, h);
@@ -60,7 +61,8 @@ class Animal {
 		image(imageM, x - halfW, y - halfH, w, h);
 		popMatrix();
 	}
-
+  
+  // Set the limit of the character's movement relative to left and right
 	void setLimit(float leftLimit, float rightLimit) {
 		leftLm = leftLimit + w/2;
 		rightLm = rightLimit - w/2;

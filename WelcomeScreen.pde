@@ -7,7 +7,8 @@ class WelcomeScreen {
     menuBackground = loadImage("menu_bg.jpg");
     menuBackground.resize(screenX, screenY); 
   }
-
+  
+  // Show function for all screen items
 	void show() {
     background(menuBackground);
     textAlign(CENTER);

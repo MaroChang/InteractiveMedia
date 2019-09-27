@@ -1,6 +1,4 @@
-
 // Obstacle class controll an obstacle movement and display
-
 class Obstacle {
 
 	float orgX;
@@ -84,7 +82,7 @@ class Obstacle {
 
 	void setCharacterImage(String _imgName) {
 		imageM = loadImage("char/" + _imgName + ".png");
-		//imageM.resize(int(maxWidth), int(maxHeight));
+		// imageM.resize(int(maxWidth), int(maxHeight));
 	}
 
 	// determine whenever the obstacble change only y coordinates or both x and y coordiante when moving
