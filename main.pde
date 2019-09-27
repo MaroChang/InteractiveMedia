@@ -31,14 +31,15 @@ float moveValue = 5;
 Menu gameMenu;
 GameModeOne gameModeOne;
 
-PImage bg1, bg2, bg3, garbagePile, manta;
+PImage bg1, bg2, bg3, bg4, garbagePile, manta;
 
 // Configuration ________________
 void setup(){
   size(1366, 768);
   
+
+  // Initialization of all data files
   CP5 = new ControlP5(this);
-  
   minim = new Minim(this);
   
   // Images
@@ -50,6 +51,7 @@ void setup(){
     bg1 = loadImage("img/bg/bg_1.png");
     bg2 = loadImage("img/bg/bg_2.jpg");
     bg3 = loadImage("img/bg/bg_3.jpg");
+    bg4 = loadImage("img/bg/bg_4.jpg");
 
   // Sound Effects
     // Menu Sound Effects
@@ -80,7 +82,8 @@ void setup(){
     // thunder = minim.loadFile("game_effects/weather/thunder.mp3");
     // rain = minim.loadFile("game_effects/weather/rain.mp3");
     // fire = minim.loadFile("game_effects/weather/fire.mp3");
-
+  
+  // Set current game state
   gameState = IN_MENU;
   //gameState = IN_GAMEMODE_1;
 
@@ -89,12 +92,13 @@ void setup(){
 
   gameMenu = new Menu();
   gameModeOne = new GameModeOne();
-
+  
   fill(UGLY_COLOR);
   smooth();
 }
 
 // Drawing ________________
+// Switch to determine which page to draw
 void draw(){
   switch (gameState) {
     case IN_MENU:

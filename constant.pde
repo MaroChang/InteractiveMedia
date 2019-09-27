@@ -1,3 +1,5 @@
+// Set constants for all menu states, colors and in-game messages
+
 // GENERAL 
 
 // GAMESTATE
@@ -34,6 +36,8 @@ color GREEN = color(0, 255, 0);
 color BLUE = color(0, 0, 255);
 color WHITE = color(255, 255, 255);
 color TEST_COLOR = color(204, 232, 21);
+color OCEAN = color(14, 204, 226);
+color BLACK = color(0, 0, 0);
 
 
 // BUTTON

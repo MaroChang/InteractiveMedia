@@ -100,6 +100,7 @@ class Obstacle {
 	void update() {
 		y += speed;
 
+		// When Obstacle Passes the CHaracter's Y- Axis, + A Point
 		if (topLeftY > endY) {
       
 			x = random(leftSideBot, rightSideBot);
@@ -110,9 +111,9 @@ class Obstacle {
 			println("+ 1 Point");
 			gameScore++;
       
-      // Play point sound
-      point.play();
-      point.rewind();
+            // Play point sound
+			point.play();
+			point.rewind();
 		}
 
 		if (needChangeX) {
@@ -129,9 +130,13 @@ class Obstacle {
 		w = map(y, beginY, endY, minWidth, maxWidth);
 	}
 
+	// Drawing the hitbox and image of the obstacle
 	void draw() {
+		noStroke();
+		rectMode(CENTER);
 		fill(255, 255, 255, 0);
 		rect(x, y, w, h);
+		imageMode(CENTER);
 		image(garbagePile, x, y, w, h);
 		
 		// #DEBUG

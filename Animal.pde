@@ -29,10 +29,14 @@ class Animal {
 		topLeftX = x - halfW;
 		topLeftY = y - halfH;
 	}
-
+	
+	// Draw the hitbox and the image of the player character
 	void draw() {
+		noStroke();
+		rectMode(CENTER);
 		fill(255, 255, 255, 0);
 		rect(x, y, w, h);
+		imageMode(CENTER);
 		image(manta, x, y, w, h);
 
 	// 	fill(RED);
@@ -42,6 +46,7 @@ class Animal {
 	// 	fill(0);
 	}
 
+	// Set the limit of the character's movement relative to left and right
 	void setLimit(float leftLimit, float rightLimit) {
 		leftLm = leftLimit + w/2;
 		rightLm = rightLimit - w/2;

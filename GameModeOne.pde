@@ -87,7 +87,7 @@ class GameModeOne extends ScreenWithButton {
 			oneX * 2, 
 			oneY * 0.5, 
 			oneY * 1.5,
-			5, 
+			8, 
 			deltaX,
 			midLandLeft,
 			midLandRight,
@@ -117,7 +117,7 @@ class GameModeOne extends ScreenWithButton {
 			oneX * 1.5, 
 			oneY * 0.5, 
 			oneY * 2,
-			5, 
+			8, 
 			deltaX,
 			midLandLeft,
 			midLandRight,
@@ -132,7 +132,7 @@ class GameModeOne extends ScreenWithButton {
 			oneX * 1.5, 
 			oneY * 0.5, 
 			oneY * 2,
-			4, 
+			9, 
 			deltaX,
 			midLandLeft,
 			midLandRight,
@@ -147,7 +147,7 @@ class GameModeOne extends ScreenWithButton {
 			oneX * 1.5, 
 			oneY * 0.5, 
 			oneY * 2,
-			7, 
+			9, 
 			deltaX,
 			midLandLeft,
 			midLandRight,
@@ -200,6 +200,7 @@ class GameModeOne extends ScreenWithButton {
 		gameScreen = GAMEMODE_1_PLAYING;
 	}
 
+	// Function for when the player loses
 	void onGameOver() {
     println("gameover event");
     // Play lose sound
@@ -214,11 +215,12 @@ class GameModeOne extends ScreenWithButton {
 
 		character.draw();
 		
-
+		// Drwing obstacles
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();
 		}
 
+		rectMode(CORNER);
 		fill(205, 205, 205, 200);
 		rect(0, 0, 1366, 768);
 		textAlign(CENTER);
@@ -230,6 +232,7 @@ class GameModeOne extends ScreenWithButton {
 		text("YOUR SCORE: " + gameScore, halfX, halfY - 15);
 	}
 
+	// Sets up the functionality and the side of buttons on game mode selection screen
 	void setupButton() {
 		numberOfBtn = 2;
 
@@ -260,14 +263,17 @@ class GameModeOne extends ScreenWithButton {
 		.hide();
 	}
 
+	// Draw the game space in preparation for the game
 	void drawMap() {
-		background(BEAUTY_COLOR);
-
+		background(OCEAN);
+		//imageMode(CORNER);
+		//image(bg4, 0, 0, 1366, 768);
 		textSize(30);
 		textAlign(CENTER);
 		fill(UGLY_COLOR);
 		text("SCORE: " + gameScore, halfX, oneY * 2);
 
+		stroke(BLACK);
 		line(0, skyLine, screenX, skyLine);
 		line(leftSideBot, screenY, leftSideTop, skyLine);
 		line(rightSideBot, screenY, rightSideTop, skyLine);
@@ -284,6 +290,7 @@ class GameModeOne extends ScreenWithButton {
 		line(halfX, skyLine, halfX, screenY);
 	}
 
+	// Obstacle collision for in-game obstacles with the character
 	void drawObstacleAndCheckCollision() {
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();
@@ -307,6 +314,7 @@ class GameModeOne extends ScreenWithButton {
 	}
 }
 
+// Function for back to main menu button
 void backToMainMenuGM1() {
 	if (frameCount > 0) {
     println("back to menu event");
@@ -319,9 +327,11 @@ void backToMainMenuGM1() {
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
 
+        // Resume Main Menu Music 
 		gameBGM.pause();
 		gameBGM.rewind();
     	menuBGM.play();
+		menuBGM.loop();
 		menuBGM.rewind();
 		menuBGM.setGain(gameVolume - 60);
 		
@@ -329,9 +339,11 @@ void backToMainMenuGM1() {
 	}
 }
 
+// Function for restart game button
 void restartGameMode1() {
 	if (frameCount > 0) {  
     println("restart gamemode1 event");
+
     // Play click sound
     click.play();
     click.rewind();

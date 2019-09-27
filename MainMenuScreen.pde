@@ -11,6 +11,7 @@ class MainMenuScreen extends ScreenWithButton {
 
 	void show() {
 		// background(WHITE);
+		imageMode(CORNER);
 		fill(UGLY_COLOR);
 		image(bg3, 0, 0, 1366, 768);
 		textAlign(CENTER);
@@ -21,7 +22,7 @@ class MainMenuScreen extends ScreenWithButton {
 		text(GAME_SUB_NAME, halfX, titlePos + 70);
 	}
 
-
+	// Sets up the functionality and the side of buttons on game mode selection screen
 	void setupButton() {
 		numberOfBtn = 3;
 
