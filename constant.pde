@@ -1,7 +1,5 @@
 // Set constants for all menu states, colors and in-game messages
-
 // GENERAL 
-
 // GAMESTATE
 final int IN_MENU = 100;
 final int IN_GAMEMODE_1 = 101;

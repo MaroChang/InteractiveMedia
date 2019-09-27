@@ -80,5 +80,4 @@ class Animal {
 		topLeftX = x - halfW;
 		//topLeftY = y - halfH;
 	}
-
 }

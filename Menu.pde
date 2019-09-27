@@ -1,3 +1,4 @@
+// Menu object: containt other submenu screen
 class Menu {
 
   MainMenuScreen mainMenuScreen;
@@ -49,7 +50,7 @@ class Menu {
     }
   }
 
-  // show all button of a screen
+  // Show all button of a screen
   void showButtonOf(int screenName) {
     switch (screenName) {      
       case MAIN_MENU_SCR:

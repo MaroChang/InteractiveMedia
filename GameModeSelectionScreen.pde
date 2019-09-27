@@ -1,3 +1,10 @@
+/* 
+  Individual Work Within This Page
+  Tasks:
+    -Implementing Click Effect On Buttons In The Menu Screens, Mouse Whens Been Clicked
+    -Implementing Background Music For Welcome, Menu Screens And Within Gameplay
+    -Adjust Sound Volumes Gradually And Pauses While Transitioning Between Screens
+*/
 class GameModeSelectionScreen extends ScreenWithButton {
  
    // BUTTON INDEX
@@ -94,7 +101,7 @@ if (frameCount > 0) {
     // Play click sound
     click.play();
     click.rewind();
-    menuBGM.setGain(gameVolume - 60);
+    increaseVolume(gameVolume);
       
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }

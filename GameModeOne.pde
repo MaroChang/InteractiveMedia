@@ -1,3 +1,12 @@
+// GameModeOne Controls All Object In Game Mode One Screen
+/* 
+  Individual Work Within This Page
+  Tasks:
+    -Implementing Sound Effect When Player Loses
+    -Implementing Click Effect On Buttons In The Menu Screens, Mouse Whens Been Clicked
+    -Implementing Background Music For Welcome, Menu Screens And Within Gameplay
+    -Adjust Sound Volumes Gradually And Pauses While Transitioning Between Screens
+*/
 class GameModeOne extends ScreenWithButton {
 
 	// BUTTON INDEX
@@ -30,7 +39,7 @@ class GameModeOne extends ScreenWithButton {
 
 		skyLine = oneY * 4;
 
-		// Size of walkside
+		// Size Of Walkside
 		leftSideBot =  oneX * 3;
 		leftSideTop = oneX * 4.5;
 
@@ -159,7 +168,7 @@ class GameModeOne extends ScreenWithButton {
 	void createCharacter() {
 		gameScore = 0;
 
-		// Size of main character
+		// Size Of Main Character
 		float size = oneX * 1;
 
 		character = new Animal(
@@ -187,11 +196,11 @@ class GameModeOne extends ScreenWithButton {
 
 	void restartGame() {
     println("gamestart event (gamemode1)");
-    // Play gamestart sounds
+    // Play Gamestart and BGM Sounds
     gamestart.play();
     gamestart.rewind();
-	gameBGM.setGain(gameVolume - 60);
-	gameBGM.rewind();
+	  increaseGameVolume(gameVolume);
+	  gameBGM.rewind();
     
 		this.hideButton();
 		this.createObstacle();
@@ -203,19 +212,19 @@ class GameModeOne extends ScreenWithButton {
 	// Function for when the player loses
 	void onGameOver() {
     println("gameover event");
-    // Play lose sound
+    // Play Lose Sound And Lower Volume
     lose.play();
     lose.rewind();
-    gameBGM.setGain(gameVolume - 70);
+    lowerGameVolume(gameVolume);
     
-		// Draw content
+		// Draw Content
 		this.showButton();
 		
 		this.drawMap();
 
 		character.draw();
 		
-		// Drwing obstacles
+		// Drawing Obstacles
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();
 		}
@@ -247,7 +256,7 @@ class GameModeOne extends ScreenWithButton {
 		PFont font = createFont("Georgia", 20);
 
 		buttons[BACK_2_MENU] = CP5.addButton("backToMainMenuGM1")
-		.setCaptionLabel(MAIN_MENU_STR) 
+		.setCaptionLabel(MAIN_MENU_STR)   
 		.setValue(0)
 		.setFont(font)
 		.setPosition(btnX, btnY + btnSpace)
@@ -327,13 +336,14 @@ void backToMainMenuGM1() {
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
 
-        // Resume Main Menu Music 
+    // Resume Main Menu Music 
 		gameBGM.pause();
 		gameBGM.rewind();
-    	menuBGM.play();
+    menuBGM.play();
 		menuBGM.loop();
 		menuBGM.rewind();
-		menuBGM.setGain(gameVolume - 60);
+
+		increaseVolume(gameVolume);
 		
 		gameMenu.showButtonOf(gameScreen);
 	}
@@ -344,9 +354,29 @@ void restartGameMode1() {
 	if (frameCount > 0) {  
     println("restart gamemode1 event");
 
-    // Play click sound
+    // Play Click Sound
     click.play();
     click.rewind();
-	gameModeOne.restartGame();
+	  gameModeOne.restartGame();
 	}
+}
+
+// LowerVolume Function For BGM Fade Transition
+public void lowerGameVolume(float num) {
+    num = num - 60;
+    for (int i = 0; i < 10; i++) {
+    num = num - 1;
+    gameBGM.setGain(num);
+    println(num);
+  }
+}
+
+// IncreaseVolume Function For BGM Fade Transition
+public void increaseGameVolume(float num) {
+    num = num - 70;
+    for (int i = 0; i < 10; i++) {
+    num = num + 1;
+    gameBGM.setGain(num);
+    println(num);
+  }
 }

@@ -1,3 +1,4 @@
+// Handles keyPressed events
 public void keyPressed() {
 
  	// println("key: "+key);
@@ -10,6 +11,8 @@ public void keyPressed() {
     	gameModeOne.character.update(-moveValue);
     }	
 	}
+  
+  // Disables ESC key to exit function
   if (keyCode == 27) {
     // leave game
     // transition to menu

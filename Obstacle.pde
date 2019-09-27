@@ -1,3 +1,4 @@
+// Obstacle class controls an obstacle movement and display
 class Obstacle {
 
 	float orgX;
@@ -100,7 +101,7 @@ class Obstacle {
 	void update() {
 		y += speed;
 
-		// When Obstacle Passes the CHaracter's Y- Axis, + A Point
+		// When Obstacle Passes the Character's Y- Axis, + A Point
 		if (topLeftY > endY) {
       
 			x = random(leftSideBot, rightSideBot);
@@ -111,7 +112,7 @@ class Obstacle {
 			println("+ 1 Point");
 			gameScore++;
       
-            // Play point sound
+      // Play point sound
 			point.play();
 			point.rewind();
 		}

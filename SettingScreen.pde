@@ -1,3 +1,12 @@
+// Control Settings Screen
+/* 
+  Individual Work Within This Page
+  Tasks:
+    -Implementing Click Effect On Buttons In The Menu Screens, Mouse Whens Been Clicked
+    -Implementing Background Music For Welcome, Menu Screens And Within Gameplay
+    -Adjust Sound Volumes And Pauses While Transitioning Between Screens
+    -Adjust Sound Volumne On Settings Page*
+*/
 class SettingScreen extends ScreenWithButton {
 
 	// BUTTON INDEX
@@ -142,7 +151,7 @@ public void back2Menu() {
     // Play click sound
     click.play();
     click.rewind();
-	menuBGM.setGain(-10);
+	  increaseVolume(gameVolume);
     
 		changeScreenTo(MAIN_MENU_SCR, SETTING_SCR);
 	}
@@ -162,7 +171,6 @@ public void useKinect(boolean theFlag) {
 		}
 	}
 }
-
 
 void changeVolume(float value) {
 	if (frameCount > 0)

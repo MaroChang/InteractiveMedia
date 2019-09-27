@@ -1,3 +1,33 @@
+/*
+  FUNG CHEUK YIN TIMOTHY
+  Student ID: 12723161
+  Tutorial 2 Interactive Media - Nat Sundara
+  Processing Version: 3.5.3
+  Project Description: 
+    Our projet idea is to design an interactive game that educates the general public and bring awareness to Global Warming. 
+    We would like to incorporate fun gameplay, colours and promote good habits that allow the player to learn processes that may help.
+    The game allows the player to navigate through obstacles and collect items that will minimise the desctructions of man-kind. 
+    As the character, you must collect your child for points whilst avoiding incoming human waste or other dangers such 
+    as other animals whom have taken a more aggressive approach.
+  Task lists:
+    -Sourcing Apppropriate Effect Sounds For Assignment 3
+    -Sourcing Appropriate Background Music
+    -Implementing Sound Effect When Player Loses
+    -Implementing Click Effect On Buttons In The Menu Screens, Mouse Whens Been Clicked
+    -Implementing Background Music For Welcome, Menu Screens And Within Gameplay
+    -Adjust Sound Volumnes And Pauses While Transitioning Between Screens
+    -Adjust Sound Volumne On Settings Page*
+    -Start On Character Design
+  
+    
+    Things to Do 
+    Sound Fades
+    Manipulate Sound for whole game 
+    Pixelate Backgrounds
+    Torch the manta ray to make the game darker
+    
+*/
+  
 // IMPORT LIBRARIES
 import controlP5.*; // GUI
 import ddf.minim.*; // Minim
@@ -54,6 +84,9 @@ void setup(){
     bg4 = loadImage("img/bg/bg_4.jpg");
 
   // Sound Effects
+  
+  // Commented Sounds Are For Future Function Implementation
+  
     // Menu Sound Effects
     click = minim.loadFile("game_effects/interface/click.mp3");
     
@@ -83,7 +116,7 @@ void setup(){
     // rain = minim.loadFile("game_effects/weather/rain.mp3");
     // fire = minim.loadFile("game_effects/weather/fire.mp3");
   
-  // Set current game state
+  // Set Current Game State
   gameState = IN_MENU;
   //gameState = IN_GAMEMODE_1;
 
@@ -104,13 +137,13 @@ void draw(){
     case IN_MENU:
       gameMenu.show();
     break;
+    
     case IN_GAMEMODE_1:
       gameModeOne.show();
     break;
 
     case IN_GAMEMODE_2:
       // watting
-
     break;
   }
 }

@@ -1,3 +1,11 @@
+/* 
+  Individual Work Within This Page
+  Tasks:
+    -Implementing Click Effect On Buttons In The Menu Screens, Mouse Whens Been Clicked
+    -Implementing Background Music For Welcome, Menu Screens And Within Gameplay
+    -Adjust Sound Volumes And Pauses While Transitioning Between Screens
+    -Adjust Sound Volumne On Settings Page*
+*/
 class WelcomeScreen {
 
   WelcomeScreen() {
@@ -22,4 +30,5 @@ class WelcomeScreen {
     textSize(15); 
     text(CLICK_2_START, halfX, height - 30);
   }
+  
 }

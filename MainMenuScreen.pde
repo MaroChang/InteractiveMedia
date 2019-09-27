@@ -1,3 +1,10 @@
+/* 
+  Individual Work Within This Page
+  Tasks:
+    -Implementing Click Effect On Buttons In The Menu Screens, Mouse Whens Been Clicked
+    -Implementing Background Music For Welcome, Menu Screens And Within Gameplay
+    -Adjust Sound Volumes Gradually And Pauses While Transitioning Between Screens
+*/
 class MainMenuScreen extends ScreenWithButton {
 
 	// BUTTON INDEX
@@ -69,7 +76,7 @@ public void startGame() {
     // Play click sound
     click.play();
     click.rewind();
-    menuBGM.setGain(gameVolume - 70);
+    lowerVolume(gameVolume);
 
 	changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
 	}
@@ -81,7 +88,7 @@ public void openSetting() {
     // Play click sound
     click.play();
     click.rewind();
-    menuBGM.setGain(gameVolume - 70);
+    lowerVolume(gameVolume);
 
 		changeScreenTo(SETTING_SCR, MAIN_MENU_SCR);
 	}
@@ -97,4 +104,24 @@ public void quitGame() {
     changeScreenTo(CONFIRM_SCR, MAIN_MENU_SCR);
 	exit();
 	}
+}
+
+// LowerVolume Function For BGM Fade Transition
+public void lowerVolume(float num) {
+    num = num - 60;
+    for (int i = 0; i < 10; i++) {
+    num = num - 1;
+    menuBGM.setGain(num);
+    println(num);
+  }
+}
+
+// IncreaseVolume Function For BGM Fade Transition
+public void increaseVolume(float num) {
+    num = num - 70;
+    for (int i = 0; i < 10; i++) {
+    num = num + 1;
+    menuBGM.setGain(num);
+    println(num);
+  }
 }

@@ -1,4 +1,4 @@
-// Use a meaningful name for function
+// Put common function here
 
 void changeScreenTo(int newScreen, int oldScreen) {
 	gameScreen = newScreen;
