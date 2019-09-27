@@ -2,14 +2,15 @@ class WelcomeScreen {
 
   WelcomeScreen() {
     menuBGM.play();
-    menuBGM.setGain(-10);
+    menuBGM.setGain(gameVolume - 60);
     menuBGM.loop();
   }
 
 	void show() {
-    background(BEAUTY_COLOR);
+    // background(BEAUTY_COLOR);
+    image(bg1, 0, 0, 1366, 768);
     textAlign(CENTER);
-    fill(UGLY_COLOR);
+    fill(WHITE);
 
     textSize(80);
     text(GAME_NAME, halfX, halfY);
@@ -17,6 +18,5 @@ class WelcomeScreen {
     text(GAME_SUB_NAME, halfX, halfY + 70);
     textSize(15); 
     text(CLICK_2_START, halfX, height - 30);
-
   }
 }

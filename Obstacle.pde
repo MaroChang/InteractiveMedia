@@ -131,7 +131,6 @@ class Obstacle {
 
 	void draw() {
 		fill(255, 255, 255, 0);
-		imageMode(CENTER);
 		rect(x, y, w, h);
 		image(garbagePile, x, y, w, h);
 		

@@ -10,8 +10,9 @@ class GameModeSelectionScreen extends ScreenWithButton {
   }
 
   void show() {
-    background(WHITE);
-    fill(UGLY_COLOR);
+    // background(WHITE);
+    // fill(UGLY_COLOR);
+    image(bg2, 0, 0, 1366, 768);
   }
   
    void setupButton() {
@@ -67,7 +68,7 @@ public void gamemode2() {
     // Play click sound
     click.play();
     click.rewind();
-    menuBGM.setGain(-10);
+    menuBGM.setGain(gameVolume - 60);
     
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }

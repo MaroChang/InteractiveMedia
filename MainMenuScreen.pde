@@ -10,9 +10,9 @@ class MainMenuScreen extends ScreenWithButton {
 	}
 
 	void show() {
-		background(WHITE);
+		// background(WHITE);
 		fill(UGLY_COLOR);
-		
+		image(bg3, 0, 0, 1366, 768);
 		textAlign(CENTER);
 		float titlePos = halfY - 100;
 		textSize(70);
@@ -68,7 +68,7 @@ public void startGame() {
     // Play click sound
     click.play();
     click.rewind();
-    menuBGM.setGain(-20);
+    menuBGM.setGain(gameVolume - 70);
 
 	changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
 	}
@@ -80,7 +80,7 @@ public void openSetting() {
     // Play click sound
     click.play();
     click.rewind();
-    menuBGM.setGain(-20);
+    menuBGM.setGain(gameVolume - 70);
 
 		changeScreenTo(SETTING_SCR, MAIN_MENU_SCR);
 	}
@@ -94,6 +94,6 @@ public void quitGame() {
     click.rewind();
     
     changeScreenTo(CONFIRM_SCR, MAIN_MENU_SCR);
-	 //exit();
+	exit();
 	}
 }

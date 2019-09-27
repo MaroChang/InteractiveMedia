@@ -50,7 +50,7 @@ class GameModeOne extends ScreenWithButton {
 	void show() {
 		if (gameScreen == GAMEMODE_1_PLAYING) {
 			this.drawMap();
-      gameBGM.play();
+      		gameBGM.play();
 			// Play by mouse
 			character.update(true); 
 
@@ -182,7 +182,7 @@ class GameModeOne extends ScreenWithButton {
 
 	gameBGM.play();
 	gameBGM.loop();
-	gameBGM.setGain(-10);
+	gameBGM.setGain(gameVolume - 60);
 	}
 
 	void restartGame() {
@@ -190,7 +190,7 @@ class GameModeOne extends ScreenWithButton {
     // Play gamestart sounds
     gamestart.play();
     gamestart.rewind();
-	gameBGM.setGain(-10);
+	gameBGM.setGain(gameVolume - 60);
 	gameBGM.rewind();
     
 		this.hideButton();
@@ -205,7 +205,7 @@ class GameModeOne extends ScreenWithButton {
     // Play lose sound
     lose.play();
     lose.rewind();
-    gameBGM.setGain(-20);
+    gameBGM.setGain(gameVolume - 70);
     
 		// Draw content
 		this.showButton();
@@ -213,17 +213,14 @@ class GameModeOne extends ScreenWithButton {
 		this.drawMap();
 
 		character.draw();
-
-		fill(205, 205, 205, 200);
-		rectMode(CORNER);
-		rect(0, 0, 1366, 768);
-		rectMode(CENTER);
 		
 
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();
 		}
 
+		fill(205, 205, 205, 200);
+		rect(0, 0, 1366, 768);
 		textAlign(CENTER);
 		textSize(50);
 		fill(UGLY_COLOR);
@@ -326,7 +323,7 @@ void backToMainMenuGM1() {
 		gameBGM.rewind();
     	menuBGM.play();
 		menuBGM.rewind();
-		menuBGM.setGain(-10);
+		menuBGM.setGain(gameVolume - 60);
 		
 		gameMenu.showButtonOf(gameScreen);
 	}

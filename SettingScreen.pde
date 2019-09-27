@@ -17,8 +17,8 @@ class SettingScreen extends ScreenWithButton {
 	}
 
 	void show() {
-		background(TEST_COLOR);
-		fill(UGLY_COLOR);
+		background(UGLY_COLOR);
+		fill(WHITE);
 
 		textAlign(CENTER);
 

@@ -31,7 +31,7 @@ float moveValue = 5;
 Menu gameMenu;
 GameModeOne gameModeOne;
 
-PImage garbagePile, manta;
+PImage bg1, bg2, bg3, garbagePile, manta;
 
 // Configuration ________________
 void setup(){
@@ -42,38 +42,44 @@ void setup(){
   minim = new Minim(this);
   
   // Images
-  garbagePile = loadImage("img/garbagePile.png");
-  manta = loadImage("img/character/manta2_3.gif");
+    // Character + Game Elements
+    garbagePile = loadImage("img/garbagePile.png");
+    manta = loadImage("img/character/manta2_3.gif");
+    
+    // Background
+    bg1 = loadImage("img/bg/bg_1.png");
+    bg2 = loadImage("img/bg/bg_2.jpg");
+    bg3 = loadImage("img/bg/bg_3.jpg");
 
   // Sound Effects
-  // Menu Sound Effects
-  click = minim.loadFile("game_effects/interface/click.mp3");
-  
-  // Game Sound Effects
-  gamestart = minim.loadFile("game_effects/interface/gamestart.mp3");
-  point = minim.loadFile("game_effects/interface/point.mp3");
-  lose = minim.loadFile("game_effects/interface/lose.mp3"); // + Ding Ding Ding in the beginning of the file
-  pickUp = minim.loadFile("game_effects/character/pickup.mp3"); 
-  
-  // Game Character Effects
-  tombstone = minim.loadFile("game_effects/character/tombstone.mp3");
-  // walk = minim.loadFile("game_effects/character/walk.mp3");
-  // jump = minim.loadFile("game_effects/character/jump.mp3");
-  
-  // Game Obstacle Effects
-  // spawn = minim.loadFile("game_effects/monster/spawn.mp3");
+    // Menu Sound Effects
+    click = minim.loadFile("game_effects/interface/click.mp3");
+    
+    // Game Sound Effects
+    gamestart = minim.loadFile("game_effects/interface/gamestart.mp3");
+    point = minim.loadFile("game_effects/interface/point.mp3");
+    lose = minim.loadFile("game_effects/interface/lose.mp3"); // + Ding Ding Ding in the beginning of the file
+    pickUp = minim.loadFile("game_effects/character/pickup.mp3"); 
+    
+    // Game Character Effects
+    tombstone = minim.loadFile("game_effects/character/tombstone.mp3");
+    // walk = minim.loadFile("game_effects/character/walk.mp3");
+    // jump = minim.loadFile("game_effects/character/jump.mp3");
+    
+    // Game Obstacle Effects
+    // spawn = minim.loadFile("game_effects/monster/spawn.mp3");
 
-  // Game Monster Effects
-  // water_boss = minim.loadFile("game_effects/monster/water_boss.mp3");
-  // bird_boss = minim.loadFile("game_effects/monster/bird_boss.mp3");
-  
-  // Background Music + Effects
-  menuBGM = minim.loadFile("bgm/menuBGM.mp3");
-  gameBGM = minim.loadFile("bgm/gameBGM.mp3");
-  // storm = minim.loadFile("game_effects/weather/storm.mp3");
-  // thunder = minim.loadFile("game_effects/weather/thunder.mp3");
-  // rain = minim.loadFile("game_effects/weather/rain.mp3");
-  // fire = minim.loadFile("game_effects/weather/fire.mp3");
+    // Game Monster Effects
+    // water_boss = minim.loadFile("game_effects/monster/water_boss.mp3");
+    // bird_boss = minim.loadFile("game_effects/monster/bird_boss.mp3");
+    
+    // Background Music + Effects
+    menuBGM = minim.loadFile("bgm/menuBGM.mp3");
+    gameBGM = minim.loadFile("bgm/gameBGM.mp3");
+    // storm = minim.loadFile("game_effects/weather/storm.mp3");
+    // thunder = minim.loadFile("game_effects/weather/thunder.mp3");
+    // rain = minim.loadFile("game_effects/weather/rain.mp3");
+    // fire = minim.loadFile("game_effects/weather/fire.mp3");
 
   gameState = IN_MENU;
   //gameState = IN_GAMEMODE_1;
@@ -85,8 +91,6 @@ void setup(){
   gameModeOne = new GameModeOne();
 
   fill(UGLY_COLOR);
-
-  rectMode(CENTER);
   smooth();
 }
 
