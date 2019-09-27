@@ -17,7 +17,7 @@ class GameModeOne extends ScreenWithButton {
 	Animal character;
 
 	Obstacle[] obstacbles;
-	//Coin[] coins;
+	Item[] items;
 
 	float oneY;
 	float oneX;
@@ -230,9 +230,9 @@ class GameModeOne extends ScreenWithButton {
 
 	void createCoin() {
 
-		obstacbles = new Obstacle[1];
+		items = new Item[1];
 
-		obstacbles[0] = new Obstacle(
+		items[0] = new Item(
 			midLandRight, 
 			skyLine, 
 			skyLine,
@@ -247,7 +247,7 @@ class GameModeOne extends ScreenWithButton {
 			rightSideBot
 		);
 
-		obstacbles[0].setCharacterImage("chick");
+		items[0].setCharacterImage("chick");
 		
 	}
 
@@ -512,6 +512,27 @@ class GameModeOne extends ScreenWithButton {
 				obstacbles[i].topLeftY, 
 				obstacbles[i].bottomRightX, 
 				obstacbles[i].bottomRightY)) {
+
+				gameScreen = GAMEMODE_1_OVER;
+				this.onGameOver();
+			}
+		}
+	}
+
+	void drawItemAndCheckCollision() {
+		for (int i = 0; i < items.length; i++) {
+			items[i].draw();
+			items[i].update();
+
+			if (box_box(
+				character.topLeftX,
+				character.topLeftY,
+				character.bottomRightX,
+				character.bottomRightY, 
+				items[i].topLeftX, 
+				items[i].topLeftY, 
+				items[i].bottomRightX, 
+				items[i].bottomRightY)) {
 
 				gameScreen = GAMEMODE_1_OVER;
 				this.onGameOver();
