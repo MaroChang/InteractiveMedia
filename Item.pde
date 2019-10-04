@@ -114,8 +114,6 @@ class Item {
 			
 			y = beginY - minHeight;
 			this.shouldXChangeWhenMoving();
-
-			gameScore++;
 		}
 
 		if (needChangeX) {
@@ -130,6 +128,13 @@ class Item {
 		// get height by current y
 		h = map(y, beginY, endY, minHeight, maxHeight);
 		w = map(y, beginY, endY, minWidth, maxWidth);
+	}
+
+	void beCollected() {
+		gameScore += 50;
+
+		topLeftY = endY + 100;
+		this.update();
 	}
 
 	void draw() {

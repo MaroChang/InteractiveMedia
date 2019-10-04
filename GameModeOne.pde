@@ -61,6 +61,7 @@ class GameModeOne extends ScreenWithButton {
 		this.createCharacter();
 		this.createSideRoad();
 		this.createObstacle();
+		this.createItem();
 		this.setupButton();
 
 		cloud = loadImage("env/cloud.png");
@@ -82,6 +83,7 @@ class GameModeOne extends ScreenWithButton {
 
 			character.draw();
 			this.drawObstacleAndCheckCollision();
+			this.drawItemAndCheckCollision();
 		} else {
 			// this.gameOverAndStop();
 		}
@@ -228,18 +230,32 @@ class GameModeOne extends ScreenWithButton {
 		}
 	}
 
-	void createCoin() {
-
-		items = new Item[1];
+	void createItem() {
+		items = new Item[2];
 
 		items[0] = new Item(
 			midLandRight, 
 			skyLine, 
 			skyLine,
-			oneX * 1.5, 
+			oneX * 1, 
 			oneY * 0.5, 
-			oneY * 1.5,
-			9, 
+			oneY * 1,
+			5, 
+			deltaX,
+			midLandLeft,
+			midLandRight,
+			leftSideBot,
+			rightSideBot
+		);
+
+		items[1] = new Item(
+			midLandRight, 
+			skyLine, 
+			skyLine + character.w + 100,
+			oneX * 1, 
+			oneY * 0.5, 
+			oneY * 1,
+			5, 
 			deltaX,
 			midLandLeft,
 			midLandRight,
@@ -248,7 +264,7 @@ class GameModeOne extends ScreenWithButton {
 		);
 
 		items[0].setCharacterImage("chick");
-		
+		items[1].setCharacterImage("chick");
 	}
 
 	// create object in left side of the main lane
@@ -534,8 +550,7 @@ class GameModeOne extends ScreenWithButton {
 				items[i].bottomRightX, 
 				items[i].bottomRightY)) {
 
-				gameScreen = GAMEMODE_1_OVER;
-				this.onGameOver();
+				items[i].beCollected();
 			}
 		}
 	}
@@ -563,6 +578,10 @@ class GameModeOne extends ScreenWithButton {
 		this.drawMap();
 
 		character.draw();
+
+		for (int i = 0; i < items.length; i++) {
+			items[i].draw();
+		}
 
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();

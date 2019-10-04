@@ -2,7 +2,9 @@
     HO HAI DANG HOANG
     13383512
     Tutorial 2 Interactive Media - Nat Sundara
-    Project description: 
+    Project description: Our projet idea is to design an interactive game that educates the general public and bring awareness to Global Warming. We would like to incorporate fun gameplay, colours and promote good habits that allow the player to learn processes that may help.
+    The game allows the player to navigate through obstacles and collect items that will minimise the desctructions of man-kind. As the character, you must collect your child for points whilst avoiding incoming human waste or other dangers such 
+    as other animals whom have taken a more aggressive approach.
     
     My task is mainly about game mode one movement and create code base structure.
 
@@ -16,12 +18,13 @@
             - Draw the map outline
             - Create obstacle and it's movement
             - Create character and it's movement
+            - Create collectable item and it's movement
             - Checking collision between obstacle and character
             - Add simple audio for collision
             - Load simple image for each object
             - Simple score counting system
-*/
 
+*/
 
 
 // IMPORT LIBRARIES
