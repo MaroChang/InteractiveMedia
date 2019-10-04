@@ -142,7 +142,7 @@ class GameModeOne extends ScreenWithButton {
 			obstacbles[1] = new Obstacle(
 				midLandLeft, 
 				skyLine, 
-				screenY - 100,
+				skyLine, //screenY - 100,
 				oneX * 1.5, 
 				oneY * 0.5, 
 				oneY * 1.5,
@@ -157,7 +157,7 @@ class GameModeOne extends ScreenWithButton {
 			obstacbles[2] = new Obstacle(
 				midLandLeft - oneY, 
 				skyLine, 
-				skyLine + character.w + 30,
+				skyLine, //skyLine + character.w + 30,
 				oneX * 1.5, 
 				oneY * 0.5, 
 				oneY * 1.5,
@@ -172,7 +172,7 @@ class GameModeOne extends ScreenWithButton {
 			obstacbles[3] = new Obstacle(
 				midLandRight + oneY, 
 				skyLine, 
-				skyLine + character.w + 100,
+				skyLine, //skyLine + character.w + 100,
 				oneX * 1.5, 
 				oneY * 0.5, 
 				oneY * 1.5,
@@ -187,7 +187,7 @@ class GameModeOne extends ScreenWithButton {
 			obstacbles[4] = new Obstacle(
 				midLandRight + oneY, 
 				skyLine, 
-				screenY - 200,
+				skyLine, //screenY - 200,
 				oneX * 1.5, 
 				oneY * 0.5, 
 				oneY * 1.5,
@@ -202,7 +202,7 @@ class GameModeOne extends ScreenWithButton {
 			obstacbles[5] = new Obstacle(
 				midLandRight + oneY, 
 				skyLine, 
-				screenY - 500,
+				skyLine, //screenY - 500,
 				oneX * 1.5, 
 				oneY * 0.5, 
 				oneY * 1.5,
@@ -555,7 +555,7 @@ class GameModeOne extends ScreenWithButton {
 
 	void restartGame() {
 		gameScore = 0;
-		
+
 		this.hideButton();
 		this.createObstacle();
 		//this.createCharacter();
