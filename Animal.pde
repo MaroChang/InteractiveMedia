@@ -55,10 +55,7 @@ class Animal {
 	}
 
 	void drawDeath() {
-		pushMatrix();
-		rotate(radians(90));
-		image(imageM, x - halfW, y - halfH, w, h);
-		popMatrix();
+		// todo animation when dying
 	}
 
 	void setLimit(float leftLimit, float rightLimit) {
@@ -66,25 +63,10 @@ class Animal {
 		rightLm = rightLimit - w/2;
 	}
 
-	void update(float newX) {
-		float nx = x + newX;
-		if (nx >= leftLm && nx <= rightLm) {
-			x = nx;
-		}
-
-		bottomRightX = x + halfW;
-		//bottomRightY = y + halfH;
-		topLeftX = x - halfW;
-		//topLeftY = y - halfH;
-	}
-
-	void update(float newX, float newY) {
-		x += newX;
-		y += newY;
-	}
-
 	void update(boolean useMouse) {
 		float nx = mouseX;
+
+		// keep the animal inside the road
 		if (nx >= leftLm && nx <= rightLm) {
 			x = nx;
 		}

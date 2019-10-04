@@ -1,6 +1,5 @@
 class WelcomeScreen {
 
-
   PImage menuBackground;
 
   WelcomeScreen() {

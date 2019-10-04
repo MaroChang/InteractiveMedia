@@ -130,7 +130,7 @@ class Item {
 		w = map(y, beginY, endY, minWidth, maxWidth);
 	}
 
-	void beCollected() {
+	void isCollected() {
 		gameScore += 50;
 
 		topLeftY = endY + 100;

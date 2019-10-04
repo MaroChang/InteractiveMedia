@@ -85,7 +85,6 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void createCharacter() {
-		gameScore = 0;
 
 		// size of main character
 		float size = oneX * 1;
@@ -545,7 +544,7 @@ class GameModeOne extends ScreenWithButton {
 				items[i].bottomRightX, 
 				items[i].bottomRightY)) {
 
-				items[i].beCollected();
+				items[i].isCollected();
 			}
 		}
 	}
@@ -555,9 +554,11 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void restartGame() {
+		gameScore = 0;
+		
 		this.hideButton();
 		this.createObstacle();
-		this.createCharacter();
+		//this.createCharacter();
 
 		gameScreen = GAMEMODE_1_PLAYING;
 	}
@@ -583,7 +584,6 @@ class GameModeOne extends ScreenWithButton {
 
 		for (int i = 0; i < numberOfSideObject; i++) {
 			leftSideObject[i].draw();
-
 			rightSideObject[i].draw();
 		}
 
