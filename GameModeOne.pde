@@ -33,8 +33,6 @@ class GameModeOne extends ScreenWithButton {
 
 	PImage castle;
 
-	Sampler soundEffDie;
-
 	SideObject[] leftSideObject;
 	SideObject[] rightSideObject;
 
@@ -68,9 +66,6 @@ class GameModeOne extends ScreenWithButton {
 		cloud1 = loadImage("env/cloud1.png");
 		cloud2 = loadImage("env/cloud2.png");
 		castle = loadImage("env/castle.png");
-
-		soundEffDie = new Sampler( "audio/death.wav", 12, MN);
-		soundEffDie.patch(audioOutput);
 	}
 
 	void show() {
@@ -569,7 +564,6 @@ class GameModeOne extends ScreenWithButton {
 
 	void onGameOver() {
 		// play death sound
-		soundEffDie.trigger();
 
 		// draw Content
 
@@ -636,7 +630,6 @@ class GameModeOne extends ScreenWithButton {
 
 void backToMainMenuGM1() {
 	if (frameCount > 0) {
-		soundEfMenuClick.trigger();
 		gameModeOne.hideButton();
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
@@ -646,7 +639,6 @@ void backToMainMenuGM1() {
 
 void restartGameMode1() {
 	if (frameCount > 0) {
-		soundEfMenuClick.trigger();
 		gameModeOne.restartGame();
 	}
 }

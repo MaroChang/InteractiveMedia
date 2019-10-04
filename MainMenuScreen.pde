@@ -78,7 +78,6 @@ public void startGame() {
 		}
 	} else {
 		if (frameCount > 0) {
-			soundEfMenuClick.trigger();
 		    gameMenu.hideButtonOf(MAIN_MENU_SCR);
 		    gameModeOne.startGame();
 		    gameState = IN_GAMEMODE_1;

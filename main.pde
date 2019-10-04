@@ -36,7 +36,6 @@ import ddf.minim.ugens.*;
 ControlP5 CP5;
 Minim MN;
 AudioOutput audioOutput;
-Sampler sample;
 
 // global variables ________________
 // leave an explanation if the variable's meaning is ambiguous
@@ -65,8 +64,6 @@ float moveValue = 5;
 Menu gameMenu;
 GameModeOne gameModeOne;
 
-Sampler soundEfMenuClick;
-
 // Configuration ________________
 void setup(){
     size(screenX, screenY);
@@ -86,9 +83,6 @@ void setup(){
 
     gameMenu = new Menu();
     gameModeOne = new GameModeOne();
-
-    soundEfMenuClick = new Sampler( "audio/menu_click.wav", 12, MN);
-    soundEfMenuClick.patch(audioOutput);
 
     fill(UGLY_COLOR);
     rectMode(CENTER);

@@ -1,7 +1,6 @@
 // Put common function here
 
 void changeScreenTo(int newScreen, int oldScreen) {
-  soundEfMenuClick.trigger();
 
 	gameScreen = newScreen;
 
