@@ -1,5 +1,6 @@
 class MainMenuScreen extends ScreenWithButton {
 
+  
 	// BUTTON INDEX
 	int START_GAME = 0;
 	int SETTING = 1;
@@ -7,6 +8,7 @@ class MainMenuScreen extends ScreenWithButton {
 
   //Table Implementation
   Table table;
+  int i=0;
 
   //backgroung image
   PImage bg;
@@ -16,6 +18,10 @@ class MainMenuScreen extends ScreenWithButton {
 
 	MainMenuScreen() {
 		this.setupButton();
+    
+    //audio
+    gamesong.play();
+    gamesong.loop();
 
     table = loadTable("Air.csv","header");
     
@@ -30,37 +36,33 @@ class MainMenuScreen extends ScreenWithButton {
 	}
 
 	void show() {
-    //frameRate(10);
     //background(bg);
 		//background(WHITE);
+   
 		fill(252, 68, 68);
-    float[] w = new float[300];
-    for(int i=1;i<=280;i++)
-    {
+    float[] w = new float[1532];
       
       w[i]=table.getFloat(i,"temp");
-      
-      if(w[i]>=15 && w[i]<=20)
+      //image changing
+      if(w[i]>=16 && w[i]<=21)
       {
         background(bg);
       }
-      else if(w[i]>=21 && w[i]<=25)
+      else if(w[i]>=22 && w[i]<=26)
       {
         background(bg1);
       }
-      else if(w[i]>=26 && w[i]<=30)
+      else if(w[i]>=27 && w[i]<=31)
       {
         background(bg2);
       }
-      else if(w[i]>=30 && w[i]<=35)
+      else if(w[i]>=32 && w[i]<=36)
       {
         background(bg3);
       }
-     // else
-      //{
-        //background(255);
-      //}
-    }
+      
+      i++;
+      if(i>1529) i=0;
 		
 		textAlign(CENTER);
 		float titlePos = halfY - 100;
@@ -113,12 +115,16 @@ class MainMenuScreen extends ScreenWithButton {
 
 public void startGame() {
 	if (frameCount > 0) {
+    click.play();
+    click.rewind();
 	  changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
 	}
 }
 
 public void openSetting() {
 	if (frameCount > 0) {
+    click.play();
+    click.rewind();
     background(255);
 		changeScreenTo(SETTING_SCR, MAIN_MENU_SCR);
 	}
@@ -126,6 +132,8 @@ public void openSetting() {
 
 public void quitGame() {
 	if (frameCount > 0) {
+    click.play();
+    click.rewind();
 		exit();
 	}
 }

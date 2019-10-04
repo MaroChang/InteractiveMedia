@@ -9,6 +9,8 @@ class GameModeSelectionScreen extends ScreenWithButton {
   PImage bg;
   
   GameModeSelectionScreen() {
+    gamesong.play();
+    gamesong.loop();
     bg = loadImage("image_4.jpg");
     bg.resize(1280,720);
     this.setupButton();
@@ -38,7 +40,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setValue(0)
       .setFont(font)
       //.setPosition(btnX - btnSpace * 3.5, btnY)
-      .setPosition(100,580)
+      .setPosition(200,580)
       //.setSize(btnW, btnH)
       .setSize(200,100)
       .hide();
@@ -48,7 +50,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setValue(0)
       .setFont(font)
       //.setPosition(btnX + btnSpace * 3.5, btnY)
-      .setPosition(980,580)
+      .setPosition(880,580)
       //.setSize(btnW, btnH)
       .setSize(200,100)
       .hide();  
@@ -65,6 +67,10 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
 public void gamemode1() {
   if (frameCount > 0) {
+    //audio
+    click.play();
+    click.rewind();
+    
     gameMenu.hideButtonOf(GAME_SELECT_SCR);
     gameModeOne.startGame();
     gameState = IN_GAMEMODE_1;
@@ -74,12 +80,20 @@ public void gamemode1() {
 
 public void gamemode2() {
   if (frameCount > 0) {
+    //audio
+    click.play();
+    click.rewind();
+    
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }
 
 public void backtoMenu() {
   if (frameCount > 0) {
+    //audio
+    click.play();
+    click.rewind();
+    
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }

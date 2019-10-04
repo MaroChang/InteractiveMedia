@@ -1,5 +1,22 @@
 class GameModeOne extends ScreenWithButton {
-
+  
+  //background images
+  PImage bg;
+  PImage bg1;
+  PImage bg2;
+  PImage bg3;
+  
+  //Table Implementation
+  Table table;
+  int j=0;
+  
+  /*
+  int numFrames=17;
+  int currentFrame=0;
+  int framerate=2;
+  PImage[] bg10 = new PImage[numFrames];
+  */
+  
 	// BUTTON INDEX
 	int BACK_2_MENU = 0;
 	int RESTART = 1;
@@ -41,7 +58,43 @@ class GameModeOne extends ScreenWithButton {
 
 		midLandLeft = leftSideTop + (halfX - leftSideTop) / 2;
 		midLandRight = halfX+ (rightSideTop - halfX) / 2;
-		
+
+    //audio
+    gamesong.play();
+    gamesong.loop();
+
+    table = loadTable("Air2.csv","header");
+
+    bg= loadImage("image_8.jpg");
+    bg.resize(1280,720);
+    bg1 = loadImage("image_11.jpg");
+    bg1.resize(1280,720);
+    bg2 = loadImage("image_13.jpg");
+    bg2.resize(1280,720);
+    bg3 = loadImage("image_6.jpg");
+    bg3.resize(1280,720);
+   
+    /*
+   frameRate(framerate);
+   bg10[0] = loadImage("frame_00_delay-0.2s.gif");
+   bg10[1] = loadImage("frame_01_delay-0.2s.gif");
+   bg10[2] = loadImage("frame_02_delay-0.2s.gif");
+   bg10[3] = loadImage("frame_03_delay-0.2s.gif");
+   bg10[4] = loadImage("frame_04_delay-0.2s.gif");
+   bg10[5] = loadImage("frame_05_delay-0.2s.gif");
+   bg10[6] = loadImage("frame_06_delay-0.2s.gif");
+   bg10[7] = loadImage("frame_07_delay-0.2s.gif");
+   bg10[8] = loadImage("frame_08_delay-0.2s.gif");
+   bg10[9] = loadImage("frame_09_delay-0.2s.gif");
+   bg10[10] = loadImage("frame_10_delay-0.2s.gif");
+   bg10[11] = loadImage("frame_11_delay-0.2s.gif");
+   bg10[12] = loadImage("frame_12_delay-0.2s.gif");
+   bg10[13] = loadImage("frame_13_delay-0.2s.gif");
+   bg10[14] = loadImage("frame_14_delay-0.2s.gif");
+   bg10[15] = loadImage("frame_15_delay-0.2s.gif");
+   bg10[16] = loadImage("frame_16_delay-0.2s.gif");
+   */
+   	
 		this.createCharacter();
 		this.createObstacle();
 		this.setupButton();
@@ -49,8 +102,40 @@ class GameModeOne extends ScreenWithButton {
 
 	void show() {
 		if (gameScreen == GAMEMODE_1_PLAYING) {
+      //background(bg);
+      float[] w = new float[1532];
+    
+      w[j]=table.getFloat(j,"temp");
+      
+      if(w[j]>=1 && w[j]<=10.99)
+      {
+        background(bg);
+      }
+      else if(w[j]>=11 && w[j]<=20.99)
+      {
+        //currentFrame = (currentFrame+1)%numFrames;
+        //image(bg10[(currentFrame)%numFrames],0,0);
+        background(bg1);
+      }
+      else if(w[j]>=21 && w[j]<=30.99)
+      {
+        background(bg2);
+      }
+      else if(w[j]>=31 && w[j]<=40.99)
+      {
+        background(bg3);
+      }
+      else
+      {
+        background(17, 223, 250);
+      }
+      
+      j++;
+      if(j>1529) j=0;
+      
+      
 			this.drawMap();
-
+      
 			// play by mouse
 			character.update(true); 
 
@@ -238,7 +323,7 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void drawMap() {
-		background(BEAUTY_COLOR);
+		//background(BEAUTY_COLOR);
 
 		textSize(30);
 		textAlign(CENTER);
@@ -284,6 +369,8 @@ class GameModeOne extends ScreenWithButton {
 
 void backToMainMenuGM1() {
 	if (frameCount > 0) {
+    click.play();
+    click.rewind();
 		gameModeOne.hideButton();
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
@@ -292,7 +379,10 @@ void backToMainMenuGM1() {
 }
 
 void restartGameMode1() {
+    
 	if (frameCount > 0) {
+    click.play();
+    click.rewind();
 		gameModeOne.restartGame();
 	}
 }

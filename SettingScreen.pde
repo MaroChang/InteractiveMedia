@@ -15,7 +15,8 @@ class SettingScreen extends ScreenWithButton {
 	controlP5.Slider volume;
 
 	SettingScreen() {
-    bg = loadImage("image_6.png");
+    gamesong.play();
+    bg = loadImage("setting.png");
     bg.resize(1280,720);
 		this.setupButton();
 		this.setupToggle();
@@ -144,6 +145,8 @@ class SettingScreen extends ScreenWithButton {
 
 public void back2Menu() {
 	if (frameCount > 0) {
+    click.play();
+    click.rewind();
 		changeScreenTo(MAIN_MENU_SCR, SETTING_SCR);
 	}
 }
@@ -152,10 +155,14 @@ public void useKinect(boolean theFlag) {
 	if (frameCount > 0) {
 		// println("useKinect: "+theFlag);
 		if(theFlag == true) {
+      click.play();
+    click.rewind();
 			gameMenu.settingScreen.toggles[0].setColorActive(GREEN);
 			gameInKinect = true;
 			gameInKeyboard = false;
 		} else {
+      click.play();
+    click.rewind();
 			gameMenu.settingScreen.toggles[0].setColorActive(RED);
 			gameInKinect = false;
 			gameInKeyboard = true;
