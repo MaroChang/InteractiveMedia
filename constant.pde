@@ -1,7 +1,7 @@
 // GENERAL 
 
 // FOR CHEATING
-final boolean SKIP_GAMEMODE_SELECTION = true;
+final boolean SKIP_GAMEMODE_SELECTION = false;
 
 // GAMESTATE
 final int IN_MENU = 100;

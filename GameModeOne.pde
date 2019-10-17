@@ -630,15 +630,50 @@ class GameModeOne extends ScreenWithButton {
 
 void backToMainMenuGM1() {
 	if (frameCount > 0) {
+		 // Play click sound
+	    click.play();
+	    click.rewind();
+
 		gameModeOne.hideButton();
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
+
+		// Resume Main Menu Music 
+		gameBGM.pause();
+		gameBGM.rewind();
+    	menuBGM.play();
+		menuBGM.loop();
+		menuBGM.rewind();
+
+		increaseVolume(gameVolume);
 		gameMenu.showButtonOf(gameScreen);
 	}
 }
 
 void restartGameMode1() {
 	if (frameCount > 0) {
+		 click.play();
+    	click.rewind();
 		gameModeOne.restartGame();
 	}
+}
+
+// LowerVolume Function For BGM Fade Transition
+public void lowerGameVolume(float num) {
+    num = num - 60;
+    for (int i = 0; i < 10; i++) {
+    num = num - 1;
+    gameBGM.setGain(num);
+    println(num);
+  }
+}
+
+// IncreaseVolume Function For BGM Fade Transition
+public void increaseGameVolume(float num) {
+    num = num - 70;
+    for (int i = 0; i < 10; i++) {
+    num = num + 1;
+    gameBGM.setGain(num);
+    println(num);
+  }
 }

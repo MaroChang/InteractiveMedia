@@ -140,6 +140,9 @@ class SettingScreen extends ScreenWithButton {
 
 public void back2Menu() {
 	if (frameCount > 0) {
+		click.play();
+   		click.rewind();
+	  	increaseVolume(gameVolume);
 		changeScreenTo(MAIN_MENU_SCR, SETTING_SCR);
 	}
 }
