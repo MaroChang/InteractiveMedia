@@ -32,7 +32,7 @@ class Animal {
 	
 	// Draw the hitbox and the image of the player character
 	void draw() {
-		noStroke();
+		Stroke();
 		rectMode(CENTER);
 		fill(255, 255, 255, 0);
 		rect(x, y, w, h);

@@ -149,9 +149,8 @@ public void back2Menu() {
 	if (frameCount > 0) {
     println("back to menu event");
     // Play click sound
-    click.play();
-    click.rewind();
-	  increaseVolume(gameVolume);
+    clickSound();
+	  increaseMenuVolume(gameVolume);
     
 		changeScreenTo(MAIN_MENU_SCR, SETTING_SCR);
 	}

@@ -16,15 +16,7 @@
     -Implementing Click Effect On Buttons In The Menu Screens, Mouse Whens Been Clicked
     -Implementing Background Music For Welcome, Menu Screens And Within Gameplay
     -Adjust Sound Volumnes And Pauses While Transitioning Between Screens
-    -Adjust Sound Volumne On Settings Page*
     -Start On Character Design
-  
-    
-    Things to Do 
-    Sound Fades
-    Manipulate Sound for whole game 
-    Pixelate Backgrounds
-    Torch the manta ray to make the game darker
     
 */
   

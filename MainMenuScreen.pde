@@ -74,9 +74,8 @@ public void startGame() {
 	if (frameCount > 0) {
     println("start game event");
     // Play click sound
-    click.play();
-    click.rewind();
-    lowerVolume(gameVolume);
+    clickSound();
+    lowerMenuVolume(gameVolume);
 
 	changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
 	}
@@ -86,9 +85,8 @@ public void openSetting() {
 	if (frameCount > 0) {
     println("settings event");
     // Play click sound
-    click.play();
-    click.rewind();
-    lowerVolume(gameVolume);
+    clickSound();
+    lowerMenuVolume(gameVolume);
 
 		changeScreenTo(SETTING_SCR, MAIN_MENU_SCR);
 	}
@@ -98,30 +96,34 @@ public void quitGame() {
 	if (frameCount > 0) {
     println("exit game event");
     // Play click sound
-    click.play();
-    click.rewind();
-    
-    changeScreenTo(CONFIRM_SCR, MAIN_MENU_SCR);
-	exit();
+    clickSound();
+    //changeScreenTo(CONFIRM_SCR, MAIN_MENU_SCR);
+	  
+    exit();
 	}
+}
+// Click Sound Function
+public void clickSound(){
+  click.play();
+  click.rewind();
 }
 
 // LowerVolume Function For BGM Fade Transition
-public void lowerVolume(float num) {
+public void lowerMenuVolume(float num) {
     num = num - 60;
     for (int i = 0; i < 10; i++) {
     num = num - 1;
     menuBGM.setGain(num);
-    println(num);
+    //println(num);
   }
 }
 
 // IncreaseVolume Function For BGM Fade Transition
-public void increaseVolume(float num) {
+public void increaseMenuVolume(float num) {
     num = num - 70;
     for (int i = 0; i < 10; i++) {
     num = num + 1;
     menuBGM.setGain(num);
-    println(num);
+    //println(num);
   }
 }

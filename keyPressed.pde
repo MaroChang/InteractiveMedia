@@ -17,7 +17,7 @@ public void keyPressed() {
     // leave game
     // transition to menu
     key = 0;
-    
+    quitGame();
   }
   else
     println (key);

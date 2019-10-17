@@ -59,7 +59,7 @@ class GameModeOne extends ScreenWithButton {
 	void show() {
 		if (gameScreen == GAMEMODE_1_PLAYING) {
 			this.drawMap();
-      		gameBGM.play();
+       gameBGM.play();
 			// Play by mouse
 			character.update(true); 
 
@@ -184,14 +184,11 @@ class GameModeOne extends ScreenWithButton {
 	void startGame() {
     println("gamestart event (gamemode1)");
     // Play gamestart sounds
-    gamestart.play();
-    gamestart.rewind();
+    gameStartSounds();
     
 	this.restartGame();
 
-	gameBGM.play();
-	gameBGM.loop();
-	gameBGM.setGain(gameVolume - 60);
+	  gameStartSounds();
 	}
 
 	void restartGame() {
@@ -328,8 +325,7 @@ void backToMainMenuGM1() {
 	if (frameCount > 0) {
     println("back to menu event");
     // Play click sound
-    click.play();
-    click.rewind();
+    clickSound();
     
 		gameModeOne.hideButton();
 
@@ -343,7 +339,7 @@ void backToMainMenuGM1() {
 		menuBGM.loop();
 		menuBGM.rewind();
 
-		increaseVolume(gameVolume);
+		increaseMenuVolume(gameVolume);
 		
 		gameMenu.showButtonOf(gameScreen);
 	}
@@ -355,13 +351,20 @@ void restartGameMode1() {
     println("restart gamemode1 event");
 
     // Play Click Sound
-    click.play();
-    click.rewind();
+    clickSound();
 	  gameModeOne.restartGame();
 	}
 }
 
-// LowerVolume Function For BGM Fade Transition
+// Function For Game BGM and Game Start
+public void gameStartSounds(){
+  gamestart.play();
+  gamestart.rewind();
+  gameBGM.setGain(gameVolume - 60);
+  gameBGM.loop();
+}
+
+// LowerVolume Function For Game BGM Fade Transition
 public void lowerGameVolume(float num) {
     num = num - 60;
     for (int i = 0; i < 10; i++) {
@@ -371,7 +374,7 @@ public void lowerGameVolume(float num) {
   }
 }
 
-// IncreaseVolume Function For BGM Fade Transition
+// IncreaseVolume Function For Game BGM Fade Transition
 public void increaseGameVolume(float num) {
     num = num - 70;
     for (int i = 0; i < 10; i++) {

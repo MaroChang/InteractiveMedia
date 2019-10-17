@@ -69,8 +69,7 @@ public void gamemode1() {
   if (frameCount > 0) {
     println("gamemode1 event");
     // Play click sound
-    click.play();
-    click.rewind();
+     clickSound();
     
     menuBGM.pause();
     
@@ -86,8 +85,7 @@ public void gamemode2() {
   if (frameCount > 0) {
     println("gamemode2 event");
     // Play click sound
-    click.play();
-    click.rewind();
+    clickSound();
     menuBGM.setGain(gameVolume - 60);
     
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
@@ -99,9 +97,8 @@ public void backToMenu() {
 if (frameCount > 0) {
     println("back to menu event");
     // Play click sound
-    click.play();
-    click.rewind();
-    increaseVolume(gameVolume);
+    clickSound();
+    increaseMenuVolume(gameVolume);
       
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
