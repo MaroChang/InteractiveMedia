@@ -10,6 +10,7 @@ Minim MN;
 AudioOutput audioOutput;
 
 AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn, water_boss, bird_boss, menuBGM, gameBGM, storm, thunder, rain, fire, birds;
+PImage iTree0, iTree1, iTree2, iTree3, iTree4, iTree5;
 
 // global variables ________________
 // leave an explanation if the variable's meaning is ambiguous
@@ -56,6 +57,7 @@ void setup(){
     //gameScreen = GAMEMODE_1_PLAYING;
 
     loadAudio();
+    loadTree();
 
     gameMenu = new Menu();
     gameModeOne = new GameModeOne();
@@ -116,4 +118,14 @@ void loadAudio() {
     // thunder = MN.loadFile("game_effects/weather/thunder.mp3");
     // rain = MN.loadFile("game_effects/weather/rain.mp3");
     // fire = MN.loadFile("game_effects/weather/fire.mp3");
+}
+
+void loadTree() {
+    iTree0 = loadImage("env/tree/tree" + 0 + ".png");
+    iTree1 = loadImage("env/tree/tree" + 1 + ".png");
+    iTree2 = loadImage("env/tree/tree" + 2 + ".png");
+    iTree3 = loadImage("env/tree/tree" + 3 + ".png");
+    iTree4 = loadImage("env/tree/tree" + 4 + ".png");
+    iTree5 = loadImage("env/tree/tree" + 5 + ".png");
+
 }

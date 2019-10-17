@@ -41,10 +41,14 @@ class Item {
 	float leftSideBot;
 	float rightSideBot;
 
-	PImage imageM;
+	PImage imageM, imageM1, imageM2, imageM3;
 
-	Item(float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
+	int imageFrame = 1;
+	int type;
+
+	Item(int _type,float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
 		
+		type = _type;
 		beginY = _y - minHeight;
 		endY = screenY;
 
@@ -83,7 +87,9 @@ class Item {
 	}
 
 	void setCharacterImage(String _imgName) {
-		imageM = loadImage("char/" + _imgName + ".png");
+		imageM1 = loadImage("char/" + _imgName + "1.png");
+		imageM2 = loadImage("char/" + _imgName + "2.png");
+		imageM3 = loadImage("char/" + _imgName + "3.png");
 		//imageM.resize(int(maxWidth), int(maxHeight));
 	}
 
@@ -132,9 +138,14 @@ class Item {
 
 	void isCollected() {
 		gameScore += 50;
-
 		topLeftY = endY + 100;
 		this.update();
+
+		if (type == 1) {
+			int i = int(random(10));
+
+			gameModeOne.character.setImage(str(i));
+		}
 	}
 
 	void draw() {
@@ -142,8 +153,20 @@ class Item {
 		// rect(x, y, w, h);
 
 		//imageM.resize(int(w), int(h));
-		image(imageM, x - (w/2), y - (h/2), w, h);
+		
+		if (imageFrame <= 20) {
+			imageM = imageM1;
+		} else if (imageFrame <= 40) {
+			imageM = imageM2;
+		} else if (imageFrame <= 60) {
+			imageM = imageM3;
+		}
+		else if (imageFrame <= 80){
+			imageFrame = 0;			
+		}
 
+		imageFrame++;
+		image(imageM, x - (w/2), y - (h/2), w, h);
 
 		
 		// #DEBUG

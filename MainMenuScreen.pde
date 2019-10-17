@@ -74,6 +74,7 @@ class MainMenuScreen extends ScreenWithButton {
 public void startGame() {
 	if (!SKIP_GAMEMODE_SELECTION) {
 		if (frameCount > 0) {
+			lowerVolume(gameVolume);
 			changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
 		}
 	} else {
@@ -93,11 +94,11 @@ public void startGame() {
 
 public void openSetting() {
 	if (frameCount > 0) {
-    println("settings event");
-    // Play click sound
-    click.play();
-    click.rewind();
-    lowerVolume(gameVolume);
+	    println("settings event");
+	    // Play click sound
+	    click.play();
+	    click.rewind();
+	    lowerVolume(gameVolume);
 
 		changeScreenTo(SETTING_SCR, MAIN_MENU_SCR);
 	}
@@ -105,23 +106,22 @@ public void openSetting() {
 
 public void quitGame() {
 	if (frameCount > 0) {
-    println("exit game event");
-    // Play click sound
-    click.play();
-    click.rewind();
-    
-    changeScreenTo(CONFIRM_SCR, MAIN_MENU_SCR);
-	exit();
+	    println("exit game event");
+	    // Play click sound
+	    click.play();
+	    click.rewind();
+	    
+		exit();
 	}
 }
 
-// LowerVolume Function For BGM Fade Transition
+//LowerVolume Function For BGM Fade Transition
 public void lowerVolume(float num) {
     num = num - 60;
     for (int i = 0; i < 10; i++) {
-    num = num - 1;
-    menuBGM.setGain(num);
-    println(num);
+	    num = num - 1;
+	    menuBGM.setGain(num);
+	    println(num);
   }
 }
 

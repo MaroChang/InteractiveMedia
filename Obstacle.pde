@@ -41,7 +41,9 @@ class Obstacle {
 	float leftSideBot;
 	float rightSideBot;
 
-	PImage imageM;
+	PImage imageM, imageM1, imageM2, imageM3;
+
+	int imageFrame = 1;
 
 	Obstacle(float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
 		
@@ -85,6 +87,9 @@ class Obstacle {
 	void setCharacterImage(String _imgName) {
 		imageM = loadImage("char/" + _imgName + ".png");
 		//imageM.resize(int(maxWidth), int(maxHeight));
+
+		imageM1 = loadImage("char/" + _imgName + "1.png");
+		imageM2 = loadImage("char/" + _imgName + "2.png");
 	}
 
 	// determine whenever the obstacble change only y coordinates or both x and y coordiante when moving
@@ -115,7 +120,7 @@ class Obstacle {
 			y = beginY - minHeight;
 			this.shouldXChangeWhenMoving();
 
-			gameScore++;
+			//gameScore++;
 		}
 
 		if (needChangeX) {
@@ -137,8 +142,17 @@ class Obstacle {
 		// rect(x, y, w, h);
 
 		//imageM.resize(int(w), int(h));
-		image(imageM, x - (w/2), y - (h/2), w, h);
+		if (imageFrame <= 20) {
+			imageM = imageM1;
+		} else if (imageFrame <= 40) {
+			imageM = imageM2;
+		} 
+		else if (imageFrame <= 60){
+			imageFrame = 0;			
+		}
 
+		imageFrame++;
+		image(imageM, x - (w/2), y - (h/2), w, h);
 
 		
 		// #DEBUG

@@ -35,6 +35,11 @@ class Animal {
 		imageM.resize(int(w), int(h));
 	}
 
+	void setImage(String _imgName) {
+		imageM = loadImage("char/" + _imgName + ".png");
+		imageM.resize(int(w), int(h));
+	}
+
 	void draw() {
 		// fill(RED);
 		// rect(x, y, w, h);

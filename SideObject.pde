@@ -95,14 +95,18 @@ class SideObject {
 		if (curP > maxP) {
 			curP = 0;
 
-			int i = int(random(5));
+			int i = int(random(6));
 
-			if (gameScore % 200 == 0) {
-				i = int(random(3));
-				imageM = loadImage("hero/" + i + ".png");
-			} else {
-				imageM = loadImage("env/tree/tree" + i + ".png");
+			
+			switch (i) {
+				case 0: imageM = iTree0; break;	
+				case 1: imageM = iTree1; break;
+				case 2: imageM = iTree2; break;
+				case 3: imageM = iTree3; break;
+				case 4: imageM = iTree4; break;
+				case 5: imageM = iTree5; break;			
 			}
+			
 		}
 
 		x = map(curP, 0, maxP, beginX, endX);

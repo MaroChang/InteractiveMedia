@@ -72,7 +72,7 @@ class GameModeOne extends ScreenWithButton {
 		if (gameScreen == GAMEMODE_1_PLAYING) {
 			this.drawMap();
 			this.drawSideRoad();
-
+			gameBGM.play();
 			// play by mouse
 			character.update(true); 
 
@@ -216,10 +216,10 @@ class GameModeOne extends ScreenWithButton {
 
 
 			obstacbles[0].setCharacterImage("snake");
-			obstacbles[1].setCharacterImage("gorilla");
+			obstacbles[1].setCharacterImage("snake");
 			obstacbles[2].setCharacterImage("snake");
 			obstacbles[3].setCharacterImage("snake");
-			obstacbles[4].setCharacterImage("pig");
+			obstacbles[4].setCharacterImage("snake");
 			obstacbles[5].setCharacterImage("snake");
 		}
 	}
@@ -228,6 +228,7 @@ class GameModeOne extends ScreenWithButton {
 		items = new Item[2];
 
 		items[0] = new Item(
+			0,
 			midLandRight, 
 			skyLine, 
 			skyLine,
@@ -243,6 +244,7 @@ class GameModeOne extends ScreenWithButton {
 		);
 
 		items[1] = new Item(
+			1,
 			midLandRight, 
 			skyLine, 
 			skyLine + character.w + 100,
@@ -263,7 +265,7 @@ class GameModeOne extends ScreenWithButton {
 
 	// create object in left side of the main lane
 	void createSideRoad() {
-		numberOfSideObject = 7;
+		numberOfSideObject = 14;
 
 		leftSideObject = new SideObject[numberOfSideObject];
 
@@ -348,6 +350,91 @@ class GameModeOne extends ScreenWithButton {
 			oneY * 2,
 			leftSideTop - oneX,
 			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			260
+		);
+
+
+		leftSideObject[7] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			20
+		);
+
+		leftSideObject[8] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			60
+		);
+
+		leftSideObject[9] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			100
+		);
+
+		leftSideObject[10] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			140
+		);
+	
+		leftSideObject[11] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			180
+		);
+
+		leftSideObject[12] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			220
+		);
+
+		leftSideObject[13] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
 			skyLine,
 			maxY,
 			260
@@ -442,6 +529,90 @@ class GameModeOne extends ScreenWithButton {
 			oneY * 2,
 			rightSideTop + oneX,
 			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			260
+		);
+
+		rightSideObject[7] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			20
+		);
+
+		rightSideObject[8] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			60
+		);
+
+		rightSideObject[9] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			100
+		);
+
+		rightSideObject[10] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			140
+		);
+	
+		rightSideObject[11] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			180
+		);
+
+		rightSideObject[12] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			220
+		);
+
+		rightSideObject[13] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
 			skyLine,
 			maxY,
 			260
@@ -550,10 +721,24 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void startGame() {
+		println("gamestart event (gamemode1)");
+    // Play gamestart sounds
+    gamestart.play();
+    gamestart.rewind();
 		this.restartGame();
+		gameBGM.play();
+	gameBGM.loop();
+	gameBGM.setGain(gameVolume - 60);
 	}
 
 	void restartGame() {
+		println("gamestart event (gamemode1)");
+    // Play Gamestart and BGM Sounds
+    gamestart.play();
+    gamestart.rewind();
+    increaseGameVolume(gameVolume);
+	  gameBGM.rewind();
+    
 		gameScore = 0;
 
 		this.hideButton();
@@ -565,7 +750,11 @@ class GameModeOne extends ScreenWithButton {
 
 	void onGameOver() {
 		// play death sound
-
+		println("gameover event");
+    // Play Lose Sound And Lower Volume
+    lose.play();
+    lose.rewind();
+    lowerGameVolume(gameVolume);
 		// draw Content
 
 		this.showButton();
@@ -645,7 +834,7 @@ void backToMainMenuGM1() {
 		menuBGM.loop();
 		menuBGM.rewind();
 
-		increaseVolume(gameVolume);
+		increaseVolume1(gameVolume);
 		gameMenu.showButtonOf(gameScreen);
 	}
 }
