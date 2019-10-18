@@ -15,9 +15,8 @@ class AnimalKinect {
 	float bottomRightX;
 	float bottomRightY;
 
-    //13666843 Create Kinect variables will be used in this class. 
-    Kinect kinect;
-    ArrayList <SkeletonData> bodies;
+  Kinect kinect;
+  ArrayList <SkeletonData> bodies;
 
 	AnimalKinect(float _x, float _y, float _w, float _h) {
 		x = _x;
@@ -32,6 +31,9 @@ class AnimalKinect {
 		bottomRightY = y + halfH;
 		topLeftX = x - halfW;
 		topLeftY = y - halfH;
+
+    this.kinect = kinect;
+    this.bodies = bodies;
 	}
 
 	void draw(Kinect kinect, ArrayList <SkeletonData> bodies) {
@@ -41,7 +43,6 @@ class AnimalKinect {
 		fill(RED);
 		rect(x, y, w, h);
 
-        //13666843 Draw player bodies
         for (int i=0; i<bodies.size (); i++) 
         {
             drawSkeleton(bodies.get(i));
@@ -54,30 +55,46 @@ class AnimalKinect {
 		rightLm = rightLimit - w/2;
 	}
 
-    //13666843 Update character's position by tracking the position of player's SPINE
+	void update(float newX) {
+		float nx = x + newX;
+		if (nx >= leftLm && nx <= rightLm) {
+			x = nx;
+		}
+
+		bottomRightX = x + halfW;
+		//bottomRightY = y + halfH;
+		topLeftX = x - halfW;
+		//topLeftY = y - halfH;
+	}
+
+	void update(float newX, float newY) {
+		x += newX;
+		y += newY;
+	}
+
 	void update(boolean useKinect) {
-        //13666843 Check if Kinect is having player input
         if (bodies != null && bodies.size() > 0){
             //Searching for the bodies SPINE position
             for (int i=0; i<bodies.size (); i++) 
-            { if(bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_SPINE].x > 0){
-                //change main character's position on x axis
-                float nx = bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_SPINE].x*width;
-
-                //the position will not change if character reach the left-right limit
+            { if(bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_SPINE].x != 0){
+                float nx = bodies.get(0).skeletonPositions[Kinect.NUI_SKELETON_POSITION_SPINE].x*width;
                 if (nx >= leftLm && nx <= rightLm) {
                     x = nx;
                 }
 
                 bottomRightX = x + halfW;
+                //bottomRightY = y + halfH;
                 topLeftX = x - halfW;
+                //topLeftY = y - halfH;
                 }
+
+                //Get position of only one body, then break the loop
+                break;
             }
         }
         
 	}
 
-    //13666843 Draw Player Skeleton position as text
     void drawPosition(SkeletonData _s) 
     {
         noStroke();
@@ -86,7 +103,6 @@ class AnimalKinect {
         text(s1, _s.position.x*width, _s.position.y*height);
     }
 
-    //13666843 Draw Player Skeleton 
     void drawSkeleton(SkeletonData _s) 
     {
         // Body
@@ -166,7 +182,6 @@ class AnimalKinect {
         Kinect.NUI_SKELETON_POSITION_FOOT_RIGHT);
     }
 
-    //13666843 Draw the line between two points of the skeleton
     void DrawBone(SkeletonData _s, int _j1, int _j2) 
     {
     noFill();

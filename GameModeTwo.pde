@@ -12,7 +12,15 @@ class GameModeTwo extends ScreenWithButton{
 	float leftSideTop;
 	float rightSideTop;
 
+	//13666843 Create Kinect variables will be used in this class. 
+	Kinect kinect;
+	ArrayList <SkeletonData> bodies;
 	AnimalKinect character;
+
+	//13666843 Create image, Start button, Start button's position variables.
+	PImage stickManIMG;
+	controlP5.Button btnStart;
+	float btnStartX = 1000, btnStartY = 100;
 
 	Obstacle[] obstacbles;
 
@@ -25,6 +33,8 @@ class GameModeTwo extends ScreenWithButton{
 	float midLandRight;
 
 	GameModeTwo() {
+		stickManIMG = loadImage("/images/stick-man-arms-up.png");
+
 		oneY = screenY / 16;
 		oneX = screenX / 22;
 
@@ -48,16 +58,63 @@ class GameModeTwo extends ScreenWithButton{
 	}
 
 	void show(Kinect kinect, ArrayList <SkeletonData> bodies) {
+		this.kinect = kinect;
+		this.bodies = bodies;
+
 		if (gameScreen == GAMEMODE_2_PLAYING) {
 			this.drawMap();
 
-			// play by kinect
+			//13666843 Update main character position.
 			character.update(true); 
 
+			//13666843 Draw skeleton from player input image.
 			character.draw(kinect, bodies);
+
 			this.drawObstacleAndCheckCollision();
-		} else {
-			// this.gameOverAndStop();
+		} else if (gameScreen == GAMEMODE_2_READY) { //13666843 Draw READY screen helps player standing at the right position before starting the game
+			this.drawReadySceen();
+		}
+	}
+
+	 //13666843 Draw READY screen helps player standing at the right position before starting the game
+	void drawReadySceen(){
+		background(255);
+
+		imageMode(CENTER);
+
+		 //13666843 Draw player image from kinect input
+		image(kinect.GetMask(), width/2, height/2, width, height); 
+
+		//13666843 Draw stick man image at the center of the sceen
+		image(stickManIMG,width/2, height/2, stickManIMG.width*1.5, stickManIMG.height*1.5);
+		imageMode(CORNER);
+
+		//13666843 Display GAME START button. If player move his hand to this button, the game will start
+		btnStart.show();
+
+		//13666843 tracking RIGHT_HAND as the mouse
+		this.trackingHand();
+	}
+
+	//13666843 tracking RIGHT_HAND as the mouse
+	void trackingHand(){
+		if (bodies != null && bodies.size() > 0){
+            //Searching for the bodies RIGHT_HAND position
+            for (int i=0; i<bodies.size (); i++) 
+            { if(bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_HAND_RIGHT].x > 0){
+                float xHand = bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_HAND_RIGHT].x*width;
+				float yHand = bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_HAND_RIGHT].y*height;
+                
+				//13666843 draw a circle at the player's hand position
+				stroke(255);          
+				fill(255,0,0,63);
+				ellipse(xHand, yHand, 80, 80);
+
+				//13666843 Checking if player's RIGHT_HAND is overlap the GAME START button
+				if (xHand >btnStartX && xHand < btnStartX +100 && yHand > btnStartY && yHand < btnStartY + 100)
+					onOverlapBtnStart();
+            }
+        }
 		}
 	}
 
@@ -164,7 +221,7 @@ class GameModeTwo extends ScreenWithButton{
 
 		character = new AnimalKinect(
 			halfX, // x 
-			screenY - size/2 - 5, // y
+			screenY - size/2 - 25, // y
 			size, // w
 			size  // h
 		);
@@ -235,6 +292,14 @@ class GameModeTwo extends ScreenWithButton{
 		.setPosition(btnX, btnY)
 		.setSize(btnW, btnH)
 		.hide();
+
+		//13666843 Create GAME START button using CP5 library
+		btnStart = CP5.addButton("onOverlapBtnStart")
+		.setCaptionLabel("GAME START") 
+		.setValue(0)
+		.setPosition(btnStartX, btnStartY)
+		.setSize(100, 100)
+		.hide();
 	}
 
 	void drawMap() {
@@ -295,5 +360,13 @@ void backToMainMenuGM2() {
 void restartGameMode2() {
 	if (frameCount > 0) {
 		gameModeTwo.restartGame();
+	}
+}
+
+//13666843 Start the game and hid GAME START buton
+void onOverlapBtnStart() {
+	if (frameCount > 0) {
+		gameModeTwo.btnStart.hide();
+		gameModeTwo.startGame();
 	}
 }

@@ -59,6 +59,6 @@ public void gamemode2() {
     gameMenu.hideButtonOf(GAME_SELECT_SCR);
     gameModeTwo.startGame();
     gameState = IN_GAMEMODE_2;
-    gameScreen = GAMEMODE_2_PLAYING;
+    gameScreen = GAMEMODE_2_READY;
   }
 }

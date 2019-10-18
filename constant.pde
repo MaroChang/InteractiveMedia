@@ -17,8 +17,9 @@ final int GAME_SELECT_SCR = 204;
 final int GAMEMODE_1_PLAYING = 299;
 final int GAMEMODE_1_OVER = 298;
 
-final int GAMEMODE_2_PLAYING = 297;
-final int GAMEMODE_2_OVER = 296;
+final int GAMEMODE_2_READY = 297;
+final int GAMEMODE_2_PLAYING = 296;
+final int GAMEMODE_2_OVER = 295;
 
 
 // GAMETEXT
