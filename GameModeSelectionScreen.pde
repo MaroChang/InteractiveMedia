@@ -4,13 +4,18 @@ class GameModeSelectionScreen extends ScreenWithButton {
   int BACK_2_MENU = 0;
   int GAMEMODE_1 = 1;
   int GAMEMODE_2 = 2;
+
+  //backgroung image
+  PImage bg;
   
   GameModeSelectionScreen() {
+    bg = loadImage("image_4.jpg");
+    bg.resize(1366,768);
     this.setupButton();
   }
 
   void show() {
-    background(WHITE);
+    background(bg);
     fill(UGLY_COLOR);
   }
   
@@ -31,16 +36,16 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setCaptionLabel(GAMEMODE1STR) 
       .setValue(0)
       .setFont(font)
-      .setPosition(btnX - btnSpace * 3.5, btnY)
-       .setSize(btnW, btnH)
+      .setPosition(200,580)
+      .setSize(200,100)
       .hide();
 
     buttons[GAMEMODE_2] = CP5.addButton("gamemode2")
       .setCaptionLabel(GAMEMODE2STR) 
       .setValue(0)
       .setFont(font)
-      .setPosition(btnX + btnSpace * 3.5, btnY)
-      .setSize(btnW, btnH)
+      .setPosition(880,580)
+      .setSize(200,100)
       .hide(); 
 
     buttons[BACK_2_MENU] = CP5.addButton("backToMenu")
@@ -108,5 +113,3 @@ if (frameCount > 0) {
 //     println(num);
 //   }
 // }
-
-
