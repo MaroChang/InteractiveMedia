@@ -1,3 +1,5 @@
+
+// GameModeOne controll all object in game mode one screen
 class GameModeOne extends ScreenWithButton {
 
 	// BUTTON INDEX
@@ -15,6 +17,7 @@ class GameModeOne extends ScreenWithButton {
 	Animal character;
 
 	Obstacle[] obstacbles;
+	Item[] items;
 
 	float oneY;
 	float oneX;
@@ -23,6 +26,17 @@ class GameModeOne extends ScreenWithButton {
 
 	float midLandLeft;
 	float midLandRight;
+
+	PImage cloud;
+	PImage cloud1;
+	PImage cloud2;
+
+	PImage castle;
+
+	SideObject[] leftSideObject;
+	SideObject[] rightSideObject;
+
+	int numberOfSideObject;
 
 	GameModeOne() {
 		oneY = screenY / 16;
@@ -43,121 +57,34 @@ class GameModeOne extends ScreenWithButton {
 		midLandRight = halfX+ (rightSideTop - halfX) / 2;
 		
 		this.createCharacter();
+		this.createSideRoad();
 		this.createObstacle();
+		this.createItem();
 		this.setupButton();
+
+		cloud = loadImage("env/cloud.png");
+		cloud1 = loadImage("env/cloud1.png");
+		cloud2 = loadImage("env/cloud2.png");
+		castle = loadImage("env/castle.png");
 	}
 
 	void show() {
 		if (gameScreen == GAMEMODE_1_PLAYING) {
 			this.drawMap();
-
+			this.drawSideRoad();
+			gameBGM.play();
 			// play by mouse
 			character.update(true); 
 
 			character.draw();
 			this.drawObstacleAndCheckCollision();
+			this.drawItemAndCheckCollision();
 		} else {
 			// this.gameOverAndStop();
 		}
 	}
 
-	void createObstacle() {
-
-		obstacbles = new Obstacle[6];
-
-		obstacbles[0] = new Obstacle(
-			midLandRight, 
-			skyLine, 
-			skyLine,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 1.5,
-			9, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[1] = new Obstacle(
-			midLandLeft, 
-			skyLine, 
-			screenY - 100,
-			oneX * 2, 
-			oneY * 0.5, 
-			oneY * 1.5,
-			5, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[2] = new Obstacle(
-			midLandLeft - oneY, 
-			skyLine, 
-			skyLine + character.w + 30,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 2,
-			8, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[3] = new Obstacle(
-			midLandRight + oneY, 
-			skyLine, 
-			skyLine + character.w + 100,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 2,
-			5, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[4] = new Obstacle(
-			midLandRight + oneY, 
-			skyLine, 
-			screenY - 200,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 2,
-			4, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		obstacbles[5] = new Obstacle(
-			midLandRight + oneY, 
-			skyLine, 
-			screenY - 500,
-			oneX * 1.5, 
-			oneY * 0.5, 
-			oneY * 2,
-			7, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-	}
-
 	void createCharacter() {
-		gameScore = 0;
 
 		// size of main character
 		float size = oneX * 1;
@@ -166,27 +93,668 @@ class GameModeOne extends ScreenWithButton {
 			halfX, // x 
 			screenY - size/2 - 5, // y
 			size, // w
-			size  // h
+			size,  // h
+			"chicken" // image name
 		);
 		
 		character.setLimit(leftSideBot, rightSideBot);
 	}
 
+	void createObstacle() {
+
+		if (false) {
+			obstacbles = new Obstacle[1];
+
+			obstacbles[0] = new Obstacle(
+				midLandRight, 
+				skyLine, 
+				skyLine,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				1, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+			obstacbles[0].setCharacterImage("snake");
+		} else {
+
+			obstacbles = new Obstacle[6];
+
+			obstacbles[0] = new Obstacle(
+				midLandRight, 
+				skyLine, 
+				skyLine,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				9, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[1] = new Obstacle(
+				midLandLeft, 
+				skyLine, 
+				skyLine, //screenY - 100,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				5, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[2] = new Obstacle(
+				midLandLeft - oneY, 
+				skyLine, 
+				skyLine, //skyLine + character.w + 30,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				8, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[3] = new Obstacle(
+				midLandRight + oneY, 
+				skyLine, 
+				skyLine, //skyLine + character.w + 100,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				5, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[4] = new Obstacle(
+				midLandRight + oneY, 
+				skyLine, 
+				skyLine, //screenY - 200,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				4, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+			obstacbles[5] = new Obstacle(
+				midLandRight + oneY, 
+				skyLine, 
+				skyLine, //screenY - 500,
+				oneX * 1.5, 
+				oneY * 0.5, 
+				oneY * 1.5,
+				7, 
+				deltaX,
+				midLandLeft,
+				midLandRight,
+				leftSideBot,
+				rightSideBot
+			);
+
+
+			obstacbles[0].setCharacterImage("snake");
+			obstacbles[1].setCharacterImage("snake");
+			obstacbles[2].setCharacterImage("snake");
+			obstacbles[3].setCharacterImage("snake");
+			obstacbles[4].setCharacterImage("snake");
+			obstacbles[5].setCharacterImage("snake");
+		}
+	}
+
+	void createItem() {
+		items = new Item[2];
+
+		items[0] = new Item(
+			0,
+			midLandRight, 
+			skyLine, 
+			skyLine,
+			oneX * 1, 
+			oneY * 0.5, 
+			oneY * 1,
+			5, 
+			deltaX,
+			midLandLeft,
+			midLandRight,
+			leftSideBot,
+			rightSideBot
+		);
+
+		items[1] = new Item(
+			1,
+			midLandRight, 
+			skyLine, 
+			skyLine + character.w + 100,
+			oneX * 1, 
+			oneY * 0.5, 
+			oneY * 1,
+			5, 
+			deltaX,
+			midLandLeft,
+			midLandRight,
+			leftSideBot,
+			rightSideBot
+		);
+
+		items[0].setCharacterImage("chick");
+		items[1].setCharacterImage("chick");
+	}
+
+	// create object in left side of the main lane
+	void createSideRoad() {
+		numberOfSideObject = 14;
+
+		leftSideObject = new SideObject[numberOfSideObject];
+
+		float maxY = oneY * 20;
+
+		leftSideObject[0] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			20
+		);
+
+		leftSideObject[1] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			60
+		);
+
+		leftSideObject[2] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			100
+		);
+
+		leftSideObject[3] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			140
+		);
+	
+		leftSideObject[4] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			180
+		);
+
+		leftSideObject[5] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			220
+		);
+
+		leftSideObject[6] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX,
+			leftSideTop - oneX * 3,
+			skyLine,
+			maxY,
+			260
+		);
+
+
+		leftSideObject[7] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			20
+		);
+
+		leftSideObject[8] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			60
+		);
+
+		leftSideObject[9] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			100
+		);
+
+		leftSideObject[10] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			140
+		);
+	
+		leftSideObject[11] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			180
+		);
+
+		leftSideObject[12] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			220
+		);
+
+		leftSideObject[13] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			leftSideTop - oneX * 3,
+			leftSideTop - oneX * 5,
+			skyLine,
+			maxY,
+			260
+		);
+
+		createSideRoad2();
+	}
+
+	// create object in right side of the main lane
+	void createSideRoad2() {
+
+		rightSideObject = new SideObject[numberOfSideObject];
+
+		float maxY = oneY * 20;
+
+		rightSideObject[0] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			20
+		);
+
+		rightSideObject[1] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			60
+		);
+
+		rightSideObject[2] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			100
+		);
+
+		rightSideObject[3] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			140
+		);
+	
+		rightSideObject[4] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			180
+		);
+
+		rightSideObject[5] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			220
+		);
+
+		rightSideObject[6] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX,
+			rightSideTop + oneX * 3,
+			skyLine,
+			maxY,
+			260
+		);
+
+		rightSideObject[7] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			20
+		);
+
+		rightSideObject[8] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			60
+		);
+
+		rightSideObject[9] = new SideObject(
+			leftSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			100
+		);
+
+		rightSideObject[10] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			140
+		);
+	
+		rightSideObject[11] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			180
+		);
+
+		rightSideObject[12] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			220
+		);
+
+		rightSideObject[13] = new SideObject(
+			rightSideTop - oneX, 
+			skyLine,
+			oneX,
+			oneY * 2,
+			rightSideTop + oneX * 3,
+			rightSideTop + oneX * 5,
+			skyLine,
+			maxY,
+			260
+		);
+	}
+
+	void drawSideRoad() {
+		for (int i = 0; i < numberOfSideObject; i++) {
+			leftSideObject[i].draw();
+			leftSideObject[i].update();
+
+			rightSideObject[i].draw();
+			rightSideObject[i].update();
+		}
+	}
+
+	void drawMap() {
+		drawBackground();
+
+		image(cloud, oneX, oneY, 228, 124);
+		image(cloud1, oneX*10, oneY, 228, 124);
+		image(cloud2, oneX*5, oneY, 228, 124);
+		image(castle, oneX*14, oneY * 0.2, 204, 182);
+
+		fill(BLUE);
+		textSize(30);
+		textAlign(CENTER);
+		text("SCORE: " + gameScore, halfX, oneY * 2);
+
+		line(0, skyLine, screenX, skyLine);
+		line(leftSideBot, screenY, leftSideTop, skyLine);
+		line(rightSideBot, screenY, rightSideTop, skyLine);
+
+		//stroke(RED);
+
+		//line(midLandLeft, skyLine, leftSideBot + (halfX - leftSideBot) / 2, screenY);
+		//line(midLandRight, skyLine, halfX + (rightSideBot - halfX) / 2, screenY);
+
+		//ellipse(leftSideBot, screenY, 5, 5);
+		//ellipse(rightSideBot, screenY, 5, 5);
+		stroke(0);
+
+		line(halfX, skyLine, halfX, screenY);
+	}
+
+	void drawBackground() {
+		background(ROAD_COLOR);
+		fill(BLUE_SKY);
+		rect(halfX, skyLine / 2, screenX, skyLine);
+
+		fill(GROUND_COLOR);
+		beginShape();
+			vertex(0, skyLine);
+			vertex(leftSideTop, skyLine);
+			vertex(leftSideBot, screenY);
+			vertex(0, screenY);
+		endShape();
+
+		beginShape();
+			vertex(rightSideTop, skyLine);
+			vertex(screenX, skyLine);
+			vertex(screenX, screenY);
+			vertex(rightSideBot, screenY);
+		endShape();
+	};
+
+	void drawObstacleAndCheckCollision() {
+		for (int i = 0; i < obstacbles.length; i++) {
+			obstacbles[i].draw();
+			obstacbles[i].update();
+
+			if (box_box(
+				character.topLeftX,
+				character.topLeftY,
+				character.bottomRightX,
+				character.bottomRightY, 
+				obstacbles[i].topLeftX, 
+				obstacbles[i].topLeftY, 
+				obstacbles[i].bottomRightX, 
+				obstacbles[i].bottomRightY)) {
+
+				gameScreen = GAMEMODE_1_OVER;
+				this.onGameOver();
+			}
+		}
+	}
+
+	void drawItemAndCheckCollision() {
+		for (int i = 0; i < items.length; i++) {
+			items[i].draw();
+			items[i].update();
+
+			if (box_box(
+				character.topLeftX,
+				character.topLeftY,
+				character.bottomRightX,
+				character.bottomRightY, 
+				items[i].topLeftX, 
+				items[i].topLeftY, 
+				items[i].bottomRightX, 
+				items[i].bottomRightY)) {
+
+				items[i].isCollected();
+			}
+		}
+	}
+
 	void startGame() {
+		println("gamestart event (gamemode1)");
+    // Play gamestart sounds
+    gamestart.play();
+    gamestart.rewind();
 		this.restartGame();
+		gameBGM.play();
+	gameBGM.loop();
+	gameBGM.setGain(gameVolume - 60);
 	}
 
 	void restartGame() {
+		println("gamestart event (gamemode1)");
+    // Play Gamestart and BGM Sounds
+    gamestart.play();
+    gamestart.rewind();
+    increaseGameVolume(gameVolume);
+	  gameBGM.rewind();
+    
+		gameScore = 0;
+
 		this.hideButton();
 		this.createObstacle();
-		this.createCharacter();
+		//this.createCharacter();
 
 		gameScreen = GAMEMODE_1_PLAYING;
 	}
 
 	void onGameOver() {
 		// play death sound
-
+		println("gameover event");
+    // Play Lose Sound And Lower Volume
+    lose.play();
+    lose.rewind();
+    lowerGameVolume(gameVolume);
 		// draw Content
 
 		this.showButton();
@@ -195,9 +763,20 @@ class GameModeOne extends ScreenWithButton {
 
 		character.draw();
 
+		for (int i = 0; i < items.length; i++) {
+			items[i].draw();
+		}
+
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();
 		}
+
+		for (int i = 0; i < numberOfSideObject; i++) {
+			leftSideObject[i].draw();
+			rightSideObject[i].draw();
+		}
+
+		fill(BLUE);
 
 		textAlign(CENTER);
 		textSize(50);
@@ -236,63 +815,54 @@ class GameModeOne extends ScreenWithButton {
 		.setSize(btnW, btnH)
 		.hide();
 	}
-
-	void drawMap() {
-		background(BEAUTY_COLOR);
-
-		textSize(30);
-		textAlign(CENTER);
-		text("SCORE: " + gameScore, halfX, oneY * 2);
-
-		line(0, skyLine, screenX, skyLine);
-		line(leftSideBot, screenY, leftSideTop, skyLine);
-		line(rightSideBot, screenY, rightSideTop, skyLine);
-
-		stroke(RED);
-
-		line(midLandLeft, skyLine, leftSideBot + (halfX - leftSideBot) / 2, screenY);
-		line(midLandRight, skyLine, halfX + (rightSideBot - halfX) / 2, screenY);
-
-		ellipse(leftSideBot, screenY, 5, 5);
-		ellipse(rightSideBot, screenY, 5, 5);
-		stroke(0);
-
-		line(halfX, skyLine, halfX, screenY);
-	}
-
-	void drawObstacleAndCheckCollision() {
-		for (int i = 0; i < obstacbles.length; i++) {
-			obstacbles[i].draw();
-			obstacbles[i].update();
-
-			if (box_box(
-				character.topLeftX,
-				character.topLeftY,
-				character.bottomRightX,
-				character.bottomRightY, 
-				obstacbles[i].topLeftX, 
-				obstacbles[i].topLeftY, 
-				obstacbles[i].bottomRightX, 
-				obstacbles[i].bottomRightY)) {
-
-				gameScreen = GAMEMODE_1_OVER;
-				this.onGameOver();
-			}
-		}
-	}
 }
 
 void backToMainMenuGM1() {
 	if (frameCount > 0) {
+		 // Play click sound
+	    click.play();
+	    click.rewind();
+
 		gameModeOne.hideButton();
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
+
+		// Resume Main Menu Music 
+		gameBGM.pause();
+		gameBGM.rewind();
+    	menuBGM.play();
+		menuBGM.loop();
+		menuBGM.rewind();
+
+		increaseVolume1(gameVolume);
 		gameMenu.showButtonOf(gameScreen);
 	}
 }
 
 void restartGameMode1() {
 	if (frameCount > 0) {
+		 click.play();
+    	click.rewind();
 		gameModeOne.restartGame();
 	}
+}
+
+// LowerVolume Function For BGM Fade Transition
+public void lowerGameVolume(float num) {
+    num = num - 60;
+    for (int i = 0; i < 10; i++) {
+    num = num - 1;
+    gameBGM.setGain(num);
+    println(num);
+  }
+}
+
+// IncreaseVolume Function For BGM Fade Transition
+public void increaseGameVolume(float num) {
+    num = num - 70;
+    for (int i = 0; i < 10; i++) {
+    num = num + 1;
+    gameBGM.setGain(num);
+    println(num);
+  }
 }

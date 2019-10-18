@@ -1,3 +1,5 @@
+// controll setting screen
+
 class SettingScreen extends ScreenWithButton {
 
 	// BUTTON INDEX
@@ -138,6 +140,9 @@ class SettingScreen extends ScreenWithButton {
 
 public void back2Menu() {
 	if (frameCount > 0) {
+		click.play();
+   		click.rewind();
+	  	increaseVolume(gameVolume);
 		changeScreenTo(MAIN_MENU_SCR, SETTING_SCR);
 	}
 }
@@ -156,7 +161,6 @@ public void useKinect(boolean theFlag) {
 		}
 	}
 }
-
 
 void changeVolume(float value) {
 	if (frameCount > 0)

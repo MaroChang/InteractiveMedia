@@ -1,32 +1,7 @@
-/*
-Student Name: Quynh Trang Dang
-Student Number: 13666843
-UG02 Interactive Media - Nat Sundara
-
-Our project idea is to create an interactive game called “Global Warming: Escape”. Our project idea is to design an interactive game that educates the general public and bring awareness to Global Warming. 
-We would like to incorporate fun gameplay, colours and promote good habits that allow the player to learn processes that may help.
-The game allows the player to navigate through obstacles and collect items that will minimise the desctructions of man-kind. 
-As the character, you must collect your child for points whilst avoiding incoming human waste or other dangers such 
-as other animals whom have taken a more aggressive approach.
-The game contain two game modes. The first mode is similar to that Crossy Road, where an animal will be crossing the road and avoiding the obstacles coming towards it. 
-To controlling the animal, our game using Keyboard or Kinect for input. We use Kinect to tracking player body, then use player movement to interact with the character in the game. 
-
-My task for this project is on "Kinect Interaction". This involves:
-
-- Initialize Kinect. (main.pde)
-
-- Using Kinect to tracking player's movement (GameModeTwo.pde)
-
-- Reflect player's movement in the game by drawing Mask Image / Skeleton (GameModeTwo.pde, AnimalKinect.pde)
-
-- Use the player's movement to click button, control main character (GameModeTwo.pde, AnimalKinect.pde)
-
-I have commented my code using formart //STUDENT_ID Comment  
-For example: //13666843 IMPORT KINECT4WinSDK libraries
-*/
-
 // IMPORT LIBRARIES
 import controlP5.*; //GUI
+import ddf.minim.*;
+import ddf.minim.ugens.*;
 
 //13666843 IMPORT Kinect4WinSDK libraries
 import kinect4WinSDK.Kinect;
@@ -34,6 +9,11 @@ import kinect4WinSDK.SkeletonData;
 
 // LIBRARY OBJECTS
 ControlP5 CP5;
+Minim MN;
+AudioOutput audioOutput;
+
+AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn, water_boss, bird_boss, menuBGM, gameBGM, storm, thunder, rain, fire, birds;
+PImage iTree0, iTree1, iTree2, iTree3, iTree4, iTree5;
 
 //13666843 Kinect Library objects
 Kinect kinect;
@@ -47,8 +27,11 @@ int screenY = 768;
 float halfX = screenX / 2;
 float halfY = screenY / 2;
 
+// identify the current stage of the application
 int gameState;
+// identify the current screen of a state
 int gameScreen;
+// current score of player
 int gameScore = 0;
 
 // game setting
@@ -66,6 +49,7 @@ GameModeTwo gameModeTwo;
 
 // Configuration ________________
 void setup(){
+
   size(1366, 768);
   background(255);
   CP5 = new ControlP5(this);
@@ -73,14 +57,14 @@ void setup(){
   gameState = IN_MENU;
   //gameState = IN_GAMEMODE_1;
 
-  gameScreen = WELCOME_SCR;
-  //gameScreen = GAMEMODE_1_PLAYING;
 
-  gameMenu = new Menu();
-  gameModeOne = new GameModeOne();
-  gameModeTwo = new GameModeTwo();
+    //audio set up
+    MN = new Minim(this);
+    audioOutput = MN.getLineOut();
 
-  fill(UGLY_COLOR);
+    gameScreen = WELCOME_SCR;
+    //gameScreen = GAMEMODE_1_PLAYING;
+
 
   rectMode(CENTER);
 
@@ -88,10 +72,23 @@ void setup(){
   kinect = new Kinect(this);
   smooth();
   bodies = new ArrayList<SkeletonData>();
+
+    loadAudio();
+    loadTree();
+
+    gameMenu = new Menu();
+    gameModeOne = new GameModeOne();
+    gameModeTwo = new GameModeTwo();
+    
+    fill(UGLY_COLOR);
+    rectMode(CENTER);
+    smooth();
+
 }
 
 // Drawing ________________
 void draw(){
+
   switch (gameState) {
     case IN_MENU:
       gameMenu.show();
@@ -103,6 +100,55 @@ void draw(){
       gameModeTwo.show(kinect, bodies);
     break;
   }
+
+ 
+}
+
+// Load Audio
+void loadAudio() {
+    // Sound Effects
+  
+    // Commented Sounds Are For Future Function Implementation
+  
+    // Menu Sound Effects
+    click = MN.loadFile("data/game_effects/interface/click.mp3");
+    
+    // Game Sound Effects
+    gamestart = MN.loadFile("game_effects/interface/gamestart.mp3");
+    point = MN.loadFile("game_effects/interface/point.mp3");
+    lose = MN.loadFile("game_effects/interface/lose.mp3"); // + Ding Ding Ding in the beginning of the file
+    pickUp = MN.loadFile("game_effects/character/pickup.mp3"); 
+    
+    // Game Character Effects
+    tombstone = MN.loadFile("game_effects/character/tombstone.mp3");
+    // walk = MN.loadFile("game_effects/character/walk.mp3");
+    // jump = MN.loadFile("game_effects/character/jump.mp3");
+    
+    // Game Obstacle Effects
+    // spawn = MN.loadFile("game_effects/monster/spawn.mp3");
+
+    // Game Monster Effects
+    // water_boss = MN.loadFile("game_effects/monster/water_boss.mp3");
+    // bird_boss = MN.loadFile("game_effects/monster/bird_boss.mp3");
+    
+    // Background Music + Effects
+    menuBGM = MN.loadFile("bgm/menuBGM.mp3");
+    gameBGM = MN.loadFile("bgm/gameBGM.mp3");
+    // storm = MN.loadFile("game_effects/weather/storm.mp3");
+    // thunder = MN.loadFile("game_effects/weather/thunder.mp3");
+    // rain = MN.loadFile("game_effects/weather/rain.mp3");
+    // fire = MN.loadFile("game_effects/weather/fire.mp3");
+}
+
+void loadTree() {
+    iTree0 = loadImage("env/tree/tree" + 0 + ".png");
+    iTree1 = loadImage("env/tree/tree" + 1 + ".png");
+    iTree2 = loadImage("env/tree/tree" + 2 + ".png");
+    iTree3 = loadImage("env/tree/tree" + 3 + ".png");
+    iTree4 = loadImage("env/tree/tree" + 4 + ".png");
+    iTree5 = loadImage("env/tree/tree" + 5 + ".png");
+
+
 }
 
 //13666843 Using Kinect to tracking player's apparent, add new tracking into bodies array

@@ -1,11 +1,18 @@
 class WelcomeScreen {
 
+  PImage menuBackground;
+
   WelcomeScreen() {
-    // Do nothing
+    menuBackground = loadImage("menu_bg.jpg");
+    menuBackground.resize(screenX, screenY); 
+
+    menuBGM.play();
+    menuBGM.setGain(gameVolume - 60);
+    menuBGM.loop();
   }
 
 	void show() {
-    background(BEAUTY_COLOR);
+    background(menuBackground);
     textAlign(CENTER);
     fill(UGLY_COLOR);
 

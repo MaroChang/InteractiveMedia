@@ -1,6 +1,7 @@
-// Use a meaningful name for function
+// Put common function here
 
 void changeScreenTo(int newScreen, int oldScreen) {
+
 	gameScreen = newScreen;
 
 	// Show buttons of new screen
@@ -29,3 +30,13 @@ boolean box_box(float ax0, float ay0, float ax1, float ay1, float bx0, float by0
  
   return !(botA <= topB  || botB <= topA || rightA <= leftB || rightB <= leftA);
 }
+
+void increaseVolume1(float num) {
+    num = num - 70;
+    for (int i = 0; i < 10; i++) {
+    num = num + 1;
+    menuBGM.setGain(num);
+    println(num);
+  }
+}
+

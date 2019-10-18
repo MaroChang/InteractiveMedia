@@ -1,3 +1,4 @@
+// Menu object: containt other submenu screen
 class Menu {
 
   MainMenuScreen mainMenuScreen;
@@ -9,7 +10,7 @@ class Menu {
     mainMenuScreen = new MainMenuScreen();
     welcomeScreen = new WelcomeScreen();
     settingScreen = new SettingScreen();
-    gameModeSelectionScreen =  new GameModeSelectionScreen();    
+    gameModeSelectionScreen =  new GameModeSelectionScreen();   
   }
 
   void show() {

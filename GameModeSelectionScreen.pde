@@ -2,8 +2,8 @@ class GameModeSelectionScreen extends ScreenWithButton {
  
    // BUTTON INDEX
   int BACK_2_MENU = 0;
-  int GAMEMODE_1 = 0;
-  int GAMEMODE_2 = 1;
+  int GAMEMODE_1 = 1;
+  int GAMEMODE_2 = 2;
   
   GameModeSelectionScreen() {
     this.setupButton();
@@ -15,7 +15,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
   }
   
    void setupButton() {
-    numberOfBtn = 2;
+    numberOfBtn = 3;
 
     buttons = new controlP5.Button[numberOfBtn];
 
@@ -41,12 +41,25 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setFont(font)
       .setPosition(btnX + btnSpace * 3.5, btnY)
       .setSize(btnW, btnH)
-      .hide();  
+      .hide(); 
+
+    buttons[BACK_2_MENU] = CP5.addButton("backToMenu")
+      .setCaptionLabel(BACK_2_MENU_STR) 
+      .setValue(0)
+      .setFont(font)
+      .setPosition(25, 25)
+       .setSize(btnW + 50, btnH -50)
+      .hide();   
   }
 }
 
 public void gamemode1() {
   if (frameCount > 0) {
+    click.play();
+    click.rewind();
+    
+    menuBGM.pause();
+
     gameMenu.hideButtonOf(GAME_SELECT_SCR);
     gameModeOne.startGame();
     gameState = IN_GAMEMODE_1;
@@ -56,9 +69,43 @@ public void gamemode1() {
 
 public void gamemode2() {
   if (frameCount > 0) {
+
     gameMenu.hideButtonOf(GAME_SELECT_SCR);
     gameModeTwo.startGame();
     gameState = IN_GAMEMODE_2;
     gameScreen = GAMEMODE_2_READY;
+
+
+    click.play();
+    click.rewind();
+    menuBGM.setGain(gameVolume - 60);
+
+
+    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }
+
+// Function for the back to menu button 
+public void backToMenu() {
+if (frameCount > 0) {
+    println("back to menu event");
+    // Play click sound
+    click.play();
+    click.rewind();
+    increaseVolume(gameVolume);
+      
+    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
+  }
+}
+
+// // LowerVolume Function For BGM Fade Transition
+// public void lowerVolume(float num) {
+//     num = num - 60;
+//     for (int i = 0; i < 10; i++) {
+//     num = num - 1;
+//     menuBGM.setGain(num);
+//     println(num);
+//   }
+// }
+
+

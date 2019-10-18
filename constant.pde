@@ -1,5 +1,8 @@
 // GENERAL 
 
+// FOR CHEATING
+final boolean SKIP_GAMEMODE_SELECTION = false;
+
 // GAMESTATE
 final int IN_MENU = 100;
 final int IN_GAMEMODE_1 = 101;
@@ -31,13 +34,16 @@ String GAMEMODE_2_OVER_MSG = "DING DING DING OVER";
 
 
 // COLOR
-color BEAUTY_COLOR = color(236, 240, 241);
+color BEAUTY_COLOR = color(164, 170, 179);
 color UGLY_COLOR = color(52, 73, 94);
 color RED = color(255, 0, 0);
 color GREEN = color(0, 255, 0);
 color BLUE = color(0, 0, 255);
 color WHITE = color(255, 255, 255);
 color TEST_COLOR = color(204, 232, 21);
+color BLUE_SKY = color(135, 206, 235);
+color GROUND_COLOR = color(193,168,154);
+color ROAD_COLOR = color(211,211,211);
 
 
 // BUTTON
@@ -53,3 +59,4 @@ String GAMEMODE2STR = "GAMEMODE2";
 String RESTART_STR = "RESTART";
 
 // Natassja.Sundara@uts.edu.au
+
