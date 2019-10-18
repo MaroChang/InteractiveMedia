@@ -19,7 +19,9 @@ class AnimalKinect {
     Kinect kinect;
     ArrayList <SkeletonData> bodies;
 
-	AnimalKinect(float _x, float _y, float _w, float _h) {
+    PImage imageM;
+
+	AnimalKinect(float _x, float _y, float _w, float _h, String _imgName) {
 		x = _x;
 		y = _y;
 		w = _w;
@@ -32,14 +34,23 @@ class AnimalKinect {
 		bottomRightY = y + halfH;
 		topLeftX = x - halfW;
 		topLeftY = y - halfH;
+        imageM = loadImage("char/" + _imgName + ".png");
+		imageM.resize(int(w), int(h));
+	}
+
+    void setImage(String _imgName) {
+		imageM = loadImage("char/" + _imgName + ".png");
+		imageM.resize(int(w), int(h));
 	}
 
 	void draw(Kinect kinect, ArrayList <SkeletonData> bodies) {
         this.kinect = kinect;
         this.bodies = bodies;
 
-		fill(RED);
-		rect(x, y, w, h);
+        image(imageM, x - halfW, y - halfH, w, h);
+
+		fill(ROAD_COLOR);
+		//rect(x, y, w, h);
 
         //13666843 Draw player bodies
         for (int i=0; i<bodies.size (); i++) 

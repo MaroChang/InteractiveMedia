@@ -48,7 +48,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setValue(0)
       .setFont(font)
       .setPosition(25, 25)
-       .setSize(btnW + 50, btnH -50)
+      .setSize(250, 75)
       .hide();   
   }
 }
@@ -78,10 +78,11 @@ public void gamemode2() {
 
     click.play();
     click.rewind();
-    menuBGM.setGain(gameVolume - 60);
+    //menuBGM.setGain(gameVolume - 60);
+    menuBGM.pause();
 
 
-    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
+    //changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }
 
