@@ -70,6 +70,12 @@ public void gamemode1() {
 public void gamemode2() {
   if (frameCount > 0) {
 
+    gameMenu.hideButtonOf(GAME_SELECT_SCR);
+    gameModeTwo.startGame();
+    gameState = IN_GAMEMODE_2;
+    gameScreen = GAMEMODE_2_READY;
+
+
     click.play();
     click.rewind();
     menuBGM.setGain(gameVolume - 60);
