@@ -41,9 +41,11 @@ class Obstacle {
 	float leftSideBot;
 	float rightSideBot;
 
-	PImage imageM, imageM1, imageM2, imageM3;
+	PImage[] imageM;
+	PImage imageMX;
 
 	int imageFrame = 1;
+	int envMode = 0;
 
 	Obstacle(float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
 		
@@ -82,14 +84,10 @@ class Obstacle {
 
 		rightSideBot = _rightSideBot - maxWidth;
 		leftSideBot = _leftSideBot + maxWidth;
-	}
 
-	void setCharacterImage(String _imgName) {
-		imageM = loadImage("char/" + _imgName + ".png");
-		//imageM.resize(int(maxWidth), int(maxHeight));
+		imageM = new PImage[2];
 
-		imageM1 = loadImage("char/" + _imgName + "1.png");
-		imageM2 = loadImage("char/" + _imgName + "2.png");
+		this.randomUpdateAnimal();
 	}
 
 	// determine whenever the obstacble change only y coordinates or both x and y coordiante when moving
@@ -119,8 +117,6 @@ class Obstacle {
 			
 			y = beginY - minHeight;
 			this.shouldXChangeWhenMoving();
-
-			//gameScore++;
 		}
 
 		if (needChangeX) {
@@ -143,17 +139,19 @@ class Obstacle {
 
 		//imageM.resize(int(w), int(h));
 		if (imageFrame <= 20) {
-			imageM = imageM1;
+			image(imageM[0], x - (w/2), y - (h/2), w, h);
 		} else if (imageFrame <= 40) {
-			imageM = imageM2;
-		} 
-		else if (imageFrame <= 60){
+			image(imageM[1], x - (w/2), y - (h/2), w, h);
+		} else {
+			image(imageM[0], x - (w/2), y - (h/2), w, h);
+		}
+		
+		if (imageFrame > 60){
 			imageFrame = 0;			
 		}
 
 		imageFrame++;
-		image(imageM, x - (w/2), y - (h/2), w, h);
-
+		
 		
 		// #DEBUG
 		// fill(RED);
@@ -162,6 +160,37 @@ class Obstacle {
 		// ellipse(topLeftX, topLeftY, 5, 5);
 		// ellipse(bottomRightX, bottomRightY, 5, 5);
 		// fill(0);
+	}
+
+	void updateEnvMode(int mode) {
+		this.envMode = mode;
+
+		this.randomUpdateAnimal();
+	}
+
+	void randomUpdateAnimal() {
+		int i;
+
+		// ground
+		if (this.envMode == 0) {
+			i = int(random(1));
+			switch (i) {
+				case 0: 
+					imageM[0] = obsGImage0[0]; 
+					imageM[1] = obsGImage0[1]; 
+				break;
+			}
+		}
+		// ocean 
+		else {
+			i = int(random(1));
+			switch (i) {
+				case 0: 
+					imageM[0] = obsOImage0[0]; 
+					imageM[1] = obsOImage0[1]; 
+				break;
+			}
+		}
 	}
 
 }

@@ -11,6 +11,17 @@ AudioOutput audioOutput;
 
 AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn, water_boss, bird_boss, menuBGM, gameBGM, storm, thunder, rain, fire, birds;
 PImage iTree0, iTree1, iTree2, iTree3, iTree4, iTree5;
+PImage iRock0, iRock1, iRock2;
+
+PImage charGImage0, charGImage1, charGImage2, charGImage3;
+PImage charOImage0, charOImage1, charOImage2;
+
+PImage[] obsGImage0;
+PImage[] obsOImage0;
+
+PImage[] itemGImage0;
+PImage[] itemOImage0;
+
 
 // global variables ________________
 // leave an explanation if the variable's meaning is ambiguous
@@ -31,6 +42,7 @@ int gameScore = 0;
 boolean gameInKinect = true;
 boolean gameInKeyboard = false;
 float gameVolume = 50;
+int gameEnvMode = 0;
 
 // character move speed
 float moveValue = 5;
@@ -57,7 +69,7 @@ void setup(){
     //gameScreen = GAMEMODE_1_PLAYING;
 
     loadAudio();
-    loadTree();
+    loadAllImage();
 
     gameMenu = new Menu();
     gameModeOne = new GameModeOne();
@@ -120,12 +132,43 @@ void loadAudio() {
     // fire = MN.loadFile("game_effects/weather/fire.mp3");
 }
 
-void loadTree() {
-    iTree0 = loadImage("env/tree/tree" + 0 + ".png");
-    iTree1 = loadImage("env/tree/tree" + 1 + ".png");
-    iTree2 = loadImage("env/tree/tree" + 2 + ".png");
-    iTree3 = loadImage("env/tree/tree" + 3 + ".png");
-    iTree4 = loadImage("env/tree/tree" + 4 + ".png");
-    iTree5 = loadImage("env/tree/tree" + 5 + ".png");
+void loadAllImage() {
+    iTree0 = loadImage("env/tree/tree0.png");
+    iTree1 = loadImage("env/tree/tree1.png");
+    iTree2 = loadImage("env/tree/tree2.png");
+    iTree3 = loadImage("env/tree/tree3.png");
+    iTree4 = loadImage("env/tree/tree4.png");
+    iTree5 = loadImage("env/tree/tree5.png");
 
+    iRock0 = loadImage("env/rock/rock0.png");
+    iRock1 = loadImage("env/rock/rock1.png");
+    iRock2 = loadImage("env/rock/rock2.png");
+
+    charGImage0 = loadImage("mainChar/g0.png"); 
+    charGImage1 = loadImage("mainChar/g1.png");
+    charGImage2 = loadImage("mainChar/g2.png");
+    charGImage3 = loadImage("mainChar/g3.png");
+
+    charOImage0 = loadImage("mainChar/o0.png");
+    charOImage1 = loadImage("mainChar/o1.png");
+    charOImage2 = loadImage("mainChar/o2.png");
+
+    obsGImage0 = new PImage[2];
+    obsGImage0[0] = loadImage("mainObs/snake0.png");
+    obsGImage0[1] = loadImage("mainObs/snake1.png");
+
+    obsOImage0 = new PImage[2]; 
+    obsOImage0[0] = loadImage("mainObs/crocodile0.png");
+    obsOImage0[1] = loadImage("mainObs/crocodile1.png");
+
+    itemGImage0 = new PImage[3];
+    itemGImage0[0] = loadImage("mainItem/chick1.png");
+    itemGImage0[1] = loadImage("mainItem/chick2.png");
+    itemGImage0[2] = loadImage("mainItem/chick3.png");
+
+    itemOImage0 = new PImage[3]; 
+    itemOImage0[0] = loadImage("mainItem/chick1.png");
+    itemOImage0[1] = loadImage("mainItem/chick2.png");
+    itemOImage0[2] = loadImage("mainItem/chick3.png");
 }
+

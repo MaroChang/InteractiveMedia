@@ -44,6 +44,7 @@ class SideObject {
 	float rightSideBot;
 
 	PImage imageM;
+	int envMode = 0;
 
 	SideObject(float _x, float _y, float _w, float _h, float _beginX, float _endX, float _beginY, float _endY, float _initalP) {
 		
@@ -63,13 +64,8 @@ class SideObject {
 		x = map(curP, 0, maxP, beginX, endX);
 		y = map(curP, 0, maxP, beginY, endY);
 
-		imageM = loadImage("env/tree/" + "tree0" + ".png");
+		this.updateImage();
 
-	}
-
-	void setCharacterImage(String _imgName) {
-		imageM = loadImage("env/tree/" + _imgName + ".png");
-		//imageM.resize(int(w), int(h));
 	}
 
 	void shouldXChangeWhenMoving() {
@@ -95,9 +91,28 @@ class SideObject {
 		if (curP > maxP) {
 			curP = 0;
 
-			int i = int(random(6));
-
 			
+		}
+
+		x = map(curP, 0, maxP, beginX, endX);
+		y = map(curP, 0, maxP, beginY, endY);
+		
+
+	}
+
+	void updateEnvMode(int mode) {
+		this.envMode = mode;
+
+		this.updateImage();
+	}
+
+	void updateImage() {
+		int i;
+
+		// ground
+		if (this.envMode == 0) {
+			i = int(random(6));
+
 			switch (i) {
 				case 0: imageM = iTree0; break;	
 				case 1: imageM = iTree1; break;
@@ -106,13 +121,17 @@ class SideObject {
 				case 4: imageM = iTree4; break;
 				case 5: imageM = iTree5; break;			
 			}
-			
 		}
+		// ocean 
+		else {
+			i = int(random(3));
 
-		x = map(curP, 0, maxP, beginX, endX);
-		y = map(curP, 0, maxP, beginY, endY);
-		
-
+			switch (i) {
+				case 0: imageM = iRock0; break;	
+				case 1: imageM = iRock1; break;
+				case 2: imageM = iRock2; break;	
+			}
+		}
 	}
 
 	void draw() {

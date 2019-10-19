@@ -19,6 +19,11 @@ class GameModeOne extends ScreenWithButton {
 	Obstacle[] obstacbles;
 	Item[] items;
 
+	SideObject[] leftSideObject;
+	SideObject[] rightSideObject;
+
+	int numberOfSideObject;
+
 	float oneY;
 	float oneX;
 
@@ -32,11 +37,6 @@ class GameModeOne extends ScreenWithButton {
 	PImage cloud2;
 
 	PImage castle;
-
-	SideObject[] leftSideObject;
-	SideObject[] rightSideObject;
-
-	int numberOfSideObject;
 
 	GameModeOne() {
 		oneY = screenY / 16;
@@ -119,7 +119,7 @@ class GameModeOne extends ScreenWithButton {
 				leftSideBot,
 				rightSideBot
 			);
-			obstacbles[0].setCharacterImage("snake");
+
 		} else {
 
 			obstacbles = new Obstacle[6];
@@ -213,14 +213,6 @@ class GameModeOne extends ScreenWithButton {
 				leftSideBot,
 				rightSideBot
 			);
-
-
-			obstacbles[0].setCharacterImage("snake");
-			obstacbles[1].setCharacterImage("snake");
-			obstacbles[2].setCharacterImage("snake");
-			obstacbles[3].setCharacterImage("snake");
-			obstacbles[4].setCharacterImage("snake");
-			obstacbles[5].setCharacterImage("snake");
 		}
 	}
 
@@ -258,9 +250,6 @@ class GameModeOne extends ScreenWithButton {
 			leftSideBot,
 			rightSideBot
 		);
-
-		items[0].setCharacterImage("chick");
-		items[1].setCharacterImage("chick");
 	}
 
 	// create object in left side of the main lane
@@ -721,23 +710,22 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void startGame() {
-		println("gamestart event (gamemode1)");
-    // Play gamestart sounds
-    gamestart.play();
-    gamestart.rewind();
+	    // Play gamestart sounds
+	    gamestart.play();
+	    gamestart.rewind();
 		this.restartGame();
 		gameBGM.play();
-	gameBGM.loop();
-	gameBGM.setGain(gameVolume - 60);
+		gameBGM.loop();
+		gameBGM.setGain(gameVolume - 60);
 	}
 
 	void restartGame() {
-		println("gamestart event (gamemode1)");
-    // Play Gamestart and BGM Sounds
-    gamestart.play();
-    gamestart.rewind();
-    increaseGameVolume(gameVolume);
-	  gameBGM.rewind();
+		
+		// Play Gamestart and BGM Sounds
+		gamestart.play();
+		gamestart.rewind();
+		increaseGameVolume(gameVolume);
+		gameBGM.rewind();
     
 		gameScore = 0;
 
@@ -749,12 +737,12 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void onGameOver() {
-		// play death sound
-		println("gameover event");
-    // Play Lose Sound And Lower Volume
-    lose.play();
-    lose.rewind();
-    lowerGameVolume(gameVolume);
+	    
+	    // Play Lose Sound And Lower Volume
+	    lose.play();
+	    lose.rewind();
+	    lowerGameVolume(gameVolume);
+		
 		// draw Content
 
 		this.showButton();
@@ -814,6 +802,25 @@ class GameModeOne extends ScreenWithButton {
 		.setPosition(btnX, btnY)
 		.setSize(btnW, btnH)
 		.hide();
+	}
+
+	void onChangeGameEnvMode(int mode) {
+		gameEnvMode = mode;
+
+		character.updateEnvMode(mode);
+
+		for (int i = 0; i < obstacbles.length; i++) {
+			obstacbles[i].updateEnvMode(mode);
+		}
+
+		for (int i = 0; i < items.length; i++) {
+			items[i].updateEnvMode(mode);
+		}
+
+		for (int i = 0; i < numberOfSideObject; i++) {
+			leftSideObject[i].updateEnvMode(mode);
+			rightSideObject[i].updateEnvMode(mode);
+		}
 	}
 }
 
