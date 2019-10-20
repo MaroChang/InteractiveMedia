@@ -438,13 +438,6 @@ class IngameBackGround {
 		line(leftSideBot, screenY, leftSideTop, skyLine);
 		line(rightSideBot, screenY, rightSideTop, skyLine);
 
-		//stroke(RED);
-
-		//line(midLandLeft, skyLine, leftSideBot + (halfX - leftSideBot) / 2, screenY);
-		//line(midLandRight, skyLine, halfX + (rightSideBot - halfX) / 2, screenY);
-
-		//ellipse(leftSideBot, screenY, 5, 5);
-		//ellipse(rightSideBot, screenY, 5, 5);
 		stroke(0);
 
 		line(halfX, skyLine, halfX, screenY);

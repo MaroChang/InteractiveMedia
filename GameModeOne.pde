@@ -58,8 +58,9 @@ class GameModeOne extends ScreenWithButton {
 			ingameBG.drawMap();
 			ingameBG.drawSideRoad();
 			gameBGM.play();
+			
 			// play by mouse
-			character.update(true); 
+			character.update(mouseX); 
 
 			character.draw();
 			this.drawObstacleAndCheckCollision();
@@ -199,13 +200,9 @@ class GameModeOne extends ScreenWithButton {
 				rightSideBot
 			);
 
-
-			obstacbles[0].setCharacterImage("snake");
-			obstacbles[1].setCharacterImage("snake");
-			obstacbles[2].setCharacterImage("snake");
-			obstacbles[3].setCharacterImage("snake");
-			obstacbles[4].setCharacterImage("snake");
-			obstacbles[5].setCharacterImage("snake");
+			for (int i = 0; i<6; i++){
+				obstacbles[i].setCharacterImage("snake");
+			}
 		}
 	}
 

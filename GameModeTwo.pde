@@ -15,7 +15,8 @@ class GameModeTwo extends ScreenWithButton{
 	//Create Kinect variables will be used in this class. 
 	Kinect kinect;
 	ArrayList <SkeletonData> bodies;
-	AnimalKinect character;
+	KinectSkeleton kinectSkeleton;
+	Animal character;
 	
 	// Create image, Start button, Start button's position variables.
 	PImage stickManIMG;
@@ -60,6 +61,7 @@ class GameModeTwo extends ScreenWithButton{
 		this.setupButton();
 		this.createItem();
 
+		kinectSkeleton =  new KinectSkeleton();
 		ingameBG = new IngameBackGround(oneX, oneY, deltaX);
 	}
 
@@ -72,10 +74,13 @@ class GameModeTwo extends ScreenWithButton{
 			ingameBG.drawSideRoad();
 			gameBGM.play();
 
-			character.update(true); 
+			kinectSkeleton.draw(true, kinect, bodies);
 
+			// Update character's position by tracking the position of player's SPINE
+			character.update(kinectSkeleton.getPosition()); 
+			
 			// Draw skeleton from player input image.
-			character.draw(kinect, bodies);
+			character.draw();
 
 			this.drawObstacleAndCheckCollision();
 			this.drawItemAndCheckCollision();
@@ -253,7 +258,7 @@ class GameModeTwo extends ScreenWithButton{
 		// size of main character
 		float size = oneX * 1;
 
-		character = new AnimalKinect(
+		character = new Animal(
 			halfX, // x 
 			screenY - size/2 - 25, // y
 			size, // w
@@ -383,7 +388,7 @@ class GameModeTwo extends ScreenWithButton{
 		this.showButton();
 		ingameBG.drawMap();
 
-		//character.draw();
+		character.draw();
 
 		for (int i = 0; i < obstacbles.length; i++) {
 			obstacbles[i].draw();

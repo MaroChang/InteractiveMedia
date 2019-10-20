@@ -53,18 +53,16 @@ class Animal {
 		rightLm = rightLimit - w/2;
 	}
 
-	void update(boolean useMouse) {
-		float nx = mouseX;
+	void update(float nx) {  //get main character's position on x axis
 
-		// keep the animal inside the road
-		if (nx >= leftLm && nx <= rightLm) {
-			x = nx;
-		}
+        //the position will not change if character reach the left-right limit
+        // keep the animal inside the road
+        if (nx >= leftLm && nx <= rightLm) {
+            x = nx;
+        }
 
-		bottomRightX = x + halfW;
-		//bottomRightY = y + halfH;
-		topLeftX = x - halfW;
-		//topLeftY = y - halfH;
-	}
+        bottomRightX = x + halfW;
+        topLeftX = x - halfW;
+    }
 
 }
