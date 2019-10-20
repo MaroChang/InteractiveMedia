@@ -1,4 +1,3 @@
-
 // Item class controll an obstacle movement and display
 
 class Item {
@@ -143,7 +142,6 @@ class Item {
 
 		if (type == 1) {
 			int i = int(random(10));
-
 			gameModeOne.character.setImage(str(i));
 		}
 	}

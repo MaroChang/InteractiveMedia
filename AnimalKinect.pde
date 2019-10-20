@@ -15,7 +15,7 @@ class AnimalKinect {
 	float bottomRightX;
 	float bottomRightY;
 
-    //13666843 Create Kinect variables will be used in this class. 
+    // Create Kinect variables will be used in this class. 
     Kinect kinect;
     ArrayList <SkeletonData> bodies;
 
@@ -52,7 +52,7 @@ class AnimalKinect {
 		fill(ROAD_COLOR);
 		//rect(x, y, w, h);
 
-        //13666843 Draw player bodies
+        //Draw player bodies
         for (int i=0; i<bodies.size (); i++) 
         {
             drawSkeleton(bodies.get(i));
@@ -65,9 +65,9 @@ class AnimalKinect {
 		rightLm = rightLimit - w/2;
 	}
 
-    //13666843 Update character's position by tracking the position of player's SPINE
+    // Update character's position by tracking the position of player's SPINE
 	void update(boolean useKinect) {
-        //13666843 Check if Kinect is having player input
+        // Check if Kinect is having player input
         if (bodies != null && bodies.size() > 0){
             //Searching for the bodies SPINE position
             for (int i=0; i<bodies.size (); i++) 
@@ -88,7 +88,7 @@ class AnimalKinect {
         
 	}
 
-    //13666843 Draw Player Skeleton position as text
+    // Draw Player Skeleton position as text
     void drawPosition(SkeletonData _s) 
     {
         noStroke();
@@ -97,7 +97,7 @@ class AnimalKinect {
         text(s1, _s.position.x*width, _s.position.y*height);
     }
 
-    //13666843 Draw Player Skeleton 
+    // Draw Player Skeleton 
     void drawSkeleton(SkeletonData _s) 
     {
         // Body

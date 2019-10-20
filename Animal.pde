@@ -41,22 +41,7 @@ class Animal {
 	}
 
 	void draw() {
-		// fill(RED);
-		// rect(x, y, w, h);
 		image(imageM, x - halfW, y - halfH, w, h);
-		// beginShape();
-		// texture(imageM);
-		// vertex(x - halfW, y - halfH);
-		// vertex(x + halfW, y - halfH);
-		// vertex(x + halfW, y + halfH);
-		// vertex(x - halfW, y + halfH);
-		// endShape(CLOSE);
-
-		// 	fill(RED);
-		// 	ellipse(x, y, 5, 5);
-		// 	ellipse(topLeftX, topLeftY, 5, 5);
-		// 	ellipse(bottomRightX, bottomRightY, 5, 5);
-		// 	fill(0);
 	}
 
 	void drawDeath() {

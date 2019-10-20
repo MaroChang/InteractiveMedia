@@ -80,7 +80,6 @@ public void gamemode2() {
     gameState = IN_GAMEMODE_2;
     gameScreen = GAMEMODE_2_READY;
 
-
     click.play();
     click.rewind();
     //menuBGM.setGain(gameVolume - 60);
@@ -103,13 +102,3 @@ if (frameCount > 0) {
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }
-
-// // LowerVolume Function For BGM Fade Transition
-// public void lowerVolume(float num) {
-//     num = num - 60;
-//     for (int i = 0; i < 10; i++) {
-//     num = num - 1;
-//     menuBGM.setGain(num);
-//     println(num);
-//   }
-// }

@@ -26,6 +26,7 @@ class Menu {
       case GAME_SELECT_SCR:
         gameModeSelectionScreen.show();  
       break;
+      
       case SETTING_SCR:
         settingScreen.show();
       break;      

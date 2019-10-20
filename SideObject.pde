@@ -1,4 +1,3 @@
-
 // object on side of running lane
 class SideObject {
 
@@ -64,7 +63,6 @@ class SideObject {
 		y = map(curP, 0, maxP, beginY, endY);
 
 		imageM = loadImage("env/tree/" + "tree0" + ".png");
-
 	}
 
 	void setCharacterImage(String _imgName) {
@@ -95,24 +93,12 @@ class SideObject {
 		if (curP > maxP) {
 			curP = 0;
 
-			int i = int(random(6));
-
-			
-			switch (i) {
-				case 0: imageM = iTree0; break;	
-				case 1: imageM = iTree1; break;
-				case 2: imageM = iTree2; break;
-				case 3: imageM = iTree3; break;
-				case 4: imageM = iTree4; break;
-				case 5: imageM = iTree5; break;			
-			}
-			
+			int i = int(random(5));
+			imageM = iTree[i];
 		}
 
 		x = map(curP, 0, maxP, beginX, endX);
 		y = map(curP, 0, maxP, beginY, endY);
-		
-
 	}
 
 	void draw() {

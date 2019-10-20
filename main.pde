@@ -3,7 +3,7 @@ import controlP5.*; //GUI
 import ddf.minim.*;
 import ddf.minim.ugens.*;
 
-//13666843 IMPORT Kinect4WinSDK libraries
+// IMPORT Kinect4WinSDK libraries
 import kinect4WinSDK.Kinect;
 import kinect4WinSDK.SkeletonData;
 
@@ -13,17 +13,17 @@ Minim MN;
 AudioOutput audioOutput;
 
 AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn, water_boss, bird_boss, menuBGM, gameBGM, storm, thunder, rain, fire, birds;
-PImage iTree0, iTree1, iTree2, iTree3, iTree4, iTree5;
+PImage[] iTree = new PImage[6];
 
-//13666843 Kinect Library objects
+// Kinect Library objects
 Kinect kinect;
 ArrayList <SkeletonData> bodies;
 
 // global variables ________________
 // leave an explanation if the variable's meaning is ambiguous
 // 16:9 ratio
-int screenX = 1366;
-int screenY = 768;
+static int screenX = 1366;
+static int screenY = 768;
 float halfX = screenX / 2;
 float halfY = screenY / 2;
 
@@ -50,13 +50,12 @@ GameModeTwo gameModeTwo;
 // Configuration ________________
 void setup(){
 
-  size(1366, 768);
-  background(255);
-  CP5 = new ControlP5(this);
-  
-  gameState = IN_MENU;
-  //gameState = IN_GAMEMODE_1;
-
+    size(1366, 768);
+    background(255);
+    CP5 = new ControlP5(this);
+    
+    gameState = IN_MENU;
+    //gameState = IN_GAMEMODE_1;
 
     //audio set up
     MN = new Minim(this);
@@ -66,12 +65,12 @@ void setup(){
     //gameScreen = GAMEMODE_1_PLAYING;
 
 
-  rectMode(CENTER);
+    rectMode(CENTER);
 
-//13666843 Initialize Kinect variables
-  kinect = new Kinect(this);
-  smooth();
-  bodies = new ArrayList<SkeletonData>();
+//Initialize Kinect variables
+    kinect = new Kinect(this);
+    smooth();
+    bodies = new ArrayList<SkeletonData>();
 
     loadAudio();
     loadTree();
@@ -79,7 +78,7 @@ void setup(){
     gameMenu = new Menu();
     gameModeOne = new GameModeOne();
     gameModeTwo = new GameModeTwo();
-    
+
     fill(UGLY_COLOR);
     rectMode(CENTER);
     smooth();
@@ -88,7 +87,6 @@ void setup(){
 
 // Drawing ________________
 void draw(){
-
   switch (gameState) {
     case IN_MENU:
       gameMenu.show();
@@ -100,8 +98,6 @@ void draw(){
       gameModeTwo.show(kinect, bodies);
     break;
   }
-
- 
 }
 
 // Load Audio
@@ -141,17 +137,12 @@ void loadAudio() {
 }
 
 void loadTree() {
-    iTree0 = loadImage("env/tree/tree" + 0 + ".png");
-    iTree1 = loadImage("env/tree/tree" + 1 + ".png");
-    iTree2 = loadImage("env/tree/tree" + 2 + ".png");
-    iTree3 = loadImage("env/tree/tree" + 3 + ".png");
-    iTree4 = loadImage("env/tree/tree" + 4 + ".png");
-    iTree5 = loadImage("env/tree/tree" + 5 + ".png");
-
-
+    for (int i = 0; i<=5; i++){
+        iTree[i] = loadImage("env/tree/tree" + i + ".png");
+    }
 }
 
-//13666843 Using Kinect to tracking player's apparent, add new tracking into bodies array
+// Using Kinect to tracking player's apparent, add new tracking into bodies array
 void appearEvent(SkeletonData _s) 
     {
     if (_s.trackingState == Kinect.NUI_SKELETON_NOT_TRACKED) 
@@ -163,7 +154,7 @@ void appearEvent(SkeletonData _s)
     }
     }
 
-//13666843 Using Kinect to tracking player's apparent. If player move out of the Kinect range, remove that player in bodies array
+// Using Kinect to tracking player's apparent. If player move out of the Kinect range, remove that player in bodies array
 void disappearEvent(SkeletonData _s) {
     synchronized(bodies) {
         for (int i=bodies.size ()-1; i>=0; i--) 
@@ -176,7 +167,7 @@ void disappearEvent(SkeletonData _s) {
     }
 }
 
-//13666843 Using Kinect to tracking player's movement. 
+// Using Kinect to tracking player's movement. 
 void moveEvent(SkeletonData _b, SkeletonData _a) {
     if (_a.trackingState == Kinect.NUI_SKELETON_NOT_TRACKED) 
     {
