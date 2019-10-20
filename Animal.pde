@@ -17,6 +17,8 @@ class Animal {
 
 	PImage imageM;
 
+	int envMode = 0;
+
 	Animal(float _x, float _y, float _w, float _h, String _imgName) {
 		x = _x;
 		y = _y;
@@ -31,7 +33,8 @@ class Animal {
 		topLeftX = x - halfW;
 		topLeftY = y - halfH;
 
-		imageM = loadImage("char/" + _imgName + ".png");
+		//imageM = loadImage("char/" + _imgName + ".png");
+		imageM = charGImage0;
 		imageM.resize(int(w), int(h));
 	}
 
@@ -80,6 +83,38 @@ class Animal {
 		//bottomRightY = y + halfH;
 		topLeftX = x - halfW;
 		//topLeftY = y - halfH;
+	}
+
+	void updateEnvMode(int mode) {
+		this.envMode = mode;
+
+		this.randomUpdateAnimal();
+	}
+
+	void randomUpdateAnimal() {
+		int i;
+
+		// ground
+		if (this.envMode == 0) {
+			i = int(random(4));
+			switch (i) {
+				case 0: imageM = charGImage0; break;
+				case 1: imageM = charGImage1; break;
+				case 2: imageM = charGImage2; break;
+				case 3: imageM = charGImage3; break;
+			}
+		}
+		// ocean 
+		else {
+			i = int(random(3));
+			switch (i) {
+				case 0: imageM = charOImage0; break;
+				case 1: imageM = charOImage1; break;
+				case 2: imageM = charOImage2; break;
+			}
+		}
+
+		imageM.resize(int(w), int(h));
 	}
 
 }
