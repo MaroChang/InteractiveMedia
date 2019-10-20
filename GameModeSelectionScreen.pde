@@ -4,13 +4,18 @@ class GameModeSelectionScreen extends ScreenWithButton {
   int BACK_2_MENU = 0;
   int GAMEMODE_1 = 1;
   int GAMEMODE_2 = 2;
+
+  //backgroung image
+  PImage bg;
   
   GameModeSelectionScreen() {
+    bg = loadImage("image_4.jpg");
+    bg.resize(1366,768);
     this.setupButton();
   }
 
   void show() {
-    background(WHITE);
+    background(bg);
     fill(UGLY_COLOR);
   }
   
@@ -31,16 +36,16 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setCaptionLabel(GAMEMODE1STR) 
       .setValue(0)
       .setFont(font)
-      .setPosition(btnX - btnSpace * 3.5, btnY)
-       .setSize(btnW, btnH)
+      .setPosition(200,580)
+      .setSize(200,100)
       .hide();
 
     buttons[GAMEMODE_2] = CP5.addButton("gamemode2")
       .setCaptionLabel(GAMEMODE2STR) 
       .setValue(0)
       .setFont(font)
-      .setPosition(btnX + btnSpace * 3.5, btnY)
-      .setSize(btnW, btnH)
+      .setPosition(880,580)
+      .setSize(200,100)
       .hide(); 
 
     buttons[BACK_2_MENU] = CP5.addButton("backToMenu")
@@ -48,7 +53,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setValue(0)
       .setFont(font)
       .setPosition(25, 25)
-       .setSize(btnW + 50, btnH -50)
+      .setSize(250, 75)
       .hide();   
   }
 }
@@ -70,12 +75,19 @@ public void gamemode1() {
 public void gamemode2() {
   if (frameCount > 0) {
 
+    gameMenu.hideButtonOf(GAME_SELECT_SCR);
+    gameModeTwo.startGame();
+    gameState = IN_GAMEMODE_2;
+    gameScreen = GAMEMODE_2_READY;
+
+
     click.play();
     click.rewind();
-    menuBGM.setGain(gameVolume - 60);
+    //menuBGM.setGain(gameVolume - 60);
+    menuBGM.pause();
 
 
-    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
+    //changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }
 
@@ -101,5 +113,3 @@ if (frameCount > 0) {
 //     println(num);
 //   }
 // }
-
-

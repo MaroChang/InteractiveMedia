@@ -78,7 +78,7 @@ class SettingScreen extends ScreenWithButton {
 		.setValue(0)
 		.setFont(font)
 		.setPosition(btnX, btnY)
-		.setSize(btnW, btnH)
+		.setSize(btnW/3, btnH/3)
 		.hide();	
 	}
 
