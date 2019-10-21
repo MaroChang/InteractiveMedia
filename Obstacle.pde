@@ -3,6 +3,8 @@
 
 class Obstacle {
 
+	boolean active = false;
+
 	float orgX;
 	float orgY;
 
@@ -47,7 +49,10 @@ class Obstacle {
 	int imageFrame = 1;
 	int envMode = 0;
 
-	Obstacle(float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
+	boolean needInscreaseSpeed = false;
+
+	Obstacle(boolean _active,float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
+		active = _active;
 		
 		beginY = _y - minHeight;
 		endY = screenY;
@@ -85,9 +90,9 @@ class Obstacle {
 		rightSideBot = _rightSideBot - maxWidth;
 		leftSideBot = _leftSideBot + maxWidth;
 
-		imageM = new PImage[2];
+		//imageM = new PImage[2];
 
-		this.randomUpdateAnimal();
+		this.randomUpdateImage();
 	}
 
 	// determine whenever the obstacble change only y coordinates or both x and y coordiante when moving
@@ -113,6 +118,11 @@ class Obstacle {
 		y += speed;
 
 		if (topLeftY > endY) {
+			if (needInscreaseSpeed) {
+				needInscreaseSpeed = false;
+				speed = speed + 1;
+			}
+
 			x = random(leftSideBot, rightSideBot);
 			
 			y = beginY - minHeight;
@@ -165,32 +175,26 @@ class Obstacle {
 	void updateEnvMode(int mode) {
 		this.envMode = mode;
 
-		this.randomUpdateAnimal();
+		this.randomUpdateImage();
 	}
 
-	void randomUpdateAnimal() {
+	void randomUpdateImage() {
 		int i;
 
 		// ground
 		if (this.envMode == 0) {
-			i = int(random(1));
-			switch (i) {
-				case 0: 
-					imageM[0] = obsGImage0[0]; 
-					imageM[1] = obsGImage0[1]; 
-				break;
-			}
+			i = int(random(3));
+			imageM = obsLImage[i];
 		}
 		// ocean 
 		else {
-			i = int(random(1));
-			switch (i) {
-				case 0: 
-					imageM[0] = obsOImage0[0]; 
-					imageM[1] = obsOImage0[1]; 
-				break;
-			}
+			i = int(random(2));
+			imageM = obsOImage[i];
 		}
+	}
+
+	void speedUp() {
+		needInscreaseSpeed = true;
 	}
 
 }

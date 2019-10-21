@@ -18,8 +18,9 @@ class Animal {
 	PImage imageM;
 
 	int envMode = 0;
+	int imageIndex = 0;
 
-	Animal(float _x, float _y, float _w, float _h, String _imgName) {
+	Animal(float _x, float _y, float _w, float _h) {
 		x = _x;
 		y = _y;
 		w = _w;
@@ -33,28 +34,16 @@ class Animal {
 		topLeftX = x - halfW;
 		topLeftY = y - halfH;
 
-		//imageM = loadImage("char/" + _imgName + ".png");
-		imageM = charGImage0;
-		imageM.resize(int(w), int(h));
-	}
-
-	void setImage(String _imgName) {
-		imageM = loadImage("char/" + _imgName + ".png");
-		imageM.resize(int(w), int(h));
+		
+		this.randomUpdateImage();
 	}
 
 	void draw() {
+		
+		image(imageM, x - halfW, y - halfH, w, h);
+
 		// fill(RED);
 		// rect(x, y, w, h);
-		image(imageM, x - halfW, y - halfH, w, h);
-		// beginShape();
-		// texture(imageM);
-		// vertex(x - halfW, y - halfH);
-		// vertex(x + halfW, y - halfH);
-		// vertex(x + halfW, y + halfH);
-		// vertex(x - halfW, y + halfH);
-		// endShape(CLOSE);
-
 		// 	fill(RED);
 		// 	ellipse(x, y, 5, 5);
 		// 	ellipse(topLeftX, topLeftY, 5, 5);
@@ -88,30 +77,20 @@ class Animal {
 	void updateEnvMode(int mode) {
 		this.envMode = mode;
 
-		this.randomUpdateAnimal();
+		this.randomUpdateImage();
 	}
 
-	void randomUpdateAnimal() {
-		int i;
+	void randomUpdateImage() {
 
-		// ground
+		// land
 		if (this.envMode == 0) {
-			i = int(random(4));
-			switch (i) {
-				case 0: imageM = charGImage0; break;
-				case 1: imageM = charGImage1; break;
-				case 2: imageM = charGImage2; break;
-				case 3: imageM = charGImage3; break;
-			}
+			imageIndex = int(random(4));
+			imageM = characterLImage[imageIndex];
 		}
 		// ocean 
 		else {
-			i = int(random(3));
-			switch (i) {
-				case 0: imageM = charOImage0; break;
-				case 1: imageM = charOImage1; break;
-				case 2: imageM = charOImage2; break;
-			}
+			imageIndex = int(random(3));
+			imageM = characterOImage[imageIndex];
 		}
 
 		imageM.resize(int(w), int(h));

@@ -86,9 +86,9 @@ class Item {
 		rightSideBot = _rightSideBot - maxWidth;
 		leftSideBot = _leftSideBot + maxWidth;
 
-		imageM = new PImage[3];
+		//imageM = new PImage[3];
 
-		this.randomUpdateAnimal();
+		this.randomUpdateImage();
 	}
 
 	// determine whenever the obstacble change only y coordinates or both x and y coordiante when moving
@@ -135,45 +135,30 @@ class Item {
 	}
 
 	void isCollected() {
-		gameScore += 50;
 		topLeftY = endY + 100;
 		this.update();
-
-		if (type == 1 && gameScore % 500 == 0) {
-			if (gameEnvMode == 0) {
-				gameModeOne.onChangeGameEnvMode(1);
-			} else {
-				gameModeOne.onChangeGameEnvMode(0);	
-			}
-		} else if (type == 1) {
-			gameModeOne.character.randomUpdateAnimal();
-		}
-
+		gameModeOne.calculateScore(type);
 	}
 
 	void draw() {
-		// fill(BLUE);
-		// rect(x, y, w, h);
-
-		//imageM.resize(int(w), int(h));
-		
+	
 		if (imageFrame <= 20) {
 			image(imageM[0], x - (w/2), y - (h/2), w, h);
 		} else if (imageFrame <= 40) {
 			image(imageM[1], x - (w/2), y - (h/2), w, h);
-		} else if (imageFrame <= 60) {
+		} else {
 			image(imageM[2], x - (w/2), y - (h/2), w, h);
 		}
 		
-		if (imageFrame <= 80){
+		if (imageFrame > 80){
 			imageFrame = 0;			
 		}
 
 		imageFrame++;
 		
-
-		
 		// #DEBUG
+		// fill(BLUE);
+		// rect(x, y, w, h);
 		// fill(RED);
 		// ellipse(x, y, 5, 5);
 		// ellipse(x - (w/2), y - (h/2), 5, 5);
@@ -185,33 +170,21 @@ class Item {
 	void updateEnvMode(int mode) {
 		this.envMode = mode;
 
-		this.randomUpdateAnimal();
+		this.randomUpdateImage();
 	}
 
-	void randomUpdateAnimal() {
+	void randomUpdateImage() {
 		int i;
 
-		// ground
+		// land
 		if (this.envMode == 0) {
 			i = int(random(1));
-			switch (i) {
-				case 0: 
-					imageM[0] = itemGImage0[0];
-					imageM[1] = itemGImage0[1]; 
-					imageM[2] = itemGImage0[2]; 
-				break;
-			}
+			imageM = itemLImage[i];
 		}
 		// ocean 
 		else {
 			i = int(random(1));
-			switch (i) {
-				case 0:
-					imageM[0] = itemOImage0[0];
-					imageM[1] = itemOImage0[1]; 
-					imageM[2] = itemOImage0[2];
-				break;
-			}
+			imageM = itemOImage[i];
 		}
 	}
 

@@ -39,3 +39,43 @@ void increaseVolume1(float num) {
     println(num);
   }
 }
+
+// LowerVolume Function For BGM Fade Transition
+public void lowerGameVolume(float num) {
+    num = num - 60;
+    for (int i = 0; i < 10; i++) {
+    num = num - 1;
+    gameBGM.setGain(num);
+    println(num);
+  }
+}
+
+// IncreaseVolume Function For BGM Fade Transition
+public void increaseGameVolume(float num) {
+    num = num - 70;
+    for (int i = 0; i < 10; i++) {
+    num = num + 1;
+    gameBGM.setGain(num);
+    println(num);
+  }
+}
+
+//LowerVolume Function For BGM Fade Transition
+public void lowerVolume(float num) {
+    num = num - 60;
+    for (int i = 0; i < 10; i++) {
+      num = num - 1;
+      menuBGM.setGain(num);
+      println(num);
+  }
+}
+
+// IncreaseVolume Function For BGM Fade Transition
+public void increaseVolume(float num) {
+    num = num - 70;
+    for (int i = 0; i < 10; i++) {
+    num = num + 1;
+    menuBGM.setGain(num);
+    println(num);
+  }
+}

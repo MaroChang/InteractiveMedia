@@ -40,6 +40,10 @@ color BLUE_SKY = color(135, 206, 235);
 color GROUND_COLOR = color(193,168,154);
 color ROAD_COLOR = color(211,211,211);
 
+// Ocean 
+color DARK_BLUE = color(5, 59, 170);
+color DARK_BLUE_2 = color(21, 138, 182);
+color DARK_BLUE_3 = color(3, 85, 176);
 
 // BUTTON
 String NEW_GAME_STR = "START NEW GAME";
