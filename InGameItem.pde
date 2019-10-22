@@ -63,7 +63,6 @@ class InGameItem {
 			rightSideBot
 		);	
 
-
 		for (int i = 0; i < numberOfItem; i++) {
 			items[i].forcedUpdate();
 		}

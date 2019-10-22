@@ -35,9 +35,7 @@ class GameModeOne extends ScreenWithButton {
 		gameDrawingMeasurement.midLandRight = halfX+ (gameDrawingMeasurement.rightSideTop - halfX) / 2;
 		
 		gameBackground = new InGameBackground(gameDrawingMeasurement);
-
 		gameObject = new InGameObject(gameDrawingMeasurement);
-
 		gameText = new InGameText(gameDrawingMeasurement);
 
 		this.setupButton();
@@ -63,9 +61,9 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void startGame() {
-	    // Play gamestart sounds
-	    gamestart.play();
-	    gamestart.rewind();
+	  // Play gamestart sounds
+	  	gamestart.play();
+	  	gamestart.rewind();
 		this.restartGame();
 		gameBGM.play();
 		gameBGM.loop();
@@ -92,10 +90,10 @@ class GameModeOne extends ScreenWithButton {
 
 	void onGameOver() {
 	    
-	    // Play Lose Sound And Lower Volume
-	    lose.play();
-	    lose.rewind();
-	    lowerGameVolume(gameVolume);
+	  	// Play Lose Sound And Lower Volume
+	  	lose.play();
+	  	lose.rewind();
+	  	lowerGameVolume(gameVolume);
 		
 		// draw Content
 
@@ -105,6 +103,9 @@ class GameModeOne extends ScreenWithButton {
 
 		gameObject.drawOnly();
 
+		noStroke();
+		fill(DEATH_BG);
+		rect(screenX / 2, screenY / 2, screenX / 2, screenY / 2, 50);
 		fill(gameText.TEXT_COLOR);
 		textAlign(CENTER);
 		textSize(50);
@@ -181,9 +182,9 @@ class GameModeOne extends ScreenWithButton {
 
 void backToMainMenuGM1() {
 	if (frameCount > 0) {
-		 // Play click sound
-	    click.play();
-	    click.rewind();
+		// Play click sound
+	  	click.play();
+	  	click.rewind();
 
 		gameModeOne.hideButton();
 		gameScreen = MAIN_MENU_SCR;
@@ -203,7 +204,7 @@ void backToMainMenuGM1() {
 
 void restartGameMode1() {
 	if (frameCount > 0) {
-		 click.play();
+		click.play();
     	click.rewind();
 		gameModeOne.restartGame();
 	}

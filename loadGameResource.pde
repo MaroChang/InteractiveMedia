@@ -4,10 +4,10 @@ AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn,
 // all graphic varible
 PImage[] sideObjLImage, sideObjOImage;
 PImage[] characterLImage, characterOImage;
-PImage[] characterLLostImage, characterOLostImage;
 PImage[][] obsLImage, obsOImage;
 PImage[][] itemLImage, itemOImage;
 
+PImage monsters, players, items;
 PImage[] cloud;
 PImage castle, reef;
 
@@ -33,7 +33,7 @@ void loadAllAudio() {
     
     // Game Character Effects
     tombstone = MN.loadFile("game_effects/character/tombstone.mp3");
-    // walk = MN.loadFile("game_effects/character/walk.mp3");
+    walk = MN.loadFile("game_effects/character/walk.mp3");
     // jump = MN.loadFile("game_effects/character/jump.mp3");
     
     // Game Obstacle Effects
@@ -78,16 +78,6 @@ void loadObjectImage() {
 		characterOImage[i] = loadImage("mainChar/o" + i + ".png");		
 	}
 
-	characterLLostImage = new PImage[4];
-	for (int i = 0; i < 4; i++) {
-		characterLLostImage[i] = loadImage("mainChar/g" + i + "d.png");		
-	}
-
-	characterOLostImage = new PImage[3];
-	for (int i = 0; i < 3; i++) {
-		characterOLostImage[i] = loadImage("mainChar/o" + i + "d.png");		
-	}
-
 	obsLImage = new PImage[3][2];
 	for (int i = 0; i < 3; i++) {
 		obsLImage[i][0] = loadImage("mainObs/l"+ i +"0.png");
@@ -124,4 +114,7 @@ void loadBackGroundImage() {
 	castle = loadImage("env/castle.png");
 
 	reef = loadImage("env/reef.png");
+
+	monsters = loadImage("instructions/monsters.png");
+	players = loadImage("instructions/players.png");
 }

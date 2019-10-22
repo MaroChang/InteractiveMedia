@@ -136,9 +136,11 @@ class Item {
 
 	void isCollected() {
 		gameModeOne.calculateScore(type, x, y);
-
 		topLeftY = endY + 100;
 		this.update();
+		
+    	pickUp.play();
+    	pickUp.rewind();
 	}
 
 	void forcedUpdate() {

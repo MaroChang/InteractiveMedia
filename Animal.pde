@@ -16,7 +16,6 @@ class Animal {
 	float bottomRightY;
 
 	PImage imageM;
-	PImage imageL;
 
 	int envMode = 0;
 	int imageIndex = 0;
@@ -53,7 +52,8 @@ class Animal {
 	}
 
 	void drawDeath() {
-		image(imageL, x - halfW, y - halfH, w, h);
+		// todo animation when dying
+		
 	}
 
 	void setLimit(float leftLimit, float rightLimit) {
@@ -87,17 +87,14 @@ class Animal {
 		if (this.envMode == 0) {
 			imageIndex = int(random(4));
 			imageM = characterLImage[imageIndex];
-			imageL = characterLLostImage[imageIndex];
 		}
 		// ocean 
 		else {
 			imageIndex = int(random(3));
 			imageM = characterOImage[imageIndex];
-			imageL = characterOLostImage[imageIndex];
 		}
 
 		imageM.resize(int(w), int(h));
-		imageL.resize(int(w), int(h));
 	}
 
 }
