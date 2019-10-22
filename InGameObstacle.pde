@@ -68,6 +68,8 @@ class InGameObstacle {
 					leftSideBot,
 					rightSideBot
 				);
+
+				obstacbles[i].forcedUpdate();
 			}
 		}
 	}

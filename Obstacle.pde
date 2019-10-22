@@ -143,6 +143,11 @@ class Obstacle {
 		w = map(y, beginY, endY, minWidth, maxWidth);
 	}
 
+	void forcedUpdate() {
+		topLeftY = endY + 100;
+		this.update();
+	}
+
 	void draw() {
 		// fill(BLUE);
 		// rect(x, y, w, h);

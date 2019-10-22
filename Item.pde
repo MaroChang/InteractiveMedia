@@ -135,9 +135,15 @@ class Item {
 	}
 
 	void isCollected() {
+		gameModeOne.calculateScore(type, x, y);
+
 		topLeftY = endY + 100;
 		this.update();
-		gameModeOne.calculateScore(type);
+	}
+
+	void forcedUpdate() {
+		topLeftY = endY + 100;
+		this.update();
 	}
 
 	void draw() {

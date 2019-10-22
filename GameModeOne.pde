@@ -6,12 +6,13 @@ class GameModeOne extends ScreenWithButton {
 	int BACK_2_MENU = 0;
 	int RESTART = 1;
 
-	color TEXT_COLOR;
-
 	GameDrawingMeasurement gameDrawingMeasurement;
 
 	InGameBackground gameBackground;
 	InGameObject gameObject;
+	InGameText gameText;
+
+	int randomScore;
 
 	GameModeOne() {
 		gameDrawingMeasurement = new GameDrawingMeasurement();
@@ -37,9 +38,11 @@ class GameModeOne extends ScreenWithButton {
 
 		gameObject = new InGameObject(gameDrawingMeasurement);
 
+		gameText = new InGameText(gameDrawingMeasurement);
+
 		this.setupButton();
 
-		this.setTextColor();
+		gameText.setTextColor();
 	}
 
 	void show() {
@@ -48,10 +51,10 @@ class GameModeOne extends ScreenWithButton {
 
 			gameBGM.play();
 
-			this.displayScore();
-
 			if (!gameObject.drawAllAndCheck()) {
 				this.onGameOver();
+			} else {
+				gameText.draw();
 			}
 
 		} else {
@@ -102,20 +105,13 @@ class GameModeOne extends ScreenWithButton {
 
 		gameObject.drawOnly();
 
-		fill(TEXT_COLOR);
+		fill(gameText.TEXT_COLOR);
 		textAlign(CENTER);
 		textSize(50);
 		text(GAMEMODE_1_OVER_MSG, halfX, halfY - 80);
 
 		textSize(30);
 		text("YOUR SCORE: " + gameScore, halfX, halfY - 15);
-	}
-
-	void displayScore() {
-		fill(TEXT_COLOR);
-        textSize(30);
-        textAlign(CENTER);
-        text("SCORE: " + gameScore, halfX, gameDrawingMeasurement.oneY * 2);
 	}
 
 	void setupButton() {
@@ -151,11 +147,17 @@ class GameModeOne extends ScreenWithButton {
 	void onChangeGameEnvMode(int mode) {
 		gameEnvMode = mode;
 		gameObject.updateGameEnvMode(mode);
-		this.setTextColor();
+		gameText.setTextColor();
 	}
 
-	void calculateScore(int itemType) {
-		gameScore += 50;
+	void calculateScore(int itemType, float xScore, float yScore) {
+		randomScore = int(random(2));
+
+		randomScore = randomScore == 0 ? 25 : 50;
+
+		gameScore += randomScore;
+
+		gameText.addNewPlusScore("+" + randomScore, xScore, yScore);
 
 		if (gameScore % 1000 == 0) {
 			gameObject.obstacles.welcomeToHell();
@@ -173,14 +175,6 @@ class GameModeOne extends ScreenWithButton {
 			}
 		} else if (itemType == 1 && gameScore % 500 == 0) {
 			gameObject.character.updateImageRandomly();
-		}
-	}
-
-	void setTextColor() {
-		if (gameEnvMode == 0) {
-			TEXT_COLOR = BLUE;
-		} else {
-			TEXT_COLOR = WHITE;
 		}
 	}
 }
