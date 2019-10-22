@@ -4,6 +4,8 @@ AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn,
 // all graphic varible
 PImage[] sideObjLImage, sideObjOImage;
 PImage[] characterLImage, characterOImage;
+PImage[] characterLLImage, characterOLImage;
+
 PImage[][] obsLImage, obsOImage;
 PImage[][] itemLImage, itemOImage;
 
@@ -76,6 +78,16 @@ void loadObjectImage() {
 	characterOImage = new PImage[3];
 	for (int i = 0; i < 3; i++) {
 		characterOImage[i] = loadImage("mainChar/o" + i + ".png");		
+	}
+
+	characterLLImage = new PImage[4];
+	for (int i = 0; i < 4; i++) {
+		characterLLImage[i] = loadImage("mainChar/g" + i + "d.png");		
+	}
+
+	characterOLImage = new PImage[3];
+	for (int i = 0; i < 3; i++) {
+		characterOLImage[i] = loadImage("mainChar/o" + i + "d.png");		
 	}
 
 	obsLImage = new PImage[3][2];
