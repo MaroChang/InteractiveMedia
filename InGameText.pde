@@ -46,9 +46,9 @@ class InGameText {
 	}
 
 	void addNewPlusScore(String content, float x, float y) {
-		for (int i = 0; i < numberOfPlusScore; i++) {
-			if (!plusScoreText[i].active) {
-				plusScoreText[i].setAndActive(content, x, y);
+		for (int i = 0; i < numberOfPlusScore - 1; i++) {
+			if (!plusScoreText[i].active && !plusScoreText[i+1].active) {
+				plusScoreText[i+1].setAndActive(content, x, y);
 			}
 		}
 	}

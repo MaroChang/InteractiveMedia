@@ -46,6 +46,7 @@ class Item {
 	int imageFrame = 1;
 	int type;
 	int envMode = 0;
+	int score;
 
 	Item(int _type,float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
 		
@@ -135,7 +136,8 @@ class Item {
 	}
 
 	void isCollected() {
-		gameModeOne.calculateScore(type, x, y);
+		gameModeOne.calculateScore(type, score, x, y);
+
 		topLeftY = endY + 100;
 		this.update();
 		
@@ -183,17 +185,17 @@ class Item {
 
 	void randomUpdateImage() {
 		int i;
-
+		i = int(random(2));
 		// land
 		if (this.envMode == 0) {
-			i = int(random(1));
 			imageM = itemLImage[i];
 		}
 		// ocean 
 		else {
-			i = int(random(1));
 			imageM = itemOImage[i];
 		}
+
+		score = (i + 1) * 25;
 	}
 
 }

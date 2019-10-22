@@ -36,7 +36,6 @@ void increaseVolume1(float num) {
     for (int i = 0; i < 10; i++) {
     num = num + 1;
     menuBGM.setGain(num);
-    println(num);
   }
 }
 
@@ -46,7 +45,6 @@ public void lowerGameVolume(float num) {
     for (int i = 0; i < 10; i++) {
     num = num - 1;
     gameBGM.setGain(num);
-    println(num);
   }
 }
 
@@ -56,7 +54,6 @@ public void increaseGameVolume(float num) {
     for (int i = 0; i < 10; i++) {
     num = num + 1;
     gameBGM.setGain(num);
-    println(num);
   }
 }
 
@@ -66,7 +63,7 @@ public void lowerVolume(float num) {
     for (int i = 0; i < 10; i++) {
       num = num - 1;
       menuBGM.setGain(num);
-      println(num);
+
   }
 }
 
@@ -76,6 +73,10 @@ public void increaseVolume(float num) {
     for (int i = 0; i < 10; i++) {
     num = num + 1;
     menuBGM.setGain(num);
-    println(num);
   }
+}
+
+public void clickSound(){
+  click.play();
+  click.rewind();
 }

@@ -33,7 +33,7 @@ void loadAllAudio() {
     
     // Game Character Effects
     tombstone = MN.loadFile("game_effects/character/tombstone.mp3");
-    walk = MN.loadFile("game_effects/character/walk.mp3");
+    // walk = MN.loadFile("game_effects/character/walk.mp3");
     // jump = MN.loadFile("game_effects/character/jump.mp3");
     
     // Game Obstacle Effects
@@ -90,15 +90,15 @@ void loadObjectImage() {
 		obsOImage[i][1] = loadImage("mainObs/o"+ i +"1.png");
 	}
 
-	itemLImage = new PImage[1][3];
-	for (int i = 0; i < 1; i++) {
+	itemLImage = new PImage[2][3];
+	for (int i = 0; i < 2; i++) {
 		itemLImage[i][0] = loadImage("mainItem/l"+ i +"0.png");
 		itemLImage[i][1] = loadImage("mainItem/l"+ i +"1.png");
 		itemLImage[i][2] = loadImage("mainItem/l"+ i +"2.png");
 	}
 
-    itemOImage = new PImage[1][3];
-    for (int i = 0; i < 1; i++) {
+    itemOImage = new PImage[2][3];
+    for (int i = 0; i < 2; i++) {
 		itemOImage[i][0] = loadImage("mainItem/o"+ i +"0.png");
 		itemOImage[i][1] = loadImage("mainItem/o"+ i +"1.png");
 		itemOImage[i][2] = loadImage("mainItem/o"+ i +"2.png");

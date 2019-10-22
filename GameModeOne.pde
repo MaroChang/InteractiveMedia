@@ -12,8 +12,6 @@ class GameModeOne extends ScreenWithButton {
 	InGameObject gameObject;
 	InGameText gameText;
 
-	int randomScore;
-
 	GameModeOne() {
 		gameDrawingMeasurement = new GameDrawingMeasurement();
 		
@@ -151,14 +149,11 @@ class GameModeOne extends ScreenWithButton {
 		gameText.setTextColor();
 	}
 
-	void calculateScore(int itemType, float xScore, float yScore) {
-		randomScore = int(random(2));
+	void calculateScore(int itemType, int score, float xScore, float yScore) {
 
-		randomScore = randomScore == 0 ? 25 : 50;
+		gameScore += score;
 
-		gameScore += randomScore;
-
-		gameText.addNewPlusScore("+" + randomScore, xScore, yScore);
+		gameText.addNewPlusScore("+" + score, xScore, yScore);
 
 		if (gameScore % 1000 == 0) {
 			gameObject.obstacles.welcomeToHell();

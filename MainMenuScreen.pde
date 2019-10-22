@@ -110,11 +110,6 @@ public void quitGame() {
 	}
 }
 
-public void clickSound(){
-  click.play();
-  click.rewind();
-}
-
 // LowerVolume Function For BGM Fade Transition
 public void lowerMenuVolume(float num) {
     num = num - 60;

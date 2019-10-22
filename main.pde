@@ -22,7 +22,7 @@ int gameState;
 // identify the current screen of a state
 int gameScreen;
 // current score of player
-int gameScore = 0;
+int gameScore = 1350;
 
 // game setting
 boolean gameInKinect = true;
@@ -80,4 +80,9 @@ void draw(){
         // watting
         break;
     }
+
+    // DEBUG
+    print(frameCount + "\t");
+    println(frameRate);
+
 }
