@@ -47,7 +47,7 @@ class InGameObject {
 	}
 
 	void drawOnly() {
-		character.character.draw();
+		character.character.drawDeath();
 		sideRoad.drawOnly();
 		obstacles.drawOnly();
 		items.drawOnly();
