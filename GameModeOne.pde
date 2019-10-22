@@ -1,4 +1,3 @@
-
 // GameModeOne controll all object in game mode one screen
 class GameModeOne extends ScreenWithButton {
 
@@ -7,10 +6,10 @@ class GameModeOne extends ScreenWithButton {
 	int RESTART = 1;
 
 	GameDrawingMeasurement gameDrawingMeasurement;
-
 	InGameBackground gameBackground;
 	InGameObject gameObject;
 	InGameText gameText;
+
 
 	GameModeOne() {
 		gameDrawingMeasurement = new GameDrawingMeasurement();
@@ -36,32 +35,29 @@ class GameModeOne extends ScreenWithButton {
 		gameObject = new InGameObject(gameDrawingMeasurement);
 		gameText = new InGameText(gameDrawingMeasurement);
 
-		this.setupButton();
-
 		gameText.setTextColor();
+		this.setupButton();
 	}
 
 	void show() {
 		if (gameScreen == GAMEMODE_1_PLAYING) {
 			gameBackground.draw();
-
 			gameBGM.play();
 
 			if (!gameObject.drawAllAndCheck()) {
-				this.onGameOver();
-			} else {
-				gameText.draw();
-			}
-
+			  this.onGameOver();
 		} else {
-			// this.gameOverAndStop();
+			gameText.draw();
 		}
 	}
-
+  }
+  
 	void startGame() {
+
 	  // Play gamestart sounds
 	  	gamestart.play();
 	  	gamestart.rewind();
+
 		this.restartGame();
 		gameBGM.play();
 		gameBGM.loop();
@@ -69,13 +65,11 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void restartGame() {
-		
 		// Play Gamestart and BGM Sounds
 		gamestart.play();
 		gamestart.rewind();
 		increaseGameVolume(gameVolume);
 		gameBGM.rewind();
-    
 		gameScore = 0;
 
 		this.hideButton();
@@ -86,21 +80,16 @@ class GameModeOne extends ScreenWithButton {
 		gameScreen = GAMEMODE_1_PLAYING;
 	}
 
-	void onGameOver() {
-	    
+	void onGameOver() { 
 	  	// Play Lose Sound And Lower Volume
 	  	lose.play();
 	  	lose.rewind();
 	  	lowerGameVolume(gameVolume);
 		
 		// draw Content
-
 		this.showButton();
-
 		gameBackground.draw();
-
 		gameObject.drawOnly();
-
 		noStroke();
 		fill(DEATH_BG);
 		rect(screenX / 2, screenY / 2, screenX / 2, screenY / 2, 50);

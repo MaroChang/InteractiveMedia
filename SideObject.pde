@@ -1,4 +1,3 @@
-
 // object on side of running lane
 class SideObject {
 
@@ -65,7 +64,6 @@ class SideObject {
 		y = map(curP, 0, maxP, beginY, endY);
 
 		this.updateImage();
-
 	}
 
 	void shouldXChangeWhenMoving() {
@@ -115,6 +113,7 @@ class SideObject {
 			i = int(random(3));
 			imageM = sideObjOImage[i];
 		}
+
 	}
 
 	void draw() {

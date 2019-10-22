@@ -1,4 +1,3 @@
-
 // Item class controll an obstacle movement and display
 
 class Item {

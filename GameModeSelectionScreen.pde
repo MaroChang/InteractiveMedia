@@ -6,8 +6,13 @@ class GameModeSelectionScreen extends ScreenWithButton {
   int GAMEMODE_2 = 2;
 
   PFont font = createFont("Aloha.ttf", 20);
-  
+
+  //backgroung image
+  PImage bg;
+
   GameModeSelectionScreen() {
+    bg = loadImage("image_4.jpg");
+    bg.resize(1366,768);
     this.setupButton();
   }
 
@@ -34,6 +39,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
     text("Collect These", screenX / 2 + screenX / 4, screenY / 1.4);
 
     // image(bg2, 0, 0, 1366, 768);
+
   }
   
   // Sets up the functionality and the side of buttons on game mode selection screen
@@ -55,6 +61,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
       //.setPosition(btnX - btnSpace * 3.5, btnY)
       .setPosition(166,600)
       .setSize(btnW, btnH)
+
       .hide();
 
     buttons[GAMEMODE_2] = CP5.addButton("gamemode2")
@@ -65,7 +72,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setPosition(1000,600)
       .setSize(btnW, btnH)
       .hide();  
-      
+
     buttons[BACK_2_MENU] = CP5.addButton("backToMenu")
       .setCaptionLabel(BACK_2_MENU_STR) 
       .setValue(0)
@@ -95,12 +102,17 @@ public void gamemode1() {
 // Function for the gamemode 2 button
 public void gamemode2() {
   if (frameCount > 0) {
-    println("gamemode2 event");
-    // Play click sound
-    clickSound();
-    menuBGM.setGain(gameVolume - 60);
-    
-    changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
+    gameMenu.hideButtonOf(GAME_SELECT_SCR);
+    gameModeTwo.startGame();
+    gameState = IN_GAMEMODE_2;
+    gameScreen = GAMEMODE_2_READY;
+
+    click.play();
+    click.rewind();
+    //menuBGM.setGain(gameVolume - 60);
+    menuBGM.pause();
+
+    //changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }
 
