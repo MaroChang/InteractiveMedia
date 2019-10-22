@@ -4,17 +4,17 @@ class SettingScreen extends ScreenWithButton {
 
 	// BUTTON INDEX
 	int BACK_2_MENU = 0;
-	//int VOLUMN = 1;
+	int VOLUMN = 1;
 	
 	controlP5.Toggle[] toggles;
-	int numberOfToggle = 0;
+	int numberOfToggle = 1;
 	//int USE_KEYBOARD = 1;
 	//nt USE_KINECT = 0;
 
 	PImage settingBackground;
 	PFont font = createFont("Aloha.ttf", 20);
 
-	//controlP5.Slider volume;
+	controlP5.Slider volume;
 
 	SettingScreen() {
 		settingBackground = loadImage("img/bg/bg_4.jpg");
@@ -31,18 +31,10 @@ class SettingScreen extends ScreenWithButton {
 
 		float titlePos = halfY - 200;
 		textSize(70);
-		text(CREDITS_STR, halfX, titlePos);
+		text(SETTING_STR, halfX, titlePos);
 
 		textSize(30);
-		text("TEAM MEMBERS:", halfX, halfY / 1.3);
-		text("FELIX (Hoang Ho Hai Dang)", halfX, halfY / 1.3 + 40);
-		text("TIM (Fung Cheuk Yin Timothy)", halfX, halfY / 1.3 + 80);
-		text("MARO (Quynh Trang Dang)", halfX, halfY / 1.3 + 120);
-		text("DP (Dhruvil Patel)", halfX, halfY / 1.3 + 160);
-
-
-		text("TUTOR:", halfX, halfY * 1.7);
-		text("NAT SUNDARA", halfX, halfY * 1.7 + 40);
+		text("MUSIC", halfX - 190, halfY);
 
 
 		//text("CONTROLLER", halfX - 190, halfY + 120);
@@ -95,7 +87,7 @@ class SettingScreen extends ScreenWithButton {
 
 	void setupToggle() {
 
-		//toggles = new controlP5.Toggle[numberOfToggle];
+		toggles = new controlP5.Toggle[numberOfToggle];
 
 		int btnW = 100;
 		int btnH = 25;
@@ -113,46 +105,47 @@ class SettingScreen extends ScreenWithButton {
 		// .setSize(btnW, btnH)
 		// .setMode(CP5.SWITCH)
 		// .setColorActive(GREEN) 
-		// // .hide();
+		// .hide();
 
-		// volume = CP5.addSlider("changeVolume")
-		// .setPosition(halfX, halfY - 20)
-		// .setSize(200,20)
-		// .setRange(0,100)
-		// .setValue(gameVolume)
-		// .setLabelVisible(false) 
-		// .hide();  
+		volume = CP5.addSlider("changeVolume")
+		.setPosition(halfX, halfY - 20)
+		.setSize(200,20)
+		.setRange(0,100)
+		.setValue(gameVolume)
+		.setLabelVisible(false) 
+		.hide();  
 	}
 
 	// override for hide other controllers
-	// void hideButton() {
-	// 	super.hideButton();
+	void hideButton() {
+		super.hideButton();
 
-	// 	for (int i = 0; i < numberOfToggle; i++) {
-	// 		toggles[i].hide();
-	// 	}
+		for (int i = 0; i < numberOfToggle; i++) {
+			toggles[i].hide();
+		}
 
-	// 	volume.hide();
-	// }
+		volume.hide();
+	}
 
 	// override for show other controllers
-// 	void showButton() {
-// 		super.showButton();
+	void showButton() {
+		super.showButton();
 
-// 		for (int i = 0; i < numberOfToggle; i++) {
-// 			toggles[i].show();
-// 		}
+		for (int i = 0; i < numberOfToggle; i++) {
+			toggles[i].show();
+		}
 
-// 		volume.show();
-// 	}
+		volume.show();
+	}
 }
 
 
 public void back2Menu() {
 	if (frameCount > 0) {
-		clickSound();
+		click.play();
+   		click.rewind();
 	  	increaseVolume(gameVolume);
-		changeScreenTo(MAIN_MENU_SCR, CREDITS_SCR);
+		changeScreenTo(MAIN_MENU_SCR, SETTING_SCR);
 	}
 }
 
@@ -171,7 +164,7 @@ public void back2Menu() {
 // 	}
 // }
 
-// void changeVolume(float value) {
-// 	if (frameCount > 0)
-// 		gameVolume = value;
-// }
+void changeVolume(float value) {
+	if (frameCount > 0)
+		gameVolume = value;
+}
