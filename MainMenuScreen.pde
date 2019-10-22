@@ -15,6 +15,9 @@ class MainMenuScreen extends ScreenWithButton {
   PImage bg1;
   PImage bg2;
   PImage bg3;
+  
+  //button image
+  PImage bt1;
 
 	MainMenuScreen() {
 		this.setupButton();
@@ -33,6 +36,8 @@ class MainMenuScreen extends ScreenWithButton {
     bg2.resize(1280,720);
     bg3 = loadImage("image_5.jpg");
     bg3.resize(1280,720);
+    //bt1 = loadImage("blue button.png");
+    //bt1.resize(150,50);
 	}
 
 	void show() {
@@ -70,6 +75,7 @@ class MainMenuScreen extends ScreenWithButton {
 		text(GAME_NAME, halfX, titlePos);
 		textSize(80);
 		text(GAME_SUB_NAME, halfX, titlePos + 70);
+    //image(bt1,520,405,240,60);
 	}
 
 
@@ -86,24 +92,32 @@ class MainMenuScreen extends ScreenWithButton {
 
 		PFont font = createFont("Georgia", 20);
 
+    PImage[] imgs = {loadImage("button_1.png"),loadImage("button_2.png"),loadImage("button_1.png")};
 		buttons[START_GAME] = CP5.addButton("startGame")
-		.setCaptionLabel(NEW_GAME_STR) 
+    .setImages(imgs)
+		.setCaptionLabel(NEW_GAME_STR)
 		.setValue(0)
 		.setFont(font)
 		.setPosition(btnX, btnY)
 		.setSize(btnW, btnH)
 		.hide();
 
+    PImage[] imgs1 = {loadImage("button_3.png"),loadImage("button_4.png"),loadImage("button_3.png")};
 		buttons[SETTING] = CP5.addButton("openSetting")
+    .setImages(imgs1)
 		.setCaptionLabel(SETTING_STR) 
-		.setValue(0)
+    .setValue(0)
 		.setFont(font)
 		.setPosition(btnX, btnY + btnSpace)
 		.setSize(btnW, btnH)
 		.hide();
 
+    PImage[] imgs2 = {loadImage("button_5.png"),loadImage("button_6.png"),loadImage("button_5.png")};
 		buttons[QUIT] = CP5.addButton("quitGame")
+    .setImages(imgs2)
 		.setCaptionLabel(QUIT_GAME_STR) 
+    .setColorBackground(color(112, 159, 220))
+    .setColorActive(color(6, 48, 199))
 		.setValue(0)
 		.setFont(font)
 		.setPosition(btnX, btnY + btnSpace * 2)

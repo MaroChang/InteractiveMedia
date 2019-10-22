@@ -35,7 +35,9 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
     PFont font = createFont("Georgia", 20);
 
+    PImage[] imgs = {loadImage("button_9.png"),loadImage("button_10.png"),loadImage("button_9.png")};
     buttons[GAMEMODE_1] = CP5.addButton("gamemode1")
+      .setImages(imgs)
       .setCaptionLabel(GAMEMODE1STR) 
       .setValue(0)
       .setFont(font)
@@ -45,7 +47,9 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setSize(200,100)
       .hide();
 
+    PImage[] imgs1 = {loadImage("button_11.png"),loadImage("button_12.png"),loadImage("button_11.png")};
     buttons[GAMEMODE_2] = CP5.addButton("gamemode2")
+      .setImages(imgs1)
       .setCaptionLabel(GAMEMODE2STR) 
       .setValue(0)
       .setFont(font)
@@ -55,7 +59,9 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setSize(200,100)
       .hide();  
       
+    PImage[] imgs2 = {loadImage("button_7.png"),loadImage("button_8.png"),loadImage("button_7.png")};    
     buttons[BACK_2_MENU] = CP5.addButton("backtoMenu")
+      .setImages(imgs2)
       .setCaptionLabel(BACK_2_MENU_STR) 
       .setValue(0)
       .setFont(font)

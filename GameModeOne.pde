@@ -305,15 +305,19 @@ class GameModeOne extends ScreenWithButton {
 
 		PFont font = createFont("Georgia", 20);
 
+    PImage[] imgs = {loadImage("button_15.png"),loadImage("button_16.png"),loadImage("button_15.png")};
 		buttons[BACK_2_MENU] = CP5.addButton("backToMainMenuGM1")
 		.setCaptionLabel(MAIN_MENU_STR) 
+    .setImages(imgs)
 		.setValue(0)
 		.setFont(font)
 		.setPosition(btnX, btnY + btnSpace)
 		.setSize(btnW, btnH)
 		.hide();
 
+    PImage[] imgs1 = {loadImage("button_13.png"),loadImage("button_14.png"),loadImage("button_13.png")};
 		buttons[RESTART] = CP5.addButton("restartGameMode1")
+    .setImages(imgs1)
 		.setCaptionLabel(RESTART_STR) 
 		.setValue(0)
 		.setFont(font)
