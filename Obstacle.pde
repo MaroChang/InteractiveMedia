@@ -3,6 +3,8 @@
 
 class Obstacle {
 
+	boolean active = false;
+
 	float orgX;
 	float orgY;
 
@@ -41,11 +43,16 @@ class Obstacle {
 	float leftSideBot;
 	float rightSideBot;
 
-	PImage imageM, imageM1, imageM2, imageM3;
+	PImage[] imageM;
+	PImage imageMX;
 
 	int imageFrame = 1;
+	int envMode = 0;
 
-	Obstacle(float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
+	boolean needInscreaseSpeed = false;
+
+	Obstacle(boolean _active,float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
+		active = _active;
 		
 		beginY = _y - minHeight;
 		endY = screenY;
@@ -82,14 +89,10 @@ class Obstacle {
 
 		rightSideBot = _rightSideBot - maxWidth;
 		leftSideBot = _leftSideBot + maxWidth;
-	}
 
-	void setCharacterImage(String _imgName) {
-		imageM = loadImage("char/" + _imgName + ".png");
-		//imageM.resize(int(maxWidth), int(maxHeight));
+		//imageM = new PImage[2];
 
-		imageM1 = loadImage("char/" + _imgName + "1.png");
-		imageM2 = loadImage("char/" + _imgName + "2.png");
+		this.randomUpdateImage();
 	}
 
 	// determine whenever the obstacble change only y coordinates or both x and y coordiante when moving
@@ -115,12 +118,15 @@ class Obstacle {
 		y += speed;
 
 		if (topLeftY > endY) {
+			if (needInscreaseSpeed) {
+				needInscreaseSpeed = false;
+				speed = speed + 1;
+			}
+
 			x = random(leftSideBot, rightSideBot);
 			
 			y = beginY - minHeight;
 			this.shouldXChangeWhenMoving();
-
-			//gameScore++;
 		}
 
 		if (needChangeX) {
@@ -137,23 +143,30 @@ class Obstacle {
 		w = map(y, beginY, endY, minWidth, maxWidth);
 	}
 
+	void forcedUpdate() {
+		topLeftY = endY + 100;
+		this.update();
+	}
+
 	void draw() {
 		// fill(BLUE);
 		// rect(x, y, w, h);
 
 		//imageM.resize(int(w), int(h));
 		if (imageFrame <= 20) {
-			imageM = imageM1;
+			image(imageM[0], x - (w/2), y - (h/2), w, h);
 		} else if (imageFrame <= 40) {
-			imageM = imageM2;
-		} 
-		else if (imageFrame <= 60){
+			image(imageM[1], x - (w/2), y - (h/2), w, h);
+		} else {
+			image(imageM[0], x - (w/2), y - (h/2), w, h);
+		}
+		
+		if (imageFrame > 60){
 			imageFrame = 0;			
 		}
 
 		imageFrame++;
-		image(imageM, x - (w/2), y - (h/2), w, h);
-
+		
 		
 		// #DEBUG
 		// fill(RED);
@@ -162,6 +175,31 @@ class Obstacle {
 		// ellipse(topLeftX, topLeftY, 5, 5);
 		// ellipse(bottomRightX, bottomRightY, 5, 5);
 		// fill(0);
+	}
+
+	void updateEnvMode(int mode) {
+		this.envMode = mode;
+
+		this.randomUpdateImage();
+	}
+
+	void randomUpdateImage() {
+		int i;
+
+		// ground
+		if (this.envMode == 0) {
+			i = int(random(3));
+			imageM = obsLImage[i];
+		}
+		// ocean 
+		else {
+			i = int(random(2));
+			imageM = obsOImage[i];
+		}
+	}
+
+	void speedUp() {
+		needInscreaseSpeed = true;
 	}
 
 }

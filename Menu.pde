@@ -27,7 +27,7 @@ class Menu {
         gameModeSelectionScreen.show();  
       break;
       
-      case SETTING_SCR:
+      case CREDITS_SCR:
         settingScreen.show();
       break;      
     }
@@ -44,7 +44,7 @@ class Menu {
         gameModeSelectionScreen.hideButton();
       break;
       
-      case SETTING_SCR:
+      case CREDITS_SCR:
         settingScreen.hideButton();
       break;     
     }
@@ -61,7 +61,7 @@ class Menu {
         gameModeSelectionScreen.showButton();
       break;
       
-      case SETTING_SCR:
+      case CREDITS_SCR:
         settingScreen.showButton();
       break;      
     }

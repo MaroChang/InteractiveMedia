@@ -7,24 +7,26 @@ class MainMenuScreen extends ScreenWithButton {
 
 	// BUTTON INDEX
 	int START_GAME = 0;
-	int SETTING = 1;
+	int CREDITS = 1;
 	int QUIT = 2;
 
 	PImage menuBackground;
+	PFont font = createFont("Aloha.ttf", 20);
 
 	MainMenuScreen() {
 		this.setupButton();
 
-		menuBackground = loadImage("menu_bg.jpg");
+		menuBackground = loadImage("menu_bg.png");
     	menuBackground.resize(screenX, screenY); 
 	}
 
 	void show() {
 		background(menuBackground);
-		fill(UGLY_COLOR);
+		fill(WHITE);
 		
 		textAlign(CENTER);
 		float titlePos = halfY - 100;
+		textFont(font);
 		textSize(70);
 		text(GAME_NAME, halfX, titlePos);
 		textSize(80);
@@ -43,8 +45,6 @@ class MainMenuScreen extends ScreenWithButton {
 		int btnY = int(halfY) + 50;
 		int btnSpace = 70;
 
-		PFont font = createFont("Georgia", 20);
-
 		buttons[START_GAME] = CP5.addButton("startGame")
 		.setCaptionLabel(NEW_GAME_STR) 
 		.setValue(0)
@@ -53,8 +53,8 @@ class MainMenuScreen extends ScreenWithButton {
 		.setSize(btnW, btnH)
 		.hide();
 
-		buttons[SETTING] = CP5.addButton("openSetting")
-		.setCaptionLabel(SETTING_STR) 
+		buttons[CREDITS] = CP5.addButton("openCredits")
+		.setCaptionLabel(CREDITS_STR) 
 		.setValue(0)
 		.setFont(font)
 		.setPosition(btnX, btnY + btnSpace)
@@ -72,7 +72,7 @@ class MainMenuScreen extends ScreenWithButton {
 }
 
 public void startGame() {
-	if (!SKIP_GAMEMODE_SELECTION) {
+	if (!SKIP_GAMEMODE_SELECTION) {  
 		if (frameCount > 0) {
 			lowerVolume(gameVolume);
 			changeScreenTo(GAME_SELECT_SCR, MAIN_MENU_SCR);
@@ -80,8 +80,7 @@ public void startGame() {
 	} else {
 		if (frameCount > 0) {
 			 // Play click sound
-		    click.play();
-		    click.rewind();
+		    clickSound();
 		    lowerVolume(gameVolume);
 
 		    gameMenu.hideButtonOf(MAIN_MENU_SCR);
@@ -92,15 +91,13 @@ public void startGame() {
 	}
 }
 
-public void openSetting() {
+public void openCredits() {
 	if (frameCount > 0) {
-	    println("settings event");
+	    println("credits event");
 	    // Play click sound
-	    click.play();
-	    click.rewind();
+	    clickSound();
 	    lowerVolume(gameVolume);
-
-		changeScreenTo(SETTING_SCR, MAIN_MENU_SCR);
+		changeScreenTo(CREDITS_SCR, MAIN_MENU_SCR);
 	}
 }
 
@@ -108,29 +105,27 @@ public void quitGame() {
 	if (frameCount > 0) {
 	    println("exit game event");
 	    // Play click sound
-	    click.play();
-	    click.rewind();
-	    
+	    clickSound();
 		exit();
 	}
 }
 
-//LowerVolume Function For BGM Fade Transition
-public void lowerVolume(float num) {
+// LowerVolume Function For BGM Fade Transition
+public void lowerMenuVolume(float num) {
     num = num - 60;
     for (int i = 0; i < 10; i++) {
-	    num = num - 1;
-	    menuBGM.setGain(num);
-	    println(num);
+    num = num - 1;
+    menuBGM.setGain(num);
+    //println(num);
   }
 }
 
 // IncreaseVolume Function For BGM Fade Transition
-public void increaseVolume(float num) {
+public void increaseMenuVolume(float num) {
     num = num - 70;
     for (int i = 0; i < 10; i++) {
     num = num + 1;
     menuBGM.setGain(num);
-    println(num);
+    //println(num);
   }
 }

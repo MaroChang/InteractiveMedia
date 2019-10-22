@@ -16,8 +16,12 @@ class Animal {
 	float bottomRightY;
 
 	PImage imageM;
+	PImage imageL;
 
-	Animal(float _x, float _y, float _w, float _h, String _imgName) {
+	int envMode = 0;
+	int imageIndex = 0;
+
+	Animal(float _x, float _y, float _w, float _h) {
 		x = _x;
 		y = _y;
 		w = _w;
@@ -31,13 +35,8 @@ class Animal {
 		topLeftX = x - halfW;
 		topLeftY = y - halfH;
 
-		imageM = loadImage("char/" + _imgName + ".png");
-		imageM.resize(int(w), int(h));
-	}
-
-	void setImage(String _imgName) {
-		imageM = loadImage("char/" + _imgName + ".png");
-		imageM.resize(int(w), int(h));
+		
+		this.randomUpdateImage();
 	}
 
 	void draw() {
@@ -45,7 +44,7 @@ class Animal {
 	}
 
 	void drawDeath() {
-		// todo animation when dying
+		image(imageL, x - halfW, y - halfH, w, h);
 	}
 
 	void setLimit(float leftLimit, float rightLimit) {
@@ -64,5 +63,29 @@ class Animal {
         bottomRightX = x + halfW;
         topLeftX = x - halfW;
     }
+
+	void updateEnvMode(int mode) {
+		this.envMode = mode;
+
+		this.randomUpdateImage();
+	}
+
+	void randomUpdateImage() {
+
+		// land
+		if (this.envMode == 0) {
+			imageIndex = int(random(4));
+			imageM = characterLImage[imageIndex];
+			imageL = characterLLImage[imageIndex];
+		}
+		// ocean 
+		else {
+			imageIndex = int(random(3));
+			imageM = characterOImage[imageIndex];
+			imageL = characterOLImage[imageIndex];
+		}
+
+		imageM.resize(int(w), int(h));
+	}
 
 }

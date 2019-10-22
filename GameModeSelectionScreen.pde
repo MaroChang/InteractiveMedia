@@ -5,9 +5,11 @@ class GameModeSelectionScreen extends ScreenWithButton {
   int GAMEMODE_1 = 1;
   int GAMEMODE_2 = 2;
 
+  PFont font = createFont("Aloha.ttf", 20);
+
   //backgroung image
   PImage bg;
-  
+
   GameModeSelectionScreen() {
     bg = loadImage("image_4.jpg");
     bg.resize(1366,768);
@@ -15,56 +17,81 @@ class GameModeSelectionScreen extends ScreenWithButton {
   }
 
   void show() {
-    background(bg);
-    fill(UGLY_COLOR);
+    // background(WHITE);
+    // fill(UGLY_COLOR);
+    noStroke();
+    fill(INSTRUCTIONS);
+    rect(screenX / 2, screenY / 2.3, screenX / 1.5, screenY / 1.5, 50);
+    textSize(30); 
+    fill(WHITE);
+    text("Instructions:", screenX / 4 - 10, screenY / 4.8 );
+    textSize(20);
+    text("Player:", screenX / 4 - 50, screenY / 3.9);
+    image(players, screenX / 4 - 100, screenY / 3.6, 200, 300);
+    text("This is You", screenX / 4 , screenY / 1.4);
+
+    text("Monsters:", screenX / 2 - 50, screenY / 3.9);
+    image(monsters, screenX / 2 - 100, screenY / 4.6, 200, 300);
+    text("Avoid These", screenX / 2 , screenY / 1.4);
+
+    text("Items:", screenX / 2 + screenX / 4 - 50, screenY / 3.9);
+
+    text("Collect These", screenX / 2 + screenX / 4, screenY / 1.4);
+
+    // image(bg2, 0, 0, 1366, 768);
+
   }
   
+  // Sets up the functionality and the side of buttons on game mode selection screen
    void setupButton() {
     numberOfBtn = 3;
 
     buttons = new controlP5.Button[numberOfBtn];
 
-    int btnW = 462;
-    int btnH = 550;
+    int btnW = 200;
+    int btnH = 100;
     int btnX = int(halfX) - int(btnW / 2);
     int btnY = int(halfY) -200;
     int btnSpace = 70;
-
-    PFont font = createFont("Georgia", 20);
 
     buttons[GAMEMODE_1] = CP5.addButton("gamemode1")
       .setCaptionLabel(GAMEMODE1STR) 
       .setValue(0)
       .setFont(font)
-      .setPosition(200,580)
-      .setSize(200,100)
+      //.setPosition(btnX - btnSpace * 3.5, btnY)
+      .setPosition(166,600)
+      .setSize(btnW, btnH)
+
       .hide();
 
     buttons[GAMEMODE_2] = CP5.addButton("gamemode2")
       .setCaptionLabel(GAMEMODE2STR) 
       .setValue(0)
       .setFont(font)
-      .setPosition(880,580)
-      .setSize(200,100)
-      .hide(); 
+      //.setPosition(btnX + btnSpace * 3.5, btnY)
+      .setPosition(1000,600)
+      .setSize(btnW, btnH)
+      .hide();  
 
     buttons[BACK_2_MENU] = CP5.addButton("backToMenu")
       .setCaptionLabel(BACK_2_MENU_STR) 
       .setValue(0)
       .setFont(font)
       .setPosition(25, 25)
-      .setSize(250, 75)
-      .hide();   
+       .setSize(btnW + 50, btnH -50)
+      .hide();
   }
 }
 
+// Function for the gamemode 1 button
 public void gamemode1() {
   if (frameCount > 0) {
-    click.play();
-    click.rewind();
+    println("gamemode1 event");
+    // Play click sound
+    clickSound();
     
     menuBGM.pause();
-
+    
     gameMenu.hideButtonOf(GAME_SELECT_SCR);
     gameModeOne.startGame();
     gameState = IN_GAMEMODE_1;
@@ -72,9 +99,9 @@ public void gamemode1() {
   }
 }
 
+// Function for the gamemode 2 button
 public void gamemode2() {
   if (frameCount > 0) {
-
     gameMenu.hideButtonOf(GAME_SELECT_SCR);
     gameModeTwo.startGame();
     gameState = IN_GAMEMODE_2;
@@ -85,7 +112,6 @@ public void gamemode2() {
     //menuBGM.setGain(gameVolume - 60);
     menuBGM.pause();
 
-
     //changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }
 }
@@ -95,9 +121,8 @@ public void backToMenu() {
 if (frameCount > 0) {
     println("back to menu event");
     // Play click sound
-    click.play();
-    click.rewind();
-    increaseVolume(gameVolume);
+    clickSound();
+    increaseMenuVolume(gameVolume);
       
     changeScreenTo(MAIN_MENU_SCR, GAME_SELECT_SCR);
   }

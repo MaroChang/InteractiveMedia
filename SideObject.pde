@@ -43,6 +43,7 @@ class SideObject {
 	float rightSideBot;
 
 	PImage imageM;
+	int envMode = 0;
 
 	SideObject(float _x, float _y, float _w, float _h, float _beginX, float _endX, float _beginY, float _endY, float _initalP) {
 		
@@ -62,12 +63,7 @@ class SideObject {
 		x = map(curP, 0, maxP, beginX, endX);
 		y = map(curP, 0, maxP, beginY, endY);
 
-		imageM = loadImage("env/tree/" + "tree0" + ".png");
-	}
-
-	void setCharacterImage(String _imgName) {
-		imageM = loadImage("env/tree/" + _imgName + ".png");
-		//imageM.resize(int(w), int(h));
+		this.updateImage();
 	}
 
 	void shouldXChangeWhenMoving() {
@@ -92,23 +88,41 @@ class SideObject {
 
 		if (curP > maxP) {
 			curP = 0;
-
-			int i = int(random(5));
-			imageM = iTree[i];
 		}
 
 		x = map(curP, 0, maxP, beginX, endX);
 		y = map(curP, 0, maxP, beginY, endY);
 	}
 
-	void draw() {
-		//fill(BLUE);
-		//rect(x, y, w, h);
+	void updateEnvMode(int mode) {
+		this.envMode = mode;
 
-		//imageM.resize(int(w), int(h));
+		this.updateImage();
+	}
+
+	void updateImage() {
+		int i;
+
+		// ground
+		if (this.envMode == 0) {
+			i = int(random(6));
+			imageM = sideObjLImage[i];
+		}
+		// ocean 
+		else {
+			i = int(random(3));
+			imageM = sideObjOImage[i];
+		}
+
+	}
+
+	void draw() {
+
 		image(imageM, x - (w/2), y - (h/2), w, h);
 		
 		// #DEBUG
+		//fill(BLUE);
+		//rect(x, y, w, h);
 		// fill(RED);
 		// ellipse(x, y, 5, 5);
 		// ellipse(topLeftX, topLeftY, 5, 5);

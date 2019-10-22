@@ -10,17 +10,15 @@ import kinect4WinSDK.SkeletonData;
 // LIBRARY OBJECTS
 ControlP5 CP5;
 Minim MN;
-AudioOutput audioOutput;
-
-AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn, water_boss, bird_boss, menuBGM, gameBGM, storm, thunder, rain, fire, birds;
-PImage[] iTree = new PImage[6];
 
 // Kinect Library objects
 Kinect kinect;
 ArrayList <SkeletonData> bodies;
 
+
 // global variables ________________
-// leave an explanation if the variable's meaning is ambiguous
+AudioOutput audioOutput;
+
 // 16:9 ratio
 static int screenX = 1366;
 static int screenY = 768;
@@ -32,12 +30,13 @@ int gameState;
 // identify the current screen of a state
 int gameScreen;
 // current score of player
-int gameScore = 0;
+int gameScore = 1350;
 
 // game setting
 boolean gameInKinect = true;
 boolean gameInKeyboard = false;
 float gameVolume = 50;
+int gameEnvMode = 0;
 
 // character move speed
 float moveValue = 5;
@@ -63,8 +62,8 @@ void setup(){
 
     gameScreen = WELCOME_SCR;
     //gameScreen = GAMEMODE_1_PLAYING;
-
-
+    
+    loadGameResource();
     rectMode(CENTER);
 
 //Initialize Kinect variables
@@ -72,9 +71,7 @@ void setup(){
     smooth();
     bodies = new ArrayList<SkeletonData>();
 
-    loadAudio();
-    loadTree();
-
+    // create game instance
     gameMenu = new Menu();
     gameModeOne = new GameModeOne();
     gameModeTwo = new GameModeTwo();
@@ -98,48 +95,6 @@ void draw(){
       gameModeTwo.show(kinect, bodies);
     break;
   }
-}
-
-// Load Audio
-void loadAudio() {
-    // Sound Effects
-  
-    // Commented Sounds Are For Future Function Implementation
-  
-    // Menu Sound Effects
-    click = MN.loadFile("data/game_effects/interface/click.mp3");
-    
-    // Game Sound Effects
-    gamestart = MN.loadFile("game_effects/interface/gamestart.mp3");
-    point = MN.loadFile("game_effects/interface/point.mp3");
-    lose = MN.loadFile("game_effects/interface/lose.mp3"); // + Ding Ding Ding in the beginning of the file
-    pickUp = MN.loadFile("game_effects/character/pickup.mp3"); 
-    
-    // Game Character Effects
-    tombstone = MN.loadFile("game_effects/character/tombstone.mp3");
-    // walk = MN.loadFile("game_effects/character/walk.mp3");
-    // jump = MN.loadFile("game_effects/character/jump.mp3");
-    
-    // Game Obstacle Effects
-    // spawn = MN.loadFile("game_effects/monster/spawn.mp3");
-
-    // Game Monster Effects
-    // water_boss = MN.loadFile("game_effects/monster/water_boss.mp3");
-    // bird_boss = MN.loadFile("game_effects/monster/bird_boss.mp3");
-    
-    // Background Music + Effects
-    menuBGM = MN.loadFile("bgm/menuBGM.mp3");
-    gameBGM = MN.loadFile("bgm/gameBGM.mp3");
-    // storm = MN.loadFile("game_effects/weather/storm.mp3");
-    // thunder = MN.loadFile("game_effects/weather/thunder.mp3");
-    // rain = MN.loadFile("game_effects/weather/rain.mp3");
-    // fire = MN.loadFile("game_effects/weather/fire.mp3");
-}
-
-void loadTree() {
-    for (int i = 0; i<=5; i++){
-        iTree[i] = loadImage("env/tree/tree" + i + ".png");
-    }
 }
 
 // Using Kinect to tracking player's apparent, add new tracking into bodies array
