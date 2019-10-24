@@ -9,6 +9,8 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
   //backgroung image
   PImage bg;
+  PImage[] btn_back = {loadImage("/button/btn_back.png"),loadImage("/button/btn_back_hover.png"),loadImage("/button/btn_back_active.png")};
+
 
   GameModeSelectionScreen() {
     bg = loadImage("image_4.jpg");
@@ -76,9 +78,10 @@ class GameModeSelectionScreen extends ScreenWithButton {
     buttons[BACK_2_MENU] = CP5.addButton("backToMenu")
       .setCaptionLabel(BACK_2_MENU_STR) 
       .setValue(0)
+      .setImages(btn_back)
       .setFont(font)
       .setPosition(25, 25)
-       .setSize(btnW + 50, btnH -50)
+      .setSize(150, 84)
       .hide();
   }
 }

@@ -12,6 +12,8 @@ class SettingScreen extends ScreenWithButton {
 	//nt USE_KINECT = 0;
 
 	PImage settingBackground;
+	PImage[] btn_back = {loadImage("/button/btn_back.png"),loadImage("/button/btn_back_hover.png"),loadImage("/button/btn_back_active.png")};
+
 	PFont font = createFont("Aloha.ttf", 20);
 
 	//controlP5.Slider volume;
@@ -87,9 +89,10 @@ class SettingScreen extends ScreenWithButton {
 		buttons[BACK_2_MENU] = CP5.addButton("back2Menu")
 		.setCaptionLabel(BACK_2_MENU_STR) 
 		.setValue(0)
+		.setImages(btn_back)
 		.setFont(font)
 		.setPosition(btnX, btnY)
-		.setSize(btnW/3, btnH/3)
+		.setSize(150, 84)
 		.hide();	
 	}
 

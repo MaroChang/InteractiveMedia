@@ -1,11 +1,14 @@
 class WelcomeScreen {
 
   PImage menuBackground;
+  PImage title;
   PFont font = createFont("Aloha.ttf", 20);
   
   WelcomeScreen() {
     menuBackground = loadImage("menu_bg.png");
     menuBackground.resize(screenX, screenY); 
+
+    title = loadImage("game_title.png");
     initialBGMStartup();
   }
 
@@ -14,8 +17,11 @@ class WelcomeScreen {
     textAlign(CENTER);
     fill(WHITE);
     textFont(font);
-    printTitleName();
     animatedText();
+    imageMode(CENTER);
+    //printTitleName();
+    image(title, 683, 250, 800, 188);
+    imageMode(CORNER);
   }
 
 void initialBGMStartup() {
@@ -29,7 +35,7 @@ void printTitleName() {
     text(GAME_NAME, halfX, halfY);
     textSize(80);
     text(GAME_SUB_NAME, halfX, halfY + 70);
-  }
+}
 
 void animatedText() {
     textSize(30); 

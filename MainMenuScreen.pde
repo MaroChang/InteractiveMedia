@@ -11,13 +11,17 @@ class MainMenuScreen extends ScreenWithButton {
 	int QUIT = 2;
 
 	PImage menuBackground;
-	PFont font = createFont("Aloha.ttf", 20);
+	PImage title;
+	PImage[] btn_newgame = {loadImage("/button/btn_newgame.png"),loadImage("/button/btn_newgame_hover.png"),loadImage("/button/btn_newgame_active.png")};
+	PImage[] btn_credit = {loadImage("/button/btn_credit.png"),loadImage("/button/btn_credit_hover.png"),loadImage("/button/btn_credit_active.png")};
+	PImage[] btn_exit = {loadImage("/button/btn_exit.png"),loadImage("/button/btn_exit_hover.png"),loadImage("/button/btn_exit_active.png")};
 
 	MainMenuScreen() {
 		this.setupButton();
 
 		menuBackground = loadImage("menu_bg.png");
     	menuBackground.resize(screenX, screenY); 
+		title = loadImage("game_title.png");
 	}
 
 	void show() {
@@ -26,11 +30,10 @@ class MainMenuScreen extends ScreenWithButton {
 		
 		textAlign(CENTER);
 		float titlePos = halfY - 100;
-		textFont(font);
-		textSize(70);
-		text(GAME_NAME, halfX, titlePos);
-		textSize(80);
-		text(GAME_SUB_NAME, halfX, titlePos + 70);
+
+		imageMode(CENTER);
+		image(title, 683, 250, 800, 188);
+		imageMode(CORNER);
 	}
 
 
@@ -48,25 +51,25 @@ class MainMenuScreen extends ScreenWithButton {
 		buttons[START_GAME] = CP5.addButton("startGame")
 		.setCaptionLabel(NEW_GAME_STR) 
 		.setValue(0)
-		.setFont(font)
-		.setPosition(btnX, btnY)
-		.setSize(btnW, btnH)
+		.setImages(btn_newgame)
+		.setPosition(485, 380)
+		.setSize(396, 93)
 		.hide();
 
 		buttons[CREDITS] = CP5.addButton("openCredits")
 		.setCaptionLabel(CREDITS_STR) 
 		.setValue(0)
-		.setFont(font)
-		.setPosition(btnX, btnY + btnSpace)
-		.setSize(btnW, btnH)
+		.setImages(btn_credit)
+		.setPosition(485, 380 + 120)
+		.setSize(400, 92)
 		.hide();
 
 		buttons[QUIT] = CP5.addButton("quitGame")
 		.setCaptionLabel(QUIT_GAME_STR) 
 		.setValue(0)
-		.setFont(font)
-		.setPosition(btnX, btnY + btnSpace * 2)
-		.setSize(btnW, btnH)
+		.setImages(btn_exit)
+		.setPosition(495, 380 + 240)
+		.setSize(385, 105)
 		.hide();	
 	}
 }

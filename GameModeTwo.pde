@@ -4,65 +4,51 @@ class GameModeTwo extends ScreenWithButton{
 	int BACK_2_MENU = 0;
 	int RESTART = 1;
 
-	float skyLine;
-
-	float leftSideBot;
-	float rightSideBot;
-
-	float leftSideTop;
-	float rightSideTop;
-
 	//Create Kinect variables will be used in this class. 
 	Kinect kinect;
 	ArrayList <SkeletonData> bodies;
 	KinectSkeleton kinectSkeleton;
-	Animal character;
 	
 	// Create image, Start button, Start button's position variables.
 	PImage stickManIMG;
 	controlP5.Button btnStart;
 	float btnStartX = 1000, btnStartY = 100;
 
-	Obstacle[] obstacbles;
-	Item[] items;
-
-	float oneY;
-	float oneX;
-
-	float deltaX;
-
-	float midLandLeft;
-	float midLandRight;
-
-	IngameBackGround ingameBG;
+	GameDrawingMeasurement gameDrawingMeasurement;
+	InGameBackground gameBackground;
+	InGameObject gameObject;
+	InGameText gameText;
 
 	GameModeTwo() {
-		stickManIMG = loadImage("/images/stick-man-arms-up.png");
+		stickManIMG = loadImage("/data/kinect/stick-man-arms-up.png");
 
-		oneY = screenY / 16;
-		oneX = screenX / 22;
+		gameDrawingMeasurement = new GameDrawingMeasurement();
+		
+		gameDrawingMeasurement.oneY = screenY / 16;
+		gameDrawingMeasurement.oneX = screenX / 22;
 
-		skyLine = oneY * 4;
+		gameDrawingMeasurement.skyLine = gameDrawingMeasurement.oneY * 4;
 
 		// size of walkside
-		leftSideBot =  oneX * 3;
-		leftSideTop = oneX * 4.5;
+		gameDrawingMeasurement.leftSideBot =  gameDrawingMeasurement.oneX * 3;
+		gameDrawingMeasurement.leftSideTop = gameDrawingMeasurement.oneX * 4.5;
 
-		rightSideBot = screenX - leftSideBot;
-		rightSideTop = screenX - leftSideTop;
+		gameDrawingMeasurement.rightSideBot = screenX - gameDrawingMeasurement.leftSideBot;
+		gameDrawingMeasurement.rightSideTop = screenX - gameDrawingMeasurement.leftSideTop;
 
-		deltaX = leftSideTop - leftSideBot;
+		gameDrawingMeasurement.deltaX = gameDrawingMeasurement.leftSideTop - gameDrawingMeasurement.leftSideBot;
 
-		midLandLeft = leftSideTop + (halfX - leftSideTop) / 2;
-		midLandRight = halfX+ (rightSideTop - halfX) / 2;
+		gameDrawingMeasurement.midLandLeft = gameDrawingMeasurement.leftSideTop + (halfX - gameDrawingMeasurement.leftSideTop) / 2;
+		gameDrawingMeasurement.midLandRight = halfX+ (gameDrawingMeasurement.rightSideTop - halfX) / 2;
 		
-		this.createCharacter();
-		this.createObstacle();
+		gameBackground = new InGameBackground(gameDrawingMeasurement);
+		gameObject = new InGameObject(gameDrawingMeasurement);
+		gameText = new InGameText(gameDrawingMeasurement);
+
+		gameText.setTextColor();
 		this.setupButton();
-		this.createItem();
 
 		kinectSkeleton =  new KinectSkeleton();
-		ingameBG = new IngameBackGround(oneX, oneY, deltaX);
 	}
 
 	void show(Kinect kinect, ArrayList <SkeletonData> bodies) {
@@ -70,20 +56,22 @@ class GameModeTwo extends ScreenWithButton{
 		this.bodies = bodies;
 
 		if (gameScreen == GAMEMODE_2_PLAYING) {
-			ingameBG.drawMap();
-			ingameBG.drawSideRoad();
+			gameBackground.draw();
 			gameBGM.play();
 
 			kinectSkeleton.draw(true, kinect, bodies);
 
 			// Update character's position by tracking the position of player's SPINE
-			character.update(kinectSkeleton.getPosition()); 
+			//character.update(kinectSkeleton.getPosition()); 
 			
 			// Draw skeleton from player input image.
-			character.draw();
+			//character.draw();
 
-			this.drawObstacleAndCheckCollision();
-			this.drawItemAndCheckCollision();
+			if (!gameObject.drawAllAndCheck()) 
+			  this.onGameOver();
+			else 
+				gameText.draw();
+			
 		} else if (gameScreen == GAMEMODE_2_READY) { // Draw READY screen helps player standing at the right position before starting the game
 			this.drawReadySceen();
 		} else {
@@ -133,227 +121,11 @@ class GameModeTwo extends ScreenWithButton{
 		}
 	}
 
-	void createObstacle() {
-
-		if (false) {
-			obstacbles = new Obstacle[1];
-
-			obstacbles[0] = new Obstacle(
-				midLandRight, 
-				skyLine, 
-				skyLine,
-				oneX * 1.5, 
-				oneY * 0.5, 
-				oneY * 1.5,
-				1, 
-				deltaX,
-				midLandLeft,
-				midLandRight,
-				leftSideBot,
-				rightSideBot
-			);
-			obstacbles[0].setCharacterImage("snake");
-		} else {
-
-			obstacbles = new Obstacle[3];
-
-			obstacbles[0] = new Obstacle(
-				midLandRight, 
-				skyLine, 
-				skyLine,
-				oneX * 1.5, 
-				oneY * 0.5, 
-				oneY * 1.5,
-				9, 
-				deltaX,
-				midLandLeft,
-				midLandRight,
-				leftSideBot,
-				rightSideBot
-			);
-
-			obstacbles[1] = new Obstacle(
-				midLandLeft, 
-				skyLine, 
-				skyLine, //screenY - 100,
-				oneX * 1.5, 
-				oneY * 0.5, 
-				oneY * 1.5,
-				5, 
-				deltaX,
-				midLandLeft,
-				midLandRight,
-				leftSideBot,
-				rightSideBot
-			);
-
-			obstacbles[2] = new Obstacle(
-				midLandLeft - oneY, 
-				skyLine, 
-				skyLine, //skyLine + character.w + 30,
-				oneX * 1.5, 
-				oneY * 0.5, 
-				oneY * 1.5,
-				8, 
-				deltaX,
-				midLandLeft,
-				midLandRight,
-				leftSideBot,
-				rightSideBot
-			);
-
-			// obstacbles[3] = new Obstacle(
-			// 	midLandRight + oneY, 
-			// 	skyLine, 
-			// 	skyLine, //skyLine + character.w + 100,
-			// 	oneX * 1.5, 
-			// 	oneY * 0.5, 
-			// 	oneY * 1.5,
-			// 	5, 
-			// 	deltaX,
-			// 	midLandLeft,
-			// 	midLandRight,
-			// 	leftSideBot,
-			// 	rightSideBot
-			// );
-
-			// obstacbles[4] = new Obstacle(
-			// 	midLandRight + oneY, 
-			// 	skyLine, 
-			// 	skyLine, //screenY - 200,
-			// 	oneX * 1.5, 
-			// 	oneY * 0.5, 
-			// 	oneY * 1.5,
-			// 	4, 
-			// 	deltaX,
-			// 	midLandLeft,
-			// 	midLandRight,
-			// 	leftSideBot,
-			// 	rightSideBot
-			// );
-
-			// obstacbles[5] = new Obstacle(
-			// 	midLandRight + oneY, 
-			// 	skyLine, 
-			// 	skyLine, //screenY - 500,
-			// 	oneX * 1.5, 
-			// 	oneY * 0.5, 
-			// 	oneY * 1.5,
-			// 	7, 
-			// 	deltaX,
-			// 	midLandLeft,
-			// 	midLandRight,
-			// 	leftSideBot,
-			// 	rightSideBot
-			// );
-
-			for (int i = 0; i<3; i++){
-				obstacbles[i].setCharacterImage("snake");
-			}
-		}
-	}
-
-	void createCharacter() {
-
-		// size of main character
-		float size = oneX * 1;
-
-		character = new Animal(
-			halfX, // x 
-			screenY - size/2 - 25, // y
-			size, // w
-			size,  // h
-			"chicken" // image name
-		);
-		
-		character.setLimit(leftSideBot, rightSideBot);
-	}
-
-	void createItem() {
-		items = new Item[2];
-
-		items[0] = new Item(
-			0,
-			midLandRight, 
-			skyLine, 
-			skyLine,
-			oneX * 1, 
-			oneY * 0.5, 
-			oneY * 1,
-			5, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		items[1] = new Item(
-			1,
-			midLandRight, 
-			skyLine, 
-			skyLine + character.w + 100,
-			oneX * 1, 
-			oneY * 0.5, 
-			oneY * 1,
-			5, 
-			deltaX,
-			midLandLeft,
-			midLandRight,
-			leftSideBot,
-			rightSideBot
-		);
-
-		items[0].setCharacterImage("chick");
-		items[1].setCharacterImage("chick");
-	}
-
-	void drawObstacleAndCheckCollision() {
-		for (int i = 0; i < obstacbles.length; i++) {
-			obstacbles[i].draw();
-			obstacbles[i].update();
-
-			if (box_box(
-				character.topLeftX,
-				character.topLeftY,
-				character.bottomRightX,
-				character.bottomRightY, 
-				obstacbles[i].topLeftX, 
-				obstacbles[i].topLeftY, 
-				obstacbles[i].bottomRightX, 
-				obstacbles[i].bottomRightY)) {
-
-				gameScreen = GAMEMODE_1_OVER;
-				this.onGameOver();
-			}
-		}
-	}
-
-	void drawItemAndCheckCollision() {
-		for (int i = 0; i < items.length; i++) {
-			items[i].draw();
-			items[i].update();
-
-			if (box_box(
-				character.topLeftX,
-				character.topLeftY,
-				character.bottomRightX,
-				character.bottomRightY, 
-				items[i].topLeftX, 
-				items[i].topLeftY, 
-				items[i].bottomRightX, 
-				items[i].bottomRightY)) {
-
-				items[i].isCollected();
-			}
-		}
-	}
-
 	void startGame() {
-		println("gamestart event (gamemode1)");
 		// Play gamestart sounds
-		gamestart.play();
-		gamestart.rewind();
+	  	gamestart.play();
+	  	gamestart.rewind();
+
 		this.restartGame();
 		gameBGM.play();
 		gameBGM.loop();
@@ -361,51 +133,35 @@ class GameModeTwo extends ScreenWithButton{
 	}
 
 	void restartGame() {
-		println("gamestart event (gamemode1)");
 		// Play Gamestart and BGM Sounds
 		gamestart.play();
 		gamestart.rewind();
 		increaseGameVolume(gameVolume);
 		gameBGM.rewind();
-		
 		gameScore = 0;
+
 		this.hideButton();
-		this.createObstacle();
+
+		this.onChangeGameEnvMode(0);
+		gameObject.obstacles.create();
 
 		gameScreen = GAMEMODE_2_PLAYING;
 	}
 
 	void onGameOver() {
-		// play death sound
-		println("gameover event");
-		// Play Lose Sound And Lower Volume
-		lose.play();
-		lose.rewind();
-		lowerGameVolume(gameVolume);
-
+	  	// Play Lose Sound And Lower Volume
+	  	lose.play();
+	  	lose.rewind();
+	  	lowerGameVolume(gameVolume);
+		
 		// draw Content
-
 		this.showButton();
-		ingameBG.drawMap();
-
-		character.draw();
-
-		for (int i = 0; i < obstacbles.length; i++) {
-			obstacbles[i].draw();
-		}
-
-		for (int i = 0; i < items.length; i++) {
-			items[i].draw();
-		}
-
-		for (int i = 0; i < obstacbles.length; i++) {
-			obstacbles[i].draw();
-		}
-
-		ingameBG.onGameOver();
-
-		fill(BLUE);
-
+		gameBackground.draw();
+		gameObject.drawOnly();
+		noStroke();
+		fill(DEATH_BG);
+		rect(screenX / 2, screenY / 2, screenX / 2, screenY / 2, 50);
+		fill(gameText.TEXT_COLOR);
 		textAlign(CENTER);
 		textSize(50);
 		text(GAMEMODE_1_OVER_MSG, halfX, halfY - 80);
@@ -452,7 +208,39 @@ class GameModeTwo extends ScreenWithButton{
 		.hide();
 	}
 
+	void onChangeGameEnvMode(int mode) {
+		gameEnvMode = mode;
+		gameObject.updateGameEnvMode(mode);
+		gameText.setTextColor();
+	}
+
+	void calculateScore(int itemType, int score, float xScore, float yScore) {
+
+		gameScore += score;
+
+		gameText.addNewPlusScore("+" + score, xScore, yScore);
+
+		if (gameScore % 1000 == 0) {
+			gameObject.obstacles.welcomeToHell();
+		}
+
+		if (gameScore % 750 == 0) {
+			gameObject.obstacles.speedUp();
+
+			if (itemType == 1) {
+				if (gameEnvMode == 0) {
+					onChangeGameEnvMode(1);
+				} else {
+					onChangeGameEnvMode(0);	
+				}
+			}
+		} else if (itemType == 1 && gameScore % 500 == 0) {
+			gameObject.character.updateImageRandomly();
+		}
+	}
 }
+
+
 
 void backToMainMenuGM2() {
 	if (frameCount > 0) {

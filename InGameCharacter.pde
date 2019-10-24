@@ -25,7 +25,7 @@ class InGameCharacter {
 	}
 
 	void updateAndDraw() {
-		character.update(true); 
+		character.update(mouseX); 
 		character.draw();
 	}
 
