@@ -35,16 +35,17 @@ class InGameBackground {
 			image(reef, cloudX[0], oneY, 228, 124);
 		}
 
-		line(0, skyLine, screenX, skyLine);
-		line(gdm.leftSideBot, screenY, gdm.leftSideTop, skyLine);
-		line(gdm.rightSideBot, screenY, gdm.rightSideTop, skyLine);
+		//line(0, skyLine, screenX, skyLine);
+		//line(gdm.leftSideBot, screenY, gdm.leftSideTop, skyLine);
+		//line(gdm.rightSideBot, screenY, gdm.rightSideTop, skyLine);
 
-		stroke(0);
+		//stroke(0);
 
-		line(halfX, skyLine, halfX, screenY);
+		//line(halfX, skyLine, halfX, screenY);
 	}
 
 	void drawBackground(float skyLine) {
+		noStroke();
 		if (gameEnvMode == 0) {
 			background(ROAD_COLOR);
 			fill(BLUE_SKY);
