@@ -65,7 +65,7 @@ class GameModeTwo extends ScreenWithButton{
 			gameBackground.draw();
 			gameBGM.play();
 
-			kinectSkeleton.draw(true, kinect, bodies);
+			kinectSkeleton.draw(false, kinect, bodies);
 
 			// Update character's position by tracking the position of player's SPINE
 			//character.update(kinectSkeleton.getPosition()); 

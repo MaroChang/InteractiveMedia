@@ -114,6 +114,7 @@ class Item {
 		y += speed;
 
 		if (topLeftY > endY) {
+      this.randomUpdateImage();
 			x = random(leftSideBot, rightSideBot);
 			
 			y = beginY - minHeight;
@@ -132,6 +133,8 @@ class Item {
 		// get height by current y
 		h = map(y, beginY, endY, minHeight, maxHeight);
 		w = map(y, beginY, endY, minWidth, maxWidth);
+
+    
 	}
 
 	void isCollected() {
@@ -184,14 +187,15 @@ class Item {
 
 	void randomUpdateImage() {
 		int i;
-		i = int(random(3));
+		i = int(random(4));
 		// land
 		if (this.envMode == 0) {
+  println(i);
 			imageM = itemLImage[i];
 		}
 		// ocean 
 		else {
-			i = int(random(3));
+			i = int(random(2));
 			imageM = itemOImage[i];
 		}
 

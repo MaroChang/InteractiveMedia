@@ -90,6 +90,7 @@ void loadObjectImage() {
 		characterOLImage[i] = loadImage("mainChar/o" + i + "d.png");		
 	}
 
+
 	obsLImage = new PImage[3][2];
 	for (int i = 0; i < 3; i++) {
 		obsLImage[i][0] = loadImage("mainObs/l"+ i +"0.png");
@@ -102,15 +103,15 @@ void loadObjectImage() {
 		obsOImage[i][1] = loadImage("mainObs/o"+ i +"1.png");
 	}
 
-	itemLImage = new PImage[2][3];
-	for (int i = 0; i < 2; i++) {
+	itemLImage = new PImage[4][3];
+	for (int i = 0; i < 4; i++) {
 		itemLImage[i][0] = loadImage("mainItem/l"+ i +"0.png");
 		itemLImage[i][1] = loadImage("mainItem/l"+ i +"1.png");
 		itemLImage[i][2] = loadImage("mainItem/l"+ i +"2.png");
 	}
 
-    itemOImage = new PImage[2][3];
-    for (int i = 0; i < 2; i++) {
+    itemOImage = new PImage[3][3];
+    for (int i = 0; i < 3; i++) {
 		itemOImage[i][0] = loadImage("mainItem/o"+ i +"0.png");
 		itemOImage[i][1] = loadImage("mainItem/o"+ i +"1.png");
 		itemOImage[i][2] = loadImage("mainItem/o"+ i +"2.png");
