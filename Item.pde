@@ -118,6 +118,7 @@ class Item {
 			
 			y = beginY - minHeight;
 			this.shouldXChangeWhenMoving();
+			this.randomUpdateImage();
 		}
 
 		if (needChangeX) {
@@ -184,9 +185,9 @@ class Item {
 
 	void randomUpdateImage() {
 		int i;
-		i = int(random(3));
 		// land
 		if (this.envMode == 0) {
+			i = int(random(4));
 			imageM = itemLImage[i];
 		}
 		// ocean 
