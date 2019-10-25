@@ -24,8 +24,8 @@ class InGameCharacter {
 		character.setLimit(gdm.leftSideBot, gdm.rightSideBot);
 	}
 
-	void updateAndDraw() {
-		character.update(mouseX); 
+	void updateAndDraw(int xPosition) {
+		character.update(xPosition); 
 		character.draw();
 	}
 

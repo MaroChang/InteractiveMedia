@@ -2,7 +2,7 @@ class WelcomeScreen {
 
   PImage menuBackground;
   PImage title;
-  PFont font = createFont("Aloha.ttf", 20);
+  PFont font = createFont("/font/Aloha.ttf", 20);
   
   WelcomeScreen() {
     menuBackground = loadImage("menu_bg.png");

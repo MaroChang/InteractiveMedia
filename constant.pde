@@ -45,7 +45,7 @@ color DEATH_BG = color(192, 192, 192, 150);
 color BLUE_SKY = color(135, 206, 235);
 color GROUND_COLOR = color(193, 168, 154);
 color ROAD_COLOR = color(211, 211, 211);
-color INSTRUCTIONS = color(150, 75, 0 , 10);
+color INSTRUCTIONS = color(255, 255, 255 , 160);
 
 // Ocean 
 color DARK_BLUE = color(1, 101, 135);

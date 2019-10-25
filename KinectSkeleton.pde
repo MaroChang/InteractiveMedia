@@ -23,13 +23,13 @@ class KinectSkeleton{
         }
     }
 
-    float getPosition (){
+    int getPosition (){
         if (bodies != null && bodies.size() > 0){
             //Searching for the bodies SPINE position
             for (int i=0; i<bodies.size (); i++) 
             { if(bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_SPINE].x > 0){
                 //change main character's position on x axis
-                float position = bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_SPINE].x*width;
+                int position = (int)(bodies.get(i).skeletonPositions[Kinect.NUI_SKELETON_POSITION_SPINE].x*width);
                 return position;
                 }
             }

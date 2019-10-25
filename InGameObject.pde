@@ -16,11 +16,11 @@ class InGameObject {
 		items = new InGameItem(gdm);
 	}
 
-	boolean drawAllAndCheck() {
+	boolean drawAllAndCheck(int xPosition) {
 		boolean allGood;
 		sideRoad.draw();
 
-		character.updateAndDraw();
+		character.updateAndDraw(xPosition);
 
 		allGood = this.drawObstacleAndCheckCollision();
 		this.drawItemAndCheckCollision();

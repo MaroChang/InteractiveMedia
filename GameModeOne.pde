@@ -10,6 +10,11 @@ class GameModeOne extends ScreenWithButton {
 	InGameObject gameObject;
 	InGameText gameText;
 
+	PImage scoreboardBG = loadImage("/scoreboard/gameover_board.png");
+	PImage[] star = {loadImage("/scoreboard/Star_0.png"),loadImage("/scoreboard/Star_1.png"),loadImage("/scoreboard/Star_2.png"),loadImage("/scoreboard/Star_3.png")};
+	PImage[] btn_restart = {loadImage("/button/btn_restart.png"),loadImage("/button/btn_restart_hover.png"),loadImage("/button/btn_restart_active.png")};
+	PImage[] btn_main_menu = {loadImage("/button/btn_main_menu.png"),loadImage("/button/btn_main_menu_hover.png"),loadImage("/button/btn_main_menu_active.png")};
+	PFont font = createFont("/font/Tondu_Beta.ttf", 32);
 
 	GameModeOne() {
 		gameDrawingMeasurement = new GameDrawingMeasurement();
@@ -44,9 +49,9 @@ class GameModeOne extends ScreenWithButton {
 			gameBackground.draw();
 			gameBGM.play();
 
-			if (!gameObject.drawAllAndCheck()) {
+			if (!gameObject.drawAllAndCheck(mouseX)) {
 			  this.onGameOver();
-		} else {
+			} else {
 			gameText.draw();
 		}
 	}
@@ -87,19 +92,37 @@ class GameModeOne extends ScreenWithButton {
 	  	lowerGameVolume(gameVolume);
 		
 		// draw Content
-		this.showButton();
+		
 		gameBackground.draw();
 		gameObject.drawOnly();
-		noStroke();
-		fill(DEATH_BG);
-		rect(screenX / 2, screenY / 2, screenX / 2, screenY / 2, 50);
-		fill(gameText.TEXT_COLOR);
-		textAlign(CENTER);
-		textSize(50);
-		text(GAMEMODE_1_OVER_MSG, halfX, halfY - 80);
 
-		textSize(30);
-		text("YOUR SCORE: " + gameScore, halfX, halfY - 15);
+		drawScoreboard();
+	}
+
+	void drawScoreboard(){
+	//Draw GameBoard
+		this.showButton();
+
+		imageMode(CENTER);
+		image(scoreboardBG, 683, 380, 550, 645);
+
+		if (gameScore <= 100)
+			image(star[0], 683, 260, 350, 155);
+		else if (gameScore <= 300)
+			image(star[1], 683, 260, 350, 155);
+		else if (gameScore <= 500)
+			image(star[2], 683, 260, 350, 155);
+		else 
+			image(star[3], 683, 260, 350, 155);
+
+		imageMode(CORNER);
+
+		noStroke();
+		fill(109,68,50);
+		textAlign(CENTER);
+		textSize(80);
+		textFont(font);
+		text("YOUR SCORE: " + gameScore, halfX -5, halfY + 15);
 	}
 
 	void setupButton() {
@@ -111,24 +134,21 @@ class GameModeOne extends ScreenWithButton {
 		int btnH = 50;
 		int btnX = int(halfX) - int(btnW / 2);
 		int btnY = int(halfY);
-		int btnSpace = 70;
-
-		PFont font = createFont("Georgia", 20);
 
 		buttons[BACK_2_MENU] = CP5.addButton("backToMainMenuGM1")
 		.setCaptionLabel(MAIN_MENU_STR) 
 		.setValue(0)
-		.setFont(font)
-		.setPosition(btnX, btnY + btnSpace)
-		.setSize(btnW, btnH)
+		.setImages(btn_main_menu)
+		.setPosition(halfX-150, halfY + 170)
+		.setSize(300, 78)
 		.hide();
 
 		buttons[RESTART] = CP5.addButton("restartGameMode1")
 		.setCaptionLabel(RESTART_STR) 
 		.setValue(0)
-		.setFont(font)
-		.setPosition(btnX, btnY)
-		.setSize(btnW, btnH)
+		.setImages(btn_restart)
+		.setPosition(halfX-150, halfY + 50)
+		.setSize(300, 78)
 		.hide();
 	}
 
@@ -144,11 +164,11 @@ class GameModeOne extends ScreenWithButton {
 
 		gameText.addNewPlusScore("+" + score, xScore, yScore);
 
-		if (gameScore % 1000 == 0) {
+		if (gameScore % 500 == 0) {
 			gameObject.obstacles.welcomeToHell();
 		}
 
-		if (gameScore % 750 == 0) {
+		if (gameScore % 500 == 0) {
 			gameObject.obstacles.speedUp();
 
 			if (itemType == 1) {

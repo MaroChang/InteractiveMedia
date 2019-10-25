@@ -5,7 +5,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
   int GAMEMODE_1 = 1;
   int GAMEMODE_2 = 2;
 
-  PFont font = createFont("Aloha.ttf", 20);
+  PFont font = createFont("/font/Aloha.ttf", 20);
 
   //backgroung image
   PImage bg;
@@ -13,13 +13,12 @@ class GameModeSelectionScreen extends ScreenWithButton {
 
 
   GameModeSelectionScreen() {
-    bg = loadImage("image_4.jpg");
-    bg.resize(1366,768);
+    bg = loadImage("gameSelection_bg.png");
     this.setupButton();
   }
 
   void show() {
-    // background(WHITE);
+    background(bg);
     // fill(UGLY_COLOR);
     noStroke();
     fill(INSTRUCTIONS);
@@ -39,9 +38,6 @@ class GameModeSelectionScreen extends ScreenWithButton {
     text("Items:", screenX / 2 + screenX / 4 - 50, screenY / 3.9);
 
     text("Collect These", screenX / 2 + screenX / 4, screenY / 1.4);
-
-    // image(bg2, 0, 0, 1366, 768);
-
   }
   
   // Sets up the functionality and the side of buttons on game mode selection screen

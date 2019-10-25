@@ -14,7 +14,7 @@ class SettingScreen extends ScreenWithButton {
 	PImage settingBackground;
 	PImage[] btn_back = {loadImage("/button/btn_back.png"),loadImage("/button/btn_back_hover.png"),loadImage("/button/btn_back_active.png")};
 
-	PFont font = createFont("Aloha.ttf", 20);
+	PFont font = createFont("/font/Aloha.ttf", 20);
 
 	//controlP5.Slider volume;
 
