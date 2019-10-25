@@ -43,7 +43,7 @@ class SideObject {
 	float rightSideBot;
 
 	PImage imageM;
-	int envMode = 0;
+	int envMode = gameEnvMode;
 
 	SideObject(float _x, float _y, float _w, float _h, float _beginX, float _endX, float _beginY, float _endY, float _initalP) {
 		

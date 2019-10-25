@@ -5,15 +5,22 @@ class InGameBackground {
 	float[] cloudX;
 	float castleX;
 
+	PImage bRock, bRock1;
+
+
 	InGameBackground(GameDrawingMeasurement _gdm) {
 		gdm = _gdm;
 
-		cloudX = new float[3];
+		cloudX = new float[4];
 		cloudX[0] = gdm.oneX;
 		cloudX[1] = gdm.oneX * 10;
 		cloudX[2] = gdm.oneX * 5;
+		cloudX[3] = gdm.oneX * 18;
 
 		castleX = gdm.oneX * 14;
+
+		bRock = sideObjOImage[0];
+		bRock1 = sideObjOImage[1];
 	}
 
 	void draw() {
@@ -32,7 +39,9 @@ class InGameBackground {
 			image(castle, castleX, oneY * 0.2, 204, 182);
 		} else {
 			image(reef, castleX, oneY * 0.2, 204, 182);
-			image(reef, cloudX[0], oneY, 228, 124);
+			image(reef, cloudX[0], oneY, 190, 155);
+			image(bRock, cloudX[2], oneY, 228, 124);
+			image(bRock1, cloudX[3], oneY, 228, 124);
 		}
 
 		//line(0, skyLine, screenX, skyLine);

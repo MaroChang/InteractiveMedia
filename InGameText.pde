@@ -49,6 +49,7 @@ class InGameText {
 		for (int i = 0; i < numberOfPlusScore - 1; i++) {
 			if (!plusScoreText[i].active && !plusScoreText[i+1].active) {
 				plusScoreText[i+1].setAndActive(content, x, y);
+				break;
 			}
 		}
 	}

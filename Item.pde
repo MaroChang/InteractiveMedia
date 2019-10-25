@@ -44,7 +44,7 @@ class Item {
 
 	int imageFrame = 1;
 	int type;
-	int envMode = 0;
+	int envMode = gameEnvMode;
 	int score;
 
 	Item(int _type,float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
