@@ -7,7 +7,6 @@ class InGameBackground {
 
 	PImage bRock, bRock1;
 
-
 	InGameBackground(GameDrawingMeasurement _gdm) {
 		gdm = _gdm;
 

@@ -46,6 +46,7 @@ class Item {
 	int type;
 	int envMode = gameEnvMode;
 	int score;
+	boolean special = false;
 
 	Item(int _type,float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
 		
@@ -185,6 +186,7 @@ class Item {
 
 	void randomUpdateImage() {
 		int i;
+
 		// land
 		if (this.envMode == 0) {
 			i = int(random(4));
