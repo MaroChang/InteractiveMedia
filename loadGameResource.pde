@@ -8,6 +8,7 @@ PImage[] characterLLImage, characterOLImage;
 
 PImage[][] obsLImage, obsOImage;
 PImage[][] itemLImage, itemOImage;
+PImage[] itemSpecial;
 
 PImage monsters, players, items;
 PImage[] cloud;
@@ -115,6 +116,11 @@ void loadObjectImage() {
 		itemOImage[i][0] = loadImage("mainItem/o"+ i +"0.png");
 		itemOImage[i][1] = loadImage("mainItem/o"+ i +"1.png");
 		itemOImage[i][2] = loadImage("mainItem/o"+ i +"2.png");
+	}
+
+	itemSpecial = new PImage[3];
+    for (int i = 0; i < 3; i++) {
+		itemSpecial[i] = loadImage("mainItem/s0"+ i +".png");
 	}
 }
 

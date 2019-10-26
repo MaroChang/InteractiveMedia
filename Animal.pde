@@ -18,7 +18,7 @@ class Animal {
 	PImage imageM;
 	PImage imageL;
 
-	int envMode = 0;
+	int envMode = gameEnvMode;
 	int imageIndex = 0;
 
 	Animal(float _x, float _y, float _w, float _h) {

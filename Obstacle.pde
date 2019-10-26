@@ -47,7 +47,7 @@ class Obstacle {
 	PImage imageMX;
 
 	int imageFrame = 1;
-	int envMode = 0;
+	int envMode = gameEnvMode;
 
 	boolean needInscreaseSpeed = false;
 

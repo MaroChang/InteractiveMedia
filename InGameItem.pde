@@ -3,7 +3,7 @@ class InGameItem {
 
 	Item[] items;
 
-	int numberOfItem = 2;
+	int numberOfItem = 3;
 
 	InGameItem(GameDrawingMeasurement _gdm) {
 		gdm = _gdm;
@@ -29,7 +29,7 @@ class InGameItem {
 		float oneY05 = oneY * 0.5;
 		float oneY15 = oneY * 1.5;
 
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < numberOfItem - 1; i++) {
 			items[i] = new Item(
 				0,
 				midLandRight, 
@@ -47,7 +47,7 @@ class InGameItem {
 			);
 		}
 
-		items[1] = new Item(
+		items[numberOfItem - 1] = new Item(
 			1,
 			midLandRight, 
 			skyLine, 

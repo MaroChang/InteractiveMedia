@@ -44,8 +44,9 @@ class Item {
 
 	int imageFrame = 1;
 	int type;
-	int envMode = 0;
+	int envMode = gameEnvMode;
 	int score;
+	boolean special = false;
 
 	Item(int _type,float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
 		
@@ -118,6 +119,7 @@ class Item {
 			
 			y = beginY - minHeight;
 			this.shouldXChangeWhenMoving();
+			this.randomUpdateImage();
 		}
 
 		if (needChangeX) {
@@ -184,9 +186,10 @@ class Item {
 
 	void randomUpdateImage() {
 		int i;
-		i = int(random(3));
+
 		// land
 		if (this.envMode == 0) {
+			i = int(random(4));
 			imageM = itemLImage[i];
 		}
 		// ocean 
