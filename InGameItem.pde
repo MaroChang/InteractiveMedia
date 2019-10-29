@@ -3,7 +3,7 @@ class InGameItem {
 
 	Item[] items;
 
-	int numberOfItem = 3;
+	int numberOfItem = 4;
 
 	InGameItem(GameDrawingMeasurement _gdm) {
 		gdm = _gdm;
@@ -29,7 +29,7 @@ class InGameItem {
 		float oneY05 = oneY * 0.5;
 		float oneY15 = oneY * 1.5;
 
-		for (int i = 0; i < numberOfItem - 1; i++) {
+		for (int i = 0; i < numberOfItem - 2; i++) {
 			items[i] = new Item(
 				0,
 				midLandRight, 
@@ -47,6 +47,22 @@ class InGameItem {
 			);
 		}
 
+		items[numberOfItem - 2] = new Item(
+			1,
+			midLandRight, 
+			skyLine, 
+			skyLine,
+			oneX, 
+			oneY05, 
+			oneY,
+			5, 
+			deltaX,
+			midLandLeft,
+			midLandRight,
+			leftSideBot,
+			rightSideBot
+		);
+
 		items[numberOfItem - 1] = new Item(
 			1,
 			midLandRight, 
@@ -61,7 +77,10 @@ class InGameItem {
 			midLandRight,
 			leftSideBot,
 			rightSideBot
-		);	
+		);
+
+		items[numberOfItem - 1].deactivate();
+		items[numberOfItem - 1].setSpecial(true);	
 
 		for (int i = 0; i < numberOfItem; i++) {
 			items[i].forcedUpdate();
@@ -71,27 +90,31 @@ class InGameItem {
 	void updateDrawCheck(float topLeftX, float topLeftY, float bottomRightX, float bottomRightY) {
 
 		for (int i = 0; i < numberOfItem; i++) {
-			items[i].draw();
-			items[i].update();
+			if (items[i].active) {
+				items[i].draw();
+				items[i].update();
 
-			if (box_box(
-				topLeftX,
-				topLeftY,
-				bottomRightX,
-				bottomRightY,
-				items[i].topLeftX, 
-				items[i].topLeftY, 
-				items[i].bottomRightX, 
-				items[i].bottomRightY)) {
+				if (box_box(
+					topLeftX,
+					topLeftY,
+					bottomRightX,
+					bottomRightY,
+					items[i].topLeftX, 
+					items[i].topLeftY, 
+					items[i].bottomRightX, 
+					items[i].bottomRightY)) {
 
-				items[i].isCollected();
+					items[i].isCollected();
+				}
 			}
 		}
 	}
 
 	void drawOnly() {
 		for (int i = 0; i < numberOfItem; i++) {
-			items[i].draw();
+			if(items[i].active) {
+				items[i].draw();
+			}
 		}
 	}
 
@@ -99,5 +122,13 @@ class InGameItem {
 		for (int i = 0; i < numberOfItem; i++) {
 			items[i].updateEnvMode(mode);
 		}
+	}
+
+	void showThePotion() {
+
+		int potionIndex = numberOfItem  - 1;
+
+		items[potionIndex].forcedUpdate();
+		items[potionIndex].activate();	
 	}
 }

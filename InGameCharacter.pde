@@ -3,6 +3,10 @@ class InGameCharacter {
 
 	Animal character;
 
+	boolean visual = true;
+
+	int endInvisibleTime;
+
 	InGameCharacter(GameDrawingMeasurement _gdm) {
 		gdm = _gdm;
 
@@ -26,7 +30,15 @@ class InGameCharacter {
 
 	void updateAndDraw(int xPosition) {
 		character.update(xPosition); 
-		character.draw();
+		if (visual) {
+			character.draw();
+		} else {
+			if (millis() > endInvisibleTime) {
+				visual = true;
+				scoreBoots = 1;
+				character.draw();
+			}
+		}
 	}
 
 	void updateEnvMode(int mode) {
@@ -35,5 +47,14 @@ class InGameCharacter {
 
 	void updateImageRandomly() {
 		character.randomUpdateImage();
+	}
+
+	void setVisual(boolean _visual) {
+		visual = _visual;
+
+
+		if (visual == false) {
+			endInvisibleTime = millis() + 10000;
+		}
 	}
 }

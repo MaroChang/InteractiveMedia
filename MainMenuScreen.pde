@@ -12,9 +12,9 @@ class MainMenuScreen extends ScreenWithButton {
 
 	PImage menuBackground;
 	PImage title;
-	PImage[] btn_newgame = {loadImage("/button/btn_newgame.png"),loadImage("/button/btn_newgame_hover.png"),loadImage("/button/btn_newgame_active.png")};
-	PImage[] btn_credit = {loadImage("/button/btn_credit.png"),loadImage("/button/btn_credit_hover.png"),loadImage("/button/btn_credit_active.png")};
-	PImage[] btn_exit = {loadImage("/button/btn_exit.png"),loadImage("/button/btn_exit_hover.png"),loadImage("/button/btn_exit_active.png")};
+	PImage[] btn_newgame = {loadImage("button/btn_newgame.png"),loadImage("button/btn_newgame_hover.png"),loadImage("button/btn_newgame_active.png")};
+	PImage[] btn_credit = {loadImage("button/btn_credit.png"),loadImage("button/btn_credit_hover.png"),loadImage("button/btn_credit_active.png")};
+	PImage[] btn_exit = {loadImage("button/btn_exit.png"),loadImage("button/btn_exit_hover.png"),loadImage("button/btn_exit_active.png")};
 
 	MainMenuScreen() {
 		this.setupButton();

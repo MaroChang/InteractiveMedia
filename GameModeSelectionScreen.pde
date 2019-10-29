@@ -5,11 +5,11 @@ class GameModeSelectionScreen extends ScreenWithButton {
   int GAMEMODE_1 = 1;
   int GAMEMODE_2 = 2;
 
-  PFont font = createFont("/font/Aloha.ttf", 20);
+  PFont font = createFont("font/Aloha.ttf", 20);
 
   //backgroung image
   PImage bg;
-  PImage[] btn_back = {loadImage("/button/btn_back.png"),loadImage("/button/btn_back_hover.png"),loadImage("/button/btn_back_active.png")};
+  PImage[] btn_back = {loadImage("button/btn_back.png"),loadImage("button/btn_back_hover.png"),loadImage("button/btn_back_active.png")};
 
 
   GameModeSelectionScreen() {

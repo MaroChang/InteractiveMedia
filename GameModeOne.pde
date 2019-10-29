@@ -10,11 +10,11 @@ class GameModeOne extends ScreenWithButton {
 	InGameObject gameObject;
 	InGameText gameText;
 
-	PImage scoreboardBG = loadImage("/scoreboard/gameover_board.png");
-	PImage[] star = {loadImage("/scoreboard/Star_0.png"),loadImage("/scoreboard/Star_1.png"),loadImage("/scoreboard/Star_2.png"),loadImage("/scoreboard/Star_3.png")};
-	PImage[] btn_restart = {loadImage("/button/btn_restart.png"),loadImage("/button/btn_restart_hover.png"),loadImage("/button/btn_restart_active.png")};
-	PImage[] btn_main_menu = {loadImage("/button/btn_main_menu.png"),loadImage("/button/btn_main_menu_hover.png"),loadImage("/button/btn_main_menu_active.png")};
-	PFont font = createFont("/font/Tondu_Beta.ttf", 32);
+	PImage scoreboardBG = loadImage("scoreboard/gameover_board.png");
+	PImage[] star = {loadImage("scoreboard/Star_0.png"),loadImage("scoreboard/Star_1.png"),loadImage("scoreboard/Star_2.png"),loadImage("scoreboard/Star_3.png")};
+	PImage[] btn_restart = {loadImage("button/btn_restart.png"),loadImage("button/btn_restart_hover.png"),loadImage("button/btn_restart_active.png")};
+	PImage[] btn_main_menu = {loadImage("button/btn_main_menu.png"),loadImage("button/btn_main_menu_hover.png"),loadImage("button/btn_main_menu_active.png")};
+	PFont font = createFont("font/Tondu_Beta.ttf", 32);
 
 	GameModeOne() {
 		gameDrawingMeasurement = new GameDrawingMeasurement();
@@ -52,10 +52,10 @@ class GameModeOne extends ScreenWithButton {
 			if (!gameObject.drawAllAndCheck(mouseX)) {
 			  this.onGameOver();
 			} else {
-			gameText.draw();
+				gameText.draw();
+			}
 		}
-	}
-  }
+  	}
   
 	void startGame() {
 
@@ -81,6 +81,8 @@ class GameModeOne extends ScreenWithButton {
 
 		this.onChangeGameEnvMode(0);
 		gameObject.obstacles.create();
+		gameObject.character.setVisual(true);
+		scoreBoots = 1;
 
 		gameScreen = GAMEMODE_1_PLAYING;
 	}
@@ -159,6 +161,7 @@ class GameModeOne extends ScreenWithButton {
 	}
 
 	void calculateScore(int itemType, int score, float xScore, float yScore) {
+		score = score * scoreBoots;
 
 		gameScore += score;
 
@@ -171,6 +174,8 @@ class GameModeOne extends ScreenWithButton {
 		if (gameScore % 500 == 0) {
 			gameObject.obstacles.speedUp();
 
+			gameObject.items.showThePotion();
+
 			if (itemType == 1) {
 				if (gameEnvMode == 0) {
 					onChangeGameEnvMode(1);
@@ -180,6 +185,15 @@ class GameModeOne extends ScreenWithButton {
 			}
 		} else if (itemType == 1 && gameScore % 500 == 0) {
 			gameObject.character.updateImageRandomly();
+		}
+	}
+
+	void specialItemCollected(int type) {
+		switch (type) {
+			case 1: 
+			 	gameObject.character.setVisual(false);
+			 	scoreBoots = 2;
+			break;			
 		}
 	}
 }

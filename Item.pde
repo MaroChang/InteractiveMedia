@@ -47,6 +47,7 @@ class Item {
 	int envMode = gameEnvMode;
 	int score;
 	boolean special = false;
+	boolean active = true;
 
 	Item(int _type,float _x, float _y, float _initalY ,float _w, float _minHeight, float _maxHeight, float _speed, float _deltaX, float _midLandLeft, float _midLandRight, float _leftSideBot, float _rightSideBot) {
 		
@@ -92,6 +93,22 @@ class Item {
 		this.randomUpdateImage();
 	}
 
+	void activate() {
+		active = true;
+	}
+
+	void deactivate() {
+		active = false;
+	}
+
+	void setSpecial(boolean s) {
+		special = s;
+
+		if (special) {
+			imageM = itemSpecial;
+		}
+	}
+
 	// determine whenever the obstacble change only y coordinates or both x and y coordiante when moving
 	void shouldXChangeWhenMoving() {
 		orgX = x;
@@ -120,6 +137,10 @@ class Item {
 			y = beginY - minHeight;
 			this.shouldXChangeWhenMoving();
 			this.randomUpdateImage();
+
+			if (special && active) {
+				this.deactivate();
+			}
 		}
 
 		if (needChangeX) {
@@ -138,6 +159,11 @@ class Item {
 
 	void isCollected() {
 		gameModeOne.calculateScore(type, score, x, y);
+
+		if (special) {
+			this.deactivate();
+			gameModeOne.specialItemCollected(1);
+		}
 
 		topLeftY = endY + 100;
 		this.update();
@@ -186,19 +212,22 @@ class Item {
 
 	void randomUpdateImage() {
 		int i;
+		if (! special) {
+			// land
+			if (this.envMode == 0) {
+				i = int(random(4));
+				imageM = itemLImage[i];
+			}
+			// ocean 
+			else {
+				i = int(random(3));
+				imageM = itemOImage[i];
+			}
 
-		// land
-		if (this.envMode == 0) {
-			i = int(random(4));
-			imageM = itemLImage[i];
+			score = (i + 1) * 25;
+		} else {
+			score = 125;
 		}
-		// ocean 
-		else {
-			i = int(random(3));
-			imageM = itemOImage[i];
-		}
-
-		score = (i + 1) * 25;
 	}
 
 }

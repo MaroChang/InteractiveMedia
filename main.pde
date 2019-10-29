@@ -30,13 +30,14 @@ int gameState;
 // identify the current screen of a state
 int gameScreen;
 // current score of player
-int gameScore = 1350;
+int gameScore = 0;
+int scoreBoots = 1;
 
 // game setting
 boolean gameInKinect = true;
 boolean gameInKeyboard = false;
 float gameVolume = 50;
-int gameEnvMode = 0;
+int gameEnvMode = 1;
 
 // character move speed
 float moveValue = 5;
@@ -66,9 +67,10 @@ void setup(){
     loadGameResource();
     rectMode(CENTER);
 
-//Initialize Kinect variables
-    kinect = new Kinect(this);
     smooth();
+
+    //Initialize Kinect variables
+    kinect = new Kinect(this);
     bodies = new ArrayList<SkeletonData>();
 
     // create game instance
@@ -78,8 +80,6 @@ void setup(){
 
     fill(UGLY_COLOR);
     rectMode(CENTER);
-    smooth();
-
 }
 
 // Drawing ________________
