@@ -36,7 +36,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
     text("Avoid These", screenX / 2 , screenY / 1.4);
 
     text("Items:", screenX / 2 + screenX / 4 - 50, screenY / 3.9);
-
+    image(items,screenX / 2 + screenX / 4 - 50, screenY / 4.6, 200, 300);
     text("Collect These", screenX / 2 + screenX / 4, screenY / 1.4);
   }
   
