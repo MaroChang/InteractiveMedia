@@ -136,4 +136,6 @@ void loadBackGroundImage() {
 
 	monsters = loadImage("instructions/monsters.png");
 	players = loadImage("instructions/players.png");
+	items = loadImage("instructions/players.png");
+}
 }

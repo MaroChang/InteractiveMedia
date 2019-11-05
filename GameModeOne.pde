@@ -63,10 +63,11 @@ class GameModeOne extends ScreenWithButton {
 	  	gamestart.play();
 	  	gamestart.rewind();
 
-		this.restartGame();
 		gameBGM.play();
 		gameBGM.loop();
 		gameBGM.setGain(gameVolume - 60);
+		
+		this.restartGame();
 	}
 
 	void restartGame() {
