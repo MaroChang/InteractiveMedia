@@ -138,4 +138,3 @@ void loadBackGroundImage() {
 	players = loadImage("instructions/players.png");
 	items = loadImage("instructions/players.png");
 }
-}
