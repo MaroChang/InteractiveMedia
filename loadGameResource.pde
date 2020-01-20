@@ -5,6 +5,7 @@ AudioPlayer click, gamestart, point, lose, pickUp, tombstone, walk, jump, spawn,
 PImage[] sideObjLImage, sideObjOImage;
 PImage[] characterLImage, characterOImage;
 PImage[] characterLLImage, characterOLImage;
+PImage characterAngleImage;
 
 PImage[][] obsLImage, obsOImage;
 PImage[][] itemLImage, itemOImage;
@@ -91,6 +92,8 @@ void loadObjectImage() {
 		characterOLImage[i] = loadImage("mainChar/o" + i + "d.png");		
 	}
 
+	characterAngleImage = loadImage("mainChar/angle_mode.png");
+
 
 	obsLImage = new PImage[3][2];
 	for (int i = 0; i < 3; i++) {
@@ -136,5 +139,5 @@ void loadBackGroundImage() {
 
 	monsters = loadImage("instructions/monsters.png");
 	players = loadImage("instructions/players.png");
-	items = loadImage("instructions/players.png");
+	items = loadImage("instructions/items.png");
 }

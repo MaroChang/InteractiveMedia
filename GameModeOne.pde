@@ -109,11 +109,11 @@ class GameModeOne extends ScreenWithButton {
 		imageMode(CENTER);
 		image(scoreboardBG, 683, 380, 550, 645);
 
-		if (gameScore <= 100)
+		if (gameScore <= 300)
 			image(star[0], 683, 260, 350, 155);
-		else if (gameScore <= 300)
+		else if (gameScore <= 600)
 			image(star[1], 683, 260, 350, 155);
-		else if (gameScore <= 500)
+		else if (gameScore <= 1000)
 			image(star[2], 683, 260, 350, 155);
 		else 
 			image(star[3], 683, 260, 350, 155);
@@ -168,11 +168,11 @@ class GameModeOne extends ScreenWithButton {
 
 		gameText.addNewPlusScore("+" + score, xScore, yScore);
 
-		if (gameScore % 500 == 0) {
+		if (gameScore >= 1000) {
 			gameObject.obstacles.welcomeToHell();
 		}
 
-		if (gameScore % 500 == 0) {
+		if (gameScore >1000) {
 			gameObject.obstacles.speedUp();
 
 			gameObject.items.showThePotion();

@@ -31,6 +31,7 @@ int gameState;
 int gameScreen;
 // current score of player
 int gameScore = 0;
+int speedIncrease = 1;
 int scoreBoots = 1;
 
 // game setting

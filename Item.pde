@@ -158,11 +158,17 @@ class Item {
 	}
 
 	void isCollected() {
-		gameModeOne.calculateScore(type, score, x, y);
+		if (gameScreen == GAMEMODE_1_PLAYING)
+			gameModeOne.calculateScore(type, score, x, y);
+		else
+			gameModeTwo.calculateScore(type, score, x, y);
 
 		if (special) {
 			this.deactivate();
-			gameModeOne.specialItemCollected(1);
+			if (gameScreen == GAMEMODE_1_PLAYING)
+				gameModeOne.specialItemCollected(1);
+			else	
+				gameModeTwo.specialItemCollected(1);
 		}
 
 		topLeftY = endY + 100;

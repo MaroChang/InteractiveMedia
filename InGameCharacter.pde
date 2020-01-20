@@ -37,6 +37,9 @@ class InGameCharacter {
 				visual = true;
 				scoreBoots = 1;
 				character.draw();
+			}else{
+				if (millis() % 1000 < 500) //Character Blink 0.5s
+					character.drawAngle();
 			}
 		}
 	}
@@ -52,9 +55,8 @@ class InGameCharacter {
 	void setVisual(boolean _visual) {
 		visual = _visual;
 
-
 		if (visual == false) {
-			endInvisibleTime = millis() + 10000;
+			endInvisibleTime = millis() + 10000; //10 seconds
 		}
 	}
 }

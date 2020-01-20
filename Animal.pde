@@ -43,6 +43,10 @@ class Animal {
 		image(imageM, x - halfW, y - halfH, w, h);
 	}
 
+	void drawAngle(){
+		image(characterAngleImage, x - halfW, y - halfH, w, h);
+	}
+
 	void drawDeath() {
 		image(imageL, x - halfW, y - halfH, w, h);
 	}

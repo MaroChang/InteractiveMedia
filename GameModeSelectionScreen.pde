@@ -10,6 +10,8 @@ class GameModeSelectionScreen extends ScreenWithButton {
   //backgroung image
   PImage bg;
   PImage[] btn_back = {loadImage("button/btn_back.png"),loadImage("button/btn_back_hover.png"),loadImage("button/btn_back_active.png")};
+  PImage[] btn_mouse = {loadImage("button/btn_mouse.png"),loadImage("button/btn_mouse_hover.png"),loadImage("button/btn_mouse_active.png")};
+  PImage[] btn_kinect = {loadImage("button/btn_kinect.png"),loadImage("button/btn_kinect_hover.png"),loadImage("button/btn_kinect_active.png")};
 
 
   GameModeSelectionScreen() {
@@ -24,10 +26,10 @@ class GameModeSelectionScreen extends ScreenWithButton {
     fill(INSTRUCTIONS);
     rect(screenX / 2, screenY / 2.3, screenX / 1.5, screenY / 1.5, 50);
     textSize(30); 
-    fill(WHITE);
+    fill(54,90,102);
     text("Instructions:", screenX / 4 - 10, screenY / 4.8 );
     textSize(20);
-    text("Player:", screenX / 4 - 50, screenY / 3.9);
+    text("Character:", screenX / 4 - 50, screenY / 3.9);
     image(players, screenX / 4 - 100, screenY / 3.6, 200, 300);
     text("This is You", screenX / 4 , screenY / 1.4);
 
@@ -36,7 +38,7 @@ class GameModeSelectionScreen extends ScreenWithButton {
     text("Avoid These", screenX / 2 , screenY / 1.4);
 
     text("Items:", screenX / 2 + screenX / 4 - 50, screenY / 3.9);
-    image(items,screenX / 2 + screenX / 4 - 50, screenY / 4.6, 200, 300);
+    image(items,screenX / 2 + screenX / 4 - 100, screenY / 3.6, 200, 300);
     text("Collect These", screenX / 2 + screenX / 4, screenY / 1.4);
   }
   
@@ -56,9 +58,10 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setCaptionLabel(GAMEMODE1STR) 
       .setValue(0)
       .setFont(font)
+      .setImages(btn_mouse)
       //.setPosition(btnX - btnSpace * 3.5, btnY)
-      .setPosition(166,600)
-      .setSize(btnW, btnH)
+      .setPosition(166,605)
+      .setSize(400, 92)
 
       .hide();
 
@@ -66,16 +69,16 @@ class GameModeSelectionScreen extends ScreenWithButton {
       .setCaptionLabel(GAMEMODE2STR) 
       .setValue(0)
       .setFont(font)
+      .setImages(btn_kinect)
       //.setPosition(btnX + btnSpace * 3.5, btnY)
-      .setPosition(1000,600)
-      .setSize(btnW, btnH)
+      .setPosition(800,600)
+      .setSize(400, 92)
       .hide();  
 
     buttons[BACK_2_MENU] = CP5.addButton("backToMenu")
       .setCaptionLabel(BACK_2_MENU_STR) 
       .setValue(0)
       .setImages(btn_back)
-      .setFont(font)
       .setPosition(25, 25)
       .setSize(150, 84)
       .hide();

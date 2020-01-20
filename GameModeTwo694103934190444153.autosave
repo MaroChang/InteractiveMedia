@@ -130,8 +130,8 @@ class GameModeTwo extends ScreenWithButton{
 
 	void startGame() {
 		// Play gamestart sounds
-	  	gamestart.play();
-	  	gamestart.rewind();
+	  	//gamestart.play();
+	  	//gamestart.rewind();
 
 		gameBGM.play();
 		gameBGM.loop();
@@ -281,21 +281,10 @@ class GameModeTwo extends ScreenWithButton{
 
 void backToMainMenuGM2() {
 	if (frameCount > 0) {
-
-		click.play();
-	  	click.rewind();
 		gameModeTwo.hideButton();
 		gameScreen = MAIN_MENU_SCR;
 		gameState = IN_MENU;
 		gameMenu.showButtonOf(gameScreen);
-		gameBGM.pause();
-		gameBGM.rewind();
-    	menuBGM.play();
-		menuBGM.loop();
-		menuBGM.rewind();
-		increaseVolume1(gameVolume);
-		gameMenu.showButtonOf(gameScreen);
-
 	}
 }
 
